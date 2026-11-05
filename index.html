@@ -1,0 +1,2477 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+  <title>SIGUA Inmobiliaria | Casas y Terrenos en Carretera a El Salvador, Guatemala</title>
+  
+  <!-- Favicon / Meta -->
+  <meta name="description" content="Plataforma inmobiliaria premium para la compra, venta y renta de residencias exclusivas, apartamentos y terrenos de alta plusvalía en Carretera a El Salvador, Santa Catarina Pinula y Fraijanes.">
+  <meta name="keywords" content="bienes raices guatemala, casas en xela, venta de casas quetzaltenango, terrenos retalhuleu, apartamentos xela">
+
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com" rel="preconnect">
+  <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect">
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&amp;display=swap" rel="stylesheet">
+  
+  <!-- Material Symbols Outlined -->
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+  
+  <!-- Leaflet CSS for Interactive Map -->
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin=""/>
+
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+  <script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          colors: {
+            "on-secondary-container": "#63646c",
+            "on-tertiary-fixed": "#002113",
+            "on-error": "#ffffff",
+            "on-primary-container": "#858383",
+            "inverse-primary": "#c8c6c5",
+            "on-primary": "#ffffff",
+            "inverse-surface": "#2f3131",
+            "on-tertiary": "#ffffff",
+            "primary-container": "#1c1b1b",
+            "background": "#f9f9f9",
+            "surface-container-highest": "#e2e2e2",
+            "primary-fixed-dim": "#c8c6c5",
+            "on-error-container": "#93000a",
+            "outline": "#747878",
+            "secondary-fixed-dim": "#c6c5cf",
+            "primary-fixed": "#e5e2e1",
+            "secondary-container": "#e3e1ec",
+            "surface-container-low": "#f3f3f3",
+            "surface-container": "#eeeeee",
+            "error": "#ba1a1a",
+            "on-secondary-fixed-variant": "#46464e",
+            "secondary": "#5d5e66",
+            "on-surface": "#1a1c1c",
+            "tertiary-container": "#002113",
+            "secondary-fixed": "#e3e1ec",
+            "on-secondary-fixed": "#1a1b22",
+            "surface-container-high": "#e8e8e8",
+            "tertiary-fixed-dim": "#4edea3",
+            "error-container": "#ffdad6",
+            "on-background": "#1a1c1c",
+            "surface-tint": "#5f5e5e",
+            "primary": "#000000",
+            "on-primary-fixed-variant": "#474646",
+            "inverse-on-surface": "#f0f1f1",
+            "surface": "#f9f9f9",
+            "tertiary": "#000000",
+            "surface-dim": "#dadada",
+            "surface-variant": "#e2e2e2",
+            "on-primary-fixed": "#1c1b1b",
+            "on-tertiary-fixed-variant": "#005236",
+            "on-tertiary-container": "#009668",
+            "tertiary-fixed": "#6ffbbe",
+            "on-surface-variant": "#444748",
+            "outline-variant": "#c4c7c7",
+            "surface-container-lowest": "#ffffff",
+            "surface-bright": "#f9f9f9",
+            "on-secondary": "#ffffff"
+          },
+          fontFamily: {
+            "stat-metric": ["Plus Jakarta Sans"],
+            "display-hero-mobile": ["Plus Jakarta Sans"],
+            "body-lg": ["Plus Jakarta Sans"],
+            "headline-lg-mobile": ["Plus Jakarta Sans"],
+            "headline-lg": ["Plus Jakarta Sans"],
+            "label-sm": ["Plus Jakarta Sans"],
+            "headline-md": ["Plus Jakarta Sans"],
+            "headline-sm": ["Plus Jakarta Sans"],
+            "label-eyebrow": ["Plus Jakarta Sans"],
+            "label-md": ["Plus Jakarta Sans"],
+            "body-md": ["Plus Jakarta Sans"],
+            "body-sm": ["Plus Jakarta Sans"],
+            "display-hero": ["Plus Jakarta Sans"]
+          },
+          fontSize: {
+            "stat-metric": ["40px", { "lineHeight": "48px", "letterSpacing": "-0.03em", "fontWeight": "700" }],
+            "display-hero-mobile": ["36px", { "lineHeight": "44px", "letterSpacing": "-0.025em", "fontWeight": "700" }],
+            "body-lg": ["18px", { "lineHeight": "28px", "letterSpacing": "-0.01em", "fontWeight": "400" }],
+            "headline-lg-mobile": ["28px", { "lineHeight": "36px", "letterSpacing": "-0.02em", "fontWeight": "600" }],
+            "headline-lg": ["36px", { "lineHeight": "44px", "letterSpacing": "-0.025em", "fontWeight": "600" }],
+            "label-sm": ["12px", { "lineHeight": "16px", "letterSpacing": "0em", "fontWeight": "500" }],
+            "headline-md": ["24px", { "lineHeight": "32px", "letterSpacing": "-0.02em", "fontWeight": "600" }],
+            "headline-sm": ["20px", { "lineHeight": "28px", "letterSpacing": "-0.015em", "fontWeight": "600" }],
+            "label-eyebrow": ["12px", { "lineHeight": "16px", "letterSpacing": "0.08em", "fontWeight": "600" }],
+            "label-md": ["14px", { "lineHeight": "20px", "letterSpacing": "-0.005em", "fontWeight": "500" }],
+            "body-md": ["15px", { "lineHeight": "24px", "letterSpacing": "-0.005em", "fontWeight": "400" }],
+            "body-sm": ["13px", { "lineHeight": "20px", "letterSpacing": "0em", "fontWeight": "400" }],
+            "display-hero": ["56px", { "lineHeight": "64px", "letterSpacing": "-0.03em", "fontWeight": "700" }]
+          }
+        }
+      }
+    }
+  </script>
+
+  <!-- GSAP CDN -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  
+  <style>
+    .material-symbols-outlined {
+      font-family: 'Material Symbols Outlined';
+      font-weight: normal;
+      font-style: normal;
+      font-size: 20px;
+      line-height: 1;
+      display: inline-block;
+      white-space: nowrap;
+      word-wrap: normal;
+      direction: ltr;
+      -webkit-font-feature-settings: 'liga';
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* Leaflet custom map container */
+    #property-map {
+      width: 100%;
+      height: 480px;
+    }
+    @media (min-width: 640px) {
+      #property-map {
+        height: 600px;
+      }
+    }
+      z-index: 10;
+      border-radius: 1.5rem;
+    }
+    .leaflet-pane {
+      z-index: 10 !important;
+    }
+    .leaflet-top, .leaflet-bottom {
+      z-index: 20 !important;
+    }
+
+    /* Floating Minimalist Icon Dock Header (Adaptive Contrast) */
+    #floating-dock-container {
+      transition: background-color 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease, color 0.25s ease;
+    }
+
+    /* 1. DARK DOCK (Sobre fondos blancos/claros) - "cuando esta en lo blanco, que toda la barra sea oscura" */
+    #floating-dock-container.dock-dark-mode {
+      background: rgba(18, 18, 20, 0.94) !important;
+      border: 1px solid rgba(255, 255, 255, 0.16) !important;
+      box-shadow: 0 16px 40px rgba(0, 0, 0, 0.45) !important;
+    }
+    #floating-dock-container.dock-dark-mode #dock-brand-text {
+      color: #ffffff !important;
+    }
+    #floating-dock-container.dock-dark-mode #dock-brand-badge {
+      background: #ffffff !important;
+      color: #000000 !important;
+    }
+    #floating-dock-container.dock-dark-mode #dock-nav {
+      background: rgba(30, 30, 35, 0.9) !important;
+      border: 1px solid rgba(255, 255, 255, 0.1) !important;
+    }
+    #floating-dock-container.dock-dark-mode .dock-icon-btn {
+      color: #a3a3a3;
+    }
+    #floating-dock-container.dock-dark-mode .dock-icon-btn:hover {
+      color: #ffffff;
+      background: rgba(255, 255, 255, 0.12);
+    }
+    #floating-dock-container.dock-dark-mode .dock-icon-btn.active-dock {
+      background: #ffffff !important;
+      color: #000000 !important;
+      box-shadow: 0 2px 10px rgba(255, 255, 255, 0.35);
+    }
+    #floating-dock-container.dock-dark-mode #dock-wa-btn {
+      background: #ffffff !important;
+      color: #000000 !important;
+    }
+    #floating-dock-container.dock-dark-mode #dock-wa-btn:hover {
+      background: #e5e5e5 !important;
+    }
+    #floating-dock-container.dock-dark-mode #dock-call-btn {
+      border: 1px solid rgba(255, 255, 255, 0.25) !important;
+      color: #ffffff !important;
+    }
+    #floating-dock-container.dock-dark-mode #dock-call-btn:hover {
+      border-color: #ffffff !important;
+      background: rgba(255, 255, 255, 0.1) !important;
+    }
+
+    /* 2. LIGHT DOCK (Sobre fondos oscuros como Hero o Footer) - "cuando toque cosas oscuras que sea blanco" */
+    #floating-dock-container.dock-light-mode {
+      background: rgba(255, 255, 255, 0.95) !important;
+      border: 1px solid rgba(0, 0, 0, 0.12) !important;
+      box-shadow: 0 16px 40px rgba(0, 0, 0, 0.25) !important;
+    }
+    #floating-dock-container.dock-light-mode #dock-brand-text {
+      color: #000000 !important;
+    }
+    #floating-dock-container.dock-light-mode #dock-brand-badge {
+      background: #000000 !important;
+      color: #ffffff !important;
+    }
+    #floating-dock-container.dock-light-mode #dock-nav {
+      background: rgba(238, 238, 240, 0.95) !important;
+      border: 1px solid rgba(0, 0, 0, 0.08) !important;
+    }
+    #floating-dock-container.dock-light-mode .dock-icon-btn {
+      color: #555555;
+    }
+    #floating-dock-container.dock-light-mode .dock-icon-btn:hover {
+      color: #000000;
+      background: rgba(0, 0, 0, 0.08);
+    }
+    #floating-dock-container.dock-light-mode .dock-icon-btn.active-dock {
+      background: #000000 !important;
+      color: #ffffff !important;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.35);
+    }
+    #floating-dock-container.dock-light-mode #dock-wa-btn {
+      background: #000000 !important;
+      color: #ffffff !important;
+    }
+    #floating-dock-container.dock-light-mode #dock-wa-btn:hover {
+      background: #222222 !important;
+    }
+    #floating-dock-container.dock-light-mode #dock-call-btn {
+      border: 1px solid rgba(0, 0, 0, 0.2) !important;
+      color: #000000 !important;
+    }
+    #floating-dock-container.dock-light-mode #dock-call-btn:hover {
+      border-color: #000000 !important;
+      background: rgba(0, 0, 0, 0.06) !important;
+    }
+
+    .dock-tooltip {
+      position: absolute;
+      top: 100%;
+      left: 50%;
+      transform: translateX(-50%) translateY(8px);
+      background: #000000;
+      color: #ffffff;
+      font-size: 11px;
+      font-weight: 600;
+      padding: 3px 8px;
+      border-radius: 6px;
+      white-space: nowrap;
+      pointer-events: none;
+      opacity: 0;
+      transition: opacity 0.15s ease, transform 0.15s ease;
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      box-shadow: 0 4px 14px rgba(0, 0, 0, 0.5);
+      z-index: 60;
+    }
+    .dock-icon-btn:hover .dock-tooltip {
+      opacity: 1;
+      transform: translateX(-50%) translateY(4px);
+    }
+
+    /* Mobile Responsive Optimizations */
+    html, body {
+      overflow-x: hidden;
+      width: 100%;
+      max-width: 100vw;
+    }
+
+    /* Custom Budget Slider in Dark Panel */
+    .budget-range-input {
+      position: absolute;
+      width: 100%;
+      height: 28px; touch-action: pan-y;
+      background: none;
+      pointer-events: none;
+      -webkit-appearance: none;
+      appearance: none;
+      margin: 0;
+      top: 50%;
+      transform: translateY(-50%);
+    }
+    .budget-range-input::-webkit-slider-thumb {
+      -webkit-appearance: none;
+      appearance: none;
+      width: 20px;
+      height: 20px;
+      border-radius: 50%;
+      background: #ffffff;
+      border: 2px solid #121214;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.45);
+      cursor: pointer;
+      pointer-events: auto;
+      transition: transform 0.15s ease, box-shadow 0.15s ease;
+    }
+    .budget-range-input::-webkit-slider-thumb:hover {
+      transform: scale(1.18);
+      box-shadow: 0 4px 12px rgba(255, 255, 255, 0.35);
+    }
+    .budget-range-input::-moz-range-thumb {
+      width: 20px;
+      height: 20px;
+      border-radius: 50%;
+      background: #ffffff;
+      border: 2px solid #121214;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.45);
+      cursor: pointer;
+      pointer-events: auto;
+      transition: transform 0.15s ease, box-shadow 0.15s ease;
+    }
+    .budget-range-input::-moz-range-thumb:hover {
+      transform: scale(1.18);
+      box-shadow: 0 4px 12px rgba(255, 255, 255, 0.35);
+    }
+    .budget-range-input::-webkit-slider-runnable-track {
+      background: transparent;
+      border: none;
+    }
+    .budget-range-input::-moz-range-track {
+      background: transparent;
+      border: none;
+    }
+
+    /* Leaflet Layer Control Styling */
+    .leaflet-control-layers {
+      border-radius: 1rem !important;
+      border: 1px solid rgba(0, 0, 0, 0.12) !important;
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12) !important;
+      padding: 6px 12px !important;
+      background: #ffffff !important;
+      font-family: inherit !important;
+      font-size: 12px !important;
+      font-weight: 600 !important;
+      color: #1a1c1c !important;
+    }
+    .leaflet-control-layers-expanded {
+      padding: 10px 14px !important;
+    }
+    .leaflet-control-layers label {
+      margin-bottom: 4px !important;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    /* Custom Leaflet Pin Styling */
+    .custom-map-pin {
+      background: transparent;
+      border: none;
+    }
+    .pin-pill {
+      background: #000000;
+      color: #ffffff;
+      padding: 5px 10px;
+      border-radius: 9999px;
+      font-size: 11px;
+      font-weight: 700;
+      box-shadow: 0 4px 14px rgba(0,0,0,0.25);
+      border: 2px solid #ffffff;
+      white-space: nowrap;
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      cursor: pointer;
+      transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .pin-pill:hover {
+      background: #000000;
+      color: #ffffff;
+      transform: scale(1.15) translateY(-3px);
+      box-shadow: 0 8px 20px rgba(0,0,0,0.35);
+      border-color: #000000;
+    }
+    .pin-pill.active-pin {
+      border-color: #000000;
+      background: #000000;
+      color: #ffffff;
+      box-shadow: 0 0 0 4px rgba(0,0,0,0.25), 0 8px 20px rgba(0,0,0,0.4);
+    }
+
+    /* Button Micro-Animations */
+    .btn-luxury {
+      position: relative;
+      transition: transform 0.15s ease, box-shadow 0.15s ease, background-color 0.15s ease;
+      will-change: transform;
+    }
+    .btn-luxury:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 16px -2px rgba(0, 0, 0, 0.12);
+    }
+    .btn-luxury:active {
+      transform: scale(0.97);
+    }
+
+    /* Smooth Modal Transitions */
+    .modal-backdrop {
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+    }
+
+    /* Custom Scrollbar for Drawer/Modal */
+    .custom-scroll::-webkit-scrollbar {
+      width: 6px;
+    }
+    .custom-scroll::-webkit-scrollbar-track {
+      background: #f1f1f1;
+    }
+    .custom-scroll::-webkit-scrollbar-thumb {
+      background: #c4c7c7;
+      border-radius: 4px;
+    }
+  </style>
+</head>
+
+<body class="bg-surface text-on-surface antialiased selection:bg-primary selection:text-on-primary min-h-screen flex flex-col font-body-md">
+
+  <!-- FLOATING MINIMALIST HORIZONTAL ICON DOCK HEADER (Adaptive Contrast) -->
+  <header class="fixed top-3 sm:top-5 inset-x-0 z-50 flex items-center justify-center px-2 sm:px-6 pointer-events-none">
+    <div id="floating-dock-container" class="pointer-events-auto dock-light-mode backdrop-blur-xl rounded-full py-1.5 px-2.5 sm:px-4 flex items-center justify-between gap-1.5 sm:gap-4 max-w-fit mx-auto transition-all duration-300">
+      
+      <!-- Brand Logo Minimal -->
+      <a href="#" id="dock-brand-anchor" class="flex items-center gap-2 group flex-shrink-0 pl-1 pr-1 sm:pr-2" title="SIGUA Inmobiliaria">
+        <div id="dock-brand-badge" class="w-8 h-8 rounded-full flex items-center justify-center font-bold text-xs tracking-tighter shadow-sm transition-transform group-hover:scale-105">
+          BR
+        </div>
+        <span id="dock-brand-text" class="text-xs font-bold tracking-tight hidden lg:inline-block transition-colors duration-200">
+          SIGUA Inmobiliaria
+        </span>
+      </a>
+
+      <!-- Minimalist Horizontal Icon Dock (Horizontal, estilo Imagen 2) -->
+      <nav id="dock-nav" class="flex items-center gap-1 sm:gap-1.5 p-1 rounded-full transition-all duration-200">
+        <!-- 1. Inicio -->
+        <a href="#" id="dock-btn-hero" class="dock-icon-btn active-dock w-8 h-8 sm:w-9 sm:h-9 rounded-full flex items-center justify-center transition-all relative group" title="Inicio" aria-label="Inicio">
+          <span class="material-symbols-outlined text-[18px] sm:text-[20px]">home</span>
+          <span class="dock-tooltip">Inicio</span>
+        </a>
+
+        <!-- 2. Mapa Interactivo -->
+        <a href="#mapa" id="dock-btn-map" class="dock-icon-btn w-8 h-8 sm:w-9 sm:h-9 rounded-full flex items-center justify-center transition-all relative group" title="Mapa Interactivo" aria-label="Mapa">
+          <span class="material-symbols-outlined text-[18px] sm:text-[20px]">explore</span>
+          <span class="dock-tooltip">Mapa</span>
+        </a>
+
+        <!-- 3. Catálogo de Propiedades -->
+        <a href="#propiedades" id="dock-btn-props" class="dock-icon-btn w-8 h-8 sm:w-9 sm:h-9 rounded-full flex items-center justify-center transition-all relative group" title="Propiedades Disponibles" aria-label="Propiedades">
+          <span class="material-symbols-outlined text-[18px] sm:text-[20px]">apartment</span>
+          <span class="dock-tooltip">Propiedades</span>
+        </a>
+
+        <!-- 4. Servicios / Nosotros -->
+        <a href="#nosotros" id="dock-btn-services" class="dock-icon-btn w-8 h-8 sm:w-9 sm:h-9 rounded-full flex items-center justify-center transition-all relative group" title="Servicios y Quiénes Somos" aria-label="Servicios">
+          <span class="material-symbols-outlined text-[18px] sm:text-[20px]">handshake</span>
+          <span class="dock-tooltip">Servicios</span>
+        </a>
+
+        <!-- 5. Asesores Inmobiliarios -->
+        <a href="#asesores" id="dock-btn-advisors" class="dock-icon-btn w-8 h-8 sm:w-9 sm:h-9 rounded-full flex items-center justify-center transition-all relative group" title="Nuestros Asesores" aria-label="Asesores">
+          <span class="material-symbols-outlined text-[18px] sm:text-[20px]">support_agent</span>
+          <span class="dock-tooltip">Asesores</span>
+        </a>
+
+        <!-- 6. Opiniones de Clientes -->
+        <a href="#clientes" id="dock-btn-reviews" class="dock-icon-btn w-8 h-8 sm:w-9 sm:h-9 rounded-full flex items-center justify-center transition-all relative group" title="Opiniones de Clientes" aria-label="Opiniones">
+          <span class="material-symbols-outlined text-[18px] sm:text-[20px]">rate_review</span>
+          <span class="dock-tooltip">Opiniones</span>
+        </a>
+      </nav>
+
+      <!-- Action Button: Contacto Directo WhatsApp y Teléfono -->
+      <div class="flex items-center gap-1.5 flex-shrink-0">
+        <a href="https://wa.me/50256513625?text=Hola%20SIGUA%20Inmobiliaria,%20deseo%20informacion" id="dock-wa-btn" target="_blank" rel="noopener noreferrer" class="btn-luxury px-3 sm:px-3.5 py-1.5 sm:py-2 rounded-full font-bold text-xs flex items-center gap-1.5 shadow-md transition-all active:scale-95" title="WhatsApp Inmobiliaria">
+          <svg class="w-3.5 h-3.5 fill-current flex-shrink-0" viewBox="0 0 24 24"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z"/></svg>
+          <span class="hidden sm:inline">WhatsApp</span>
+        </a>
+        <a href="tel:+50256513625" id="dock-call-btn" class="w-8 h-8 rounded-full flex items-center justify-center transition-colors" title="Llamar +502 42728393">
+          <span class="material-symbols-outlined text-[16px]">call</span>
+        </a>
+      </div>
+
+    </div>
+  </header>
+
+  <!-- MAIN CANVAS -->
+  <main class="flex-grow">
+
+    <!-- HERO SECTION: FULL-BLEED ARCHITECTURAL MANSION CON DEGRADADO & TEMA OSCURO -->
+    <section class="relative min-h-[85vh] lg:min-h-[92vh] flex items-center justify-center overflow-hidden bg-neutral-950">
+      
+      <!-- Imagen de Fondo Arquitectónica de Alta Gama -->
+      <img class="absolute inset-0 w-full h-full object-cover object-center filter brightness-[0.88]" 
+           alt="Mansión Arquitectónica Contemporánea Suroccidente" 
+           src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=2000&q=80" 
+           decoding="async" 
+           fetchpriority="high">
+
+      <!-- Capas de Degradado Oscuro Superior y Central para Máxima Legibilidad -->
+      <div class="absolute inset-0 bg-gradient-to-b from-black/80 via-black/45 to-black/85 pointer-events-none z-10"></div>
+      <div class="absolute inset-0 bg-radial-gradient from-transparent via-black/25 to-black/60 pointer-events-none z-10"></div>
+
+      <!-- Degradado de Transición Suave Inferior (Idéntico a la imagen de referencia) -->
+      <div class="absolute bottom-0 inset-x-0 h-40 bg-gradient-to-t from-[#f9f9f9] via-[#f9f9f9]/70 to-transparent pointer-events-none z-10"></div>
+
+      <!-- Contenido Central del Hero -->
+      <div class="relative z-20 max-w-5xl mx-auto px-6 lg:px-12 pt-28 pb-20 sm:py-28 text-center flex flex-col items-center justify-center">
+        
+        <!-- Eyebrow Pill -->
+        <div class="inline-flex items-center gap-2.5 px-4 py-1.5 rounded-full bg-black/60 backdrop-blur-md border border-white/20 text-white shadow-xl mb-6">
+          <span class="w-2 h-2 rounded-full bg-white animate-pulse"></span>
+          <span class="text-xs font-semibold uppercase tracking-wider text-white/90">
+            Portafolio Inmobiliario Premium 2026
+          </span>
+        </div>
+
+        <!-- Headline Principal -->
+        <h1 class="text-4xl sm:text-6xl lg:text-7xl font-extrabold text-white tracking-tight leading-[1.1] mb-6 drop-shadow-xl max-w-4xl">
+          Encuentra la propiedad que define tu estilo de vida
+        </h1>
+
+        <!-- Subtítulo -->
+        <p class="text-base sm:text-lg lg:text-xl text-white/90 max-w-3xl leading-relaxed mb-10 drop-shadow-md">
+          Venta y renta exclusiva de residencias de autor, apartamentos y terrenos de alta plusvalía en el Suroccidente de Guatemala: Carretera a El Salvador, Santa Catarina Pinula y Fraijanes.
+        </p>
+
+        <!-- Botones de Acción de Alta Gama -->
+        <div class="flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-4 mb-10 w-full max-w-sm sm:max-w-none px-4">
+          <a href="#mapa" class="btn-luxury w-full sm:w-auto px-7 py-3.5 sm:py-4 rounded-full bg-white text-black font-bold text-sm flex items-center justify-center gap-2.5 shadow-2xl hover:bg-neutral-100 transition-all hover:scale-105">
+            <span class="material-symbols-outlined text-[18px]">explore</span>
+            <span>Explorar en el Mapa</span>
+          </a>
+          <a href="#propiedades" class="btn-luxury w-full sm:w-auto px-7 py-3.5 sm:py-4 rounded-full bg-black/60 hover:bg-black/90 backdrop-blur-md text-white border border-white/30 font-semibold text-sm flex items-center justify-center gap-2.5 shadow-xl transition-all hover:scale-105">
+            <span>Ver Catálogo (10)</span>
+            <span class="material-symbols-outlined text-[18px]">arrow_downward</span>
+          </a>
+        </div>
+
+        <!-- Tarjeta Flotante Interactiva de Proyecto Destacado (Residencia Valle Real) -->
+        <div class="inline-flex items-center gap-3.5 bg-black/70 backdrop-blur-md border border-white/20 px-5 py-3 rounded-2xl text-white shadow-2xl cursor-pointer hover:bg-black/90 transition-all hover:scale-[1.02] text-left" onclick="openPropertyModal(2)">
+          <div class="w-11 h-11 rounded-xl overflow-hidden bg-neutral-800 flex-shrink-0 border border-white/20">
+            <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuDX9ICFKIZhMbWGoxYCgvhJjABKnkN1h3mwz7WeNfZCJEDkvVALA4pfES2y_O4GBMvXSe8d6D2GeGWW1TMKh_QEnD-cu33XhnFkxBKEIBqUILmEtGxrlMvNjTSv_8vOUTuSlu_Pljbk_7tgDVp-v4Qk4YJrbR-XvAyXSGJPWT2sQNxlYwJNevUA3PW414-hlWbwLbBRq1u65yZOg2c7Jb3xwJ8IQ5CCvB5z72IPkRzl" class="w-full h-full object-cover" alt="Valle Real">
+          </div>
+          <div class="text-xs">
+            <span class="text-white/60 text-[10px] uppercase font-bold tracking-wider block">Proyecto Destacado · Zona 9 Carretera a El Salvador</span>
+            <span class="font-bold text-white text-sm block">Residencia Valle Real · Q 2,450,000</span>
+          </div>
+          <span class="material-symbols-outlined text-white/90 text-[20px] ml-1">arrow_forward</span>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- METRIC STAT BAND -->
+    <section class="py-12 lg:py-16 bg-surface-container-lowest border-b border-surface-container-high">
+      <div class="max-w-7xl mx-auto px-6 lg:px-12">
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-8 lg:gap-12">
+          <div class="flex flex-col border-l-2 border-primary pl-4">
+            <span class="text-stat-metric font-stat-metric text-primary tracking-tight">1,200+</span>
+            <span class="text-label-sm font-label-sm uppercase tracking-wider text-outline mt-1 font-semibold">Inmuebles Listados</span>
+            <span class="text-body-sm font-body-sm text-on-surface-variant mt-0.5">Carretera a El Salvador, Reu y Suroccidente</span>
+          </div>
+          <div class="flex flex-col border-l-2 border-primary pl-4">
+            <span class="text-stat-metric font-stat-metric text-primary tracking-tight">4,500+</span>
+            <span class="text-label-sm font-label-sm uppercase tracking-wider text-outline mt-1 font-semibold">Familias Satisfechas</span>
+            <span class="text-body-sm font-body-sm text-on-surface-variant mt-0.5">Compradores e inversionistas</span>
+          </div>
+          <div class="flex flex-col border-l-2 border-primary pl-4">
+            <span class="text-stat-metric font-stat-metric text-primary tracking-tight">15+ Años</span>
+            <span class="text-label-sm font-label-sm uppercase tracking-wider text-outline mt-1 font-semibold">Trayectoria Local</span>
+            <span class="text-body-sm font-body-sm text-on-surface-variant mt-0.5">Liderazgo regional comprobado</span>
+          </div>
+          <div class="flex flex-col border-l-2 border-primary pl-4">
+            <span class="text-stat-metric font-stat-metric text-primary tracking-tight">Q 1.2B+</span>
+            <span class="text-label-sm font-label-sm uppercase tracking-wider text-outline mt-1 font-semibold">Valor Gestionado</span>
+            <span class="text-body-sm font-body-sm text-on-surface-variant mt-0.5">En operaciones seguras</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- MAP & SEARCH CONSOLE SECTION -->
+    <section class="py-16 lg:py-24 bg-surface border-b border-surface-container-high relative" id="mapa">
+      <div class="max-w-7xl mx-auto px-6 lg:px-12">
+
+        <!-- SEARCH FILTER PANEL (Diseño Premium en Panel Oscuro como Imagen 3) -->
+        <div class="mb-14 relative z-30 max-w-xl lg:max-w-2xl mx-auto">
+          <div class="bg-[#121214] border border-neutral-800 rounded-3xl p-6 sm:p-8 shadow-[0_24px_50px_rgba(0,0,0,0.35)] text-white">
+            
+            <!-- Encabezado del Panel -->
+            <div class="mb-6">
+              <span class="text-[11px] font-bold text-neutral-400 uppercase tracking-widest block mb-1.5">Filtro Inteligente de Búsqueda</span>
+              <h2 class="text-2xl sm:text-3xl font-extrabold text-white tracking-tight leading-tight">
+                Encuentra tu propiedad en el mapa o catálogo
+              </h2>
+            </div>
+
+            <div class="space-y-5">
+              
+              <!-- UBICACIÓN (Custom Dropdown Sin Menús Nativos Feos) -->
+              <div class="relative">
+                <label class="block text-xs font-bold text-neutral-400 uppercase tracking-wider mb-2">Ubicación</label>
+                <button type="button" id="btn-dropdown-location" onclick="toggleFilterDropdown('menu-dropdown-location', 'chevron-location')" class="w-full bg-[#1c1c1f] hover:bg-[#252529] border border-neutral-700/70 text-white rounded-2xl px-4 py-3.5 flex items-center justify-between text-sm font-semibold transition-all">
+                  <span id="label-selected-location">Todas las Ubicaciones (10)</span>
+                  <span id="chevron-location" class="material-symbols-outlined text-[20px] text-neutral-400 transition-transform duration-200">expand_more</span>
+                </button>
+                <div id="menu-dropdown-location" class="hidden absolute left-0 right-0 top-full mt-2 bg-[#1c1c1f] border border-neutral-700 rounded-2xl p-2 shadow-2xl z-50 space-y-1">
+                  <button type="button" onclick="selectFilterLocation('all', 'Todas las Ubicaciones (10)')" class="w-full text-left px-3.5 py-2.5 rounded-xl text-sm font-medium text-white hover:bg-neutral-800 transition-colors flex items-center justify-between">
+                    <span>Todas las Ubicaciones (10)</span>
+                    <span class="material-symbols-outlined text-[18px] text-white opt-check-loc" data-val="all">check</span>
+                  </button>
+                  <button type="button" onclick="selectFilterLocation('Carretera a El Salvador', 'Carretera a El Salvador (8)')" class="w-full text-left px-3.5 py-2.5 rounded-xl text-sm font-medium text-neutral-300 hover:text-white hover:bg-neutral-800 transition-colors flex items-center justify-between">
+                    <span>Carretera a El Salvador (8)</span>
+                    <span class="material-symbols-outlined text-[18px] text-white hidden opt-check-loc" data-val="Carretera a El Salvador">check</span>
+                  </button>
+                  <button type="button" onclick="selectFilterLocation('Fraijanes', 'Fraijanes (2)')" class="w-full text-left px-3.5 py-2.5 rounded-xl text-sm font-medium text-neutral-300 hover:text-white hover:bg-neutral-800 transition-colors flex items-center justify-between">
+                    <span>Fraijanes (2)</span>
+                    <span class="material-symbols-outlined text-[18px] text-white hidden opt-check-loc" data-val="Fraijanes">check</span>
+                  </button>
+                </div>
+              </div>
+
+              <!-- TIPO DE INMUEBLE (Custom Dropdown) -->
+              <div class="relative">
+                <label class="block text-xs font-bold text-neutral-400 uppercase tracking-wider mb-2">Tipo de Inmueble</label>
+                <button type="button" id="btn-dropdown-type" onclick="toggleFilterDropdown('menu-dropdown-type', 'chevron-type')" class="w-full bg-[#1c1c1f] hover:bg-[#252529] border border-neutral-700/70 text-white rounded-2xl px-4 py-3.5 flex items-center justify-between text-sm font-semibold transition-all">
+                  <span id="label-selected-type">Todos los Tipos</span>
+                  <span id="chevron-type" class="material-symbols-outlined text-[20px] text-neutral-400 transition-transform duration-200">expand_more</span>
+                </button>
+                <div id="menu-dropdown-type" class="hidden absolute left-0 right-0 top-full mt-2 bg-[#1c1c1f] border border-neutral-700 rounded-2xl p-2 shadow-2xl z-50 space-y-1">
+                  <button type="button" onclick="selectFilterType('all', 'Todos los Tipos')" class="w-full text-left px-3.5 py-2.5 rounded-xl text-sm font-medium text-white hover:bg-neutral-800 transition-colors flex items-center justify-between">
+                    <span>Todos los Tipos</span>
+                    <span class="material-symbols-outlined text-[18px] text-white opt-check-type" data-val="all">check</span>
+                  </button>
+                  <button type="button" onclick="selectFilterType('Casa', 'Casas & Residencias (5)')" class="w-full text-left px-3.5 py-2.5 rounded-xl text-sm font-medium text-neutral-300 hover:text-white hover:bg-neutral-800 transition-colors flex items-center justify-between">
+                    <span>Casas & Residencias (5)</span>
+                    <span class="material-symbols-outlined text-[18px] text-white hidden opt-check-type" data-val="Casa">check</span>
+                  </button>
+                  <button type="button" onclick="selectFilterType('Apartamento', 'Apartamentos (2)')" class="w-full text-left px-3.5 py-2.5 rounded-xl text-sm font-medium text-neutral-300 hover:text-white hover:bg-neutral-800 transition-colors flex items-center justify-between">
+                    <span>Apartamentos (2)</span>
+                    <span class="material-symbols-outlined text-[18px] text-white hidden opt-check-type" data-val="Apartamento">check</span>
+                  </button>
+                  <button type="button" onclick="selectFilterType('Terreno', 'Terrenos & Lotes (3)')" class="w-full text-left px-3.5 py-2.5 rounded-xl text-sm font-medium text-neutral-300 hover:text-white hover:bg-neutral-800 transition-colors flex items-center justify-between">
+                    <span>Terrenos & Lotes (3)</span>
+                    <span class="material-symbols-outlined text-[18px] text-white hidden opt-check-type" data-val="Terreno">check</span>
+                  </button>
+                </div>
+              </div>
+
+              <!-- PRESUPUESTO ESTIMADO (Raya Blanca & Sliders Interactivos) -->
+              <div>
+                <label class="block text-xs font-bold text-neutral-400 uppercase tracking-wider mb-2">Presupuesto Estimado</label>
+                <div class="bg-[#1a1a1d] border border-neutral-700/60 rounded-2xl p-4 sm:p-5">
+                  <!-- Header row: PRESUPUESTO y valor dinámico -->
+                  <div class="flex items-center justify-between mb-4">
+                    <span class="text-xs font-bold text-white uppercase tracking-wider">Presupuesto</span>
+                    <span id="budget-display-value" class="text-sm sm:text-base font-bold text-white tracking-tight">Q 0 - Q 5,000,000+</span>
+                  </div>
+
+                  <!-- Slider Track Container -->
+                  <div class="relative w-full h-8 flex items-center">
+                    <!-- Background Track Inactivo -->
+                    <div class="absolute w-full h-1.5 bg-neutral-700/80 rounded-full"></div>
+                    
+                    <!-- Raya Blanca Activa ("y que la raya del presupuesto sea blanca") -->
+                    <div id="slider-range-line" class="absolute h-1.5 bg-white rounded-full pointer-events-none transition-all duration-75" style="left: 0%; width: 100%;"></div>
+
+                    <!-- Dual Range Inputs -->
+                    <input type="range" id="slider-min" min="0" max="5000000" step="50000" value="0" class="budget-range-input z-20" aria-label="Presupuesto Mínimo">
+                    <input type="range" id="slider-max" min="0" max="5000000" step="50000" value="5000000" class="budget-range-input z-20" aria-label="Presupuesto Máximo">
+                  </div>
+
+                  <!-- Fila Inferior: Etiquetas Mínimo y Máximo -->
+                  <div class="flex items-center justify-between text-xs text-neutral-400 font-medium mt-2">
+                    <span id="budget-label-min">Mínimo</span>
+                    <span id="budget-label-max">Máximo</span>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Botón Buscar Ahora (Blanco Destacado como en Imagen 3) -->
+              <div class="pt-2">
+                <button type="button" onclick="executeSearchNow()" class="btn-luxury w-full py-4 px-6 rounded-2xl bg-white hover:bg-neutral-100 text-black font-bold text-base flex items-center justify-center gap-2.5 shadow-xl transition-all hover:scale-[1.01] active:scale-95">
+                  <span class="material-symbols-outlined text-[20px] text-black">search</span>
+                  <span>Buscar Ahora</span>
+                </button>
+              </div>
+
+            </div>
+          </div>
+        </div>
+
+        <!-- MAP HEADER -->
+        <div class="flex flex-col md:flex-row md:items-end justify-between mb-8 gap-6">
+          <div>
+            <span class="text-label-eyebrow font-label-eyebrow text-outline uppercase tracking-wider block mb-2">Exploración Territorial en Tiempo Real</span>
+            <h2 class="text-headline-lg-mobile lg:text-headline-lg font-headline-lg text-primary tracking-tight">
+              Ecosistema Inmobiliario del Suroccidente
+            </h2>
+            <p class="text-body-md font-body-md text-on-surface-variant mt-2 max-w-2xl">
+              Haz clic en cualquier propiedad del mapa para ver sus detalles y navegar con cámara animada hacia su ubicación exacta en Carretera a El Salvador o Fraijanes.
+            </p>
+          </div>
+          <div class="flex flex-wrap items-center gap-2">
+            <button onclick="centerMap('all')" class="btn-luxury px-3.5 py-1.5 rounded-full bg-surface-container-lowest border border-surface-container-high text-xs font-semibold text-primary hover:border-primary">
+              Ver Todo (10)
+            </button>
+            <button onclick="centerMap('xela')" class="btn-luxury px-3.5 py-1.5 rounded-full bg-surface-container-lowest border border-surface-container-high text-xs font-semibold text-primary hover:border-primary">
+              Carretera a El Salvador (8)
+            </button>
+            <button onclick="centerMap('reu')" class="btn-luxury px-3.5 py-1.5 rounded-full bg-surface-container-lowest border border-surface-container-high text-xs font-semibold text-primary hover:border-primary">
+              Fraijanes (2)
+            </button>
+            <a class="btn-luxury px-4 py-2 bg-primary text-on-primary rounded-full text-xs font-semibold" href="https://wa.me/50256513625?text=Hola%20SIGUA%20Inmobiliaria,%20deseo%20informacion" target="_blank">
+              Solicitar Mapa de Plusvalía
+            </a>
+          </div>
+        </div>
+
+        <!-- Interactive Map Container Canvas -->
+        <div class="relative w-full rounded-3xl overflow-hidden border border-outline-variant/60 shadow-[0_12px_32px_-4px_rgba(0,0,0,0.08)] bg-surface-container-low">
+          <!-- Real Leaflet Map -->
+          <div id="property-map"></div>
+
+          <!-- FLOATING ACTIVE PROPERTY BALLOON CARD (Optimizado para Teléfono) -->
+          <div id="map-property-card" class="absolute bottom-3 inset-x-3 sm:inset-x-auto sm:right-6 sm:bottom-6 sm:w-[350px] bg-surface-container-lowest rounded-2xl border border-surface-container-high shadow-2xl p-3 sm:p-4 transition-all duration-300 z-20">
+            <div class="relative w-full aspect-[16/10] rounded-xl overflow-hidden mb-3 bg-surface-container">
+              <img id="map-card-img" class="w-full h-full object-cover" alt="Propiedad Seleccionada" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBwSQYQ1wjrN5CfgNHkDi7cq5s4zWdHfB9kgFrDdVO_XuVq570JneYfEGBUc8eYTySaKPZQiqJRVjcQCkx4P90Jza5nXjDrmMkqQz8JDOfVL7TGyc4JvQKjpjEYvYEp16ZhfYn61-VsGom_V9wajidb490s2xBRkGWdMj5IOeLSf_UlyDE6XVC6mEXkbrToCKswtC59GKKX7k3zTMqW5SzglCLQi2sGdda3ysx5ZL6Q">
+              <span id="map-card-tag" class="absolute top-2.5 right-2.5 bg-primary text-on-primary text-[10px] font-bold px-2.5 py-1 rounded-full uppercase tracking-wider shadow-sm">
+                Disponible
+              </span>
+            </div>
+            <div>
+              <h3 id="map-card-title" class="text-headline-sm font-headline-sm font-bold text-primary truncate">
+                Condominio Difiori
+              </h3>
+              <p id="map-card-loc" class="text-body-sm font-body-sm text-outline flex items-center gap-1 mt-0.5 truncate">
+                <span class="material-symbols-outlined text-[15px]">location_on</span>
+                Zona 8, Carretera a El Salvador
+              </p>
+              <!-- Specs Row -->
+              <div id="map-card-specs" class="flex items-center justify-between text-body-sm font-body-sm text-on-surface-variant my-2.5 py-1.5 border-y border-surface-container">
+                <span class="flex items-center gap-1"><span class="material-symbols-outlined text-[15px] text-outline">square_foot</span> <span id="map-card-area">280 m²</span></span>
+                <span class="flex items-center gap-1"><span class="material-symbols-outlined text-[15px] text-outline">bed</span> <span id="map-card-beds">4 Hab</span></span>
+                <span class="flex items-center gap-1"><span class="material-symbols-outlined text-[15px] text-outline">bathtub</span> <span id="map-card-baths">3 Baños</span></span>
+                <span class="flex items-center gap-1"><span class="material-symbols-outlined text-[15px] text-outline">garage</span> <span id="map-card-garages">2 Autos</span></span>
+              </div>
+              <!-- Price & CTA -->
+              <div class="flex items-center justify-between pt-1">
+                <div>
+                  <span class="text-[11px] text-outline uppercase block font-medium">Precio</span>
+                  <div class="flex items-baseline gap-1.5">
+                    <span id="map-card-price" class="text-headline-sm font-headline-sm font-bold text-primary">Q 1,850,000</span>
+                    <span id="map-card-usd" class="text-xs font-semibold text-outline">(~$238K)</span>
+                  </div>
+                </div>
+                <button id="map-card-btn" onclick="openPropertyModal(currentActivePropertyId)" class="btn-luxury bg-primary text-on-primary px-3.5 py-2 rounded-full text-xs font-semibold shadow-sm">
+                  Ver Ficha
+                </button>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- PROPIEDADES DESTACADAS GRID (10 Properties with full details) -->
+    <section class="py-20 lg:py-28 bg-surface-container-lowest border-b border-surface-container-high" id="propiedades">
+      <div class="max-w-7xl mx-auto px-6 lg:px-12">
+        <div class="flex flex-col md:flex-row md:items-end justify-between mb-10 gap-6">
+          <div>
+            <span class="text-label-eyebrow font-label-eyebrow text-outline uppercase tracking-wider block mb-2">Catálogo Completo</span>
+            <h2 class="text-headline-lg-mobile lg:text-headline-lg font-headline-lg text-primary tracking-tight">
+              Propiedades Disponibles en Carretera a El Salvador
+            </h2>
+            <p class="text-body-md font-body-md text-on-surface-variant mt-2 max-w-xl">
+              Explora nuestras 10 residencias, apartamentos y terrenos con especificaciones técnicas completas, áreas en m², niveles y puntos de interés cercanos.
+            </p>
+          </div>
+
+          <!-- Category Filter Quick Pills -->
+          <div class="flex items-center gap-2 overflow-x-auto pb-2 md:pb-0">
+            <button onclick="setTabFilter('all')" class="tab-pill btn-luxury bg-primary text-on-primary px-4 py-2 rounded-full text-label-sm font-semibold" data-tab="all">Todas (10)</button>
+            <button onclick="setTabFilter('Carretera a El Salvador')" class="tab-pill btn-luxury bg-surface-container-low hover:bg-surface-container-high text-on-surface px-4 py-2 rounded-full text-label-sm font-medium transition-colors" data-tab="Carretera a El Salvador">Carretera a El Salvador (8)</button>
+            <button onclick="setTabFilter('Fraijanes')" class="tab-pill btn-luxury bg-surface-container-low hover:bg-surface-container-high text-on-surface px-4 py-2 rounded-full text-label-sm font-medium transition-colors" data-tab="Fraijanes">Fraijanes (2)</button>
+            <button onclick="setTabFilter('Venta')" class="tab-pill btn-luxury bg-surface-container-low hover:bg-surface-container-high text-on-surface px-4 py-2 rounded-full text-label-sm font-medium transition-colors" data-tab="Venta">En Venta (8)</button>
+            <button onclick="setTabFilter('Renta')" class="tab-pill btn-luxury bg-surface-container-low hover:bg-surface-container-high text-on-surface px-4 py-2 rounded-full text-label-sm font-medium transition-colors" data-tab="Renta">En Renta (2)</button>
+          </div>
+        </div>
+
+        <!-- 10 Properties Grid Container -->
+        <div id="properties-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+          <!-- Dynamically populated via JS for seamless reactive filtering -->
+        </div>
+
+        <!-- Counter Banner -->
+        <div class="mt-12 text-center">
+          <p id="properties-count-msg" class="text-sm font-medium text-outline mb-4">Mostrando 10 de 10 propiedades disponibles</p>
+          <a class="btn-luxury inline-flex items-center gap-2 border border-outline-variant hover:border-primary text-on-surface px-6 py-3 rounded-full text-label-md font-medium transition-colors bg-surface-container-lowest" href="https://wa.me/50256513625?text=Hola%20SIGUA%20Inmobiliaria,%20deseo%20informacion" target="_blank">
+            <span>¿Buscas una propiedad personalizada? Contáctanos por WhatsApp</span>
+            <span class="material-symbols-outlined text-[18px]">arrow_forward</span>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECCIÓN NOSOTROS (Cuadros Horizontales, Estilo Fiel a la Página, Sin Verde) -->
+    <section class="py-20 lg:py-28 bg-surface border-b border-surface-container-high" id="nosotros">
+      <div class="max-w-7xl mx-auto px-6 lg:px-12">
+        
+        <!-- Header de Sección -->
+        <div class="flex flex-col lg:flex-row lg:items-end justify-between mb-14 gap-6">
+          <div class="max-w-2xl">
+            <span class="text-label-eyebrow font-label-eyebrow text-outline uppercase tracking-wider block mb-2">NUESTRA FIRMA INMOBILIARIA</span>
+            <h2 class="text-headline-lg-mobile lg:text-headline-lg font-headline-lg text-primary tracking-tight">
+              Quiénes Somos &amp; Por Qué Elegirnos
+            </h2>
+          </div>
+          <p class="text-body-md font-body-md text-on-surface-variant max-w-md lg:text-right">
+            Más de 15 años conectando a familias e inversionistas con las mejores residencias, apartamentos y terrenos de alta plusvalía en Carretera a El Salvador, Santa Catarina Pinula y Fraijanes.
+          </p>
+        </div>
+
+        <!-- Stack de Cuadros Horizontales -->
+        <div class="flex flex-col gap-8 max-w-5xl mx-auto">
+          
+          <!-- Cuadro Horizontal 1: Trayectoria y Liderazgo -->
+          <div class="grid grid-cols-1 md:grid-cols-12 rounded-3xl overflow-hidden bg-surface-container-lowest border border-surface-container-high shadow-sm hover:shadow-md transition-shadow group">
+            <div class="md:col-span-5 h-64 md:h-auto min-h-[260px] relative overflow-hidden bg-surface-container">
+              <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1200&q=80" alt="Residencia en Carretera a El Salvador" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" loading="lazy" decoding="async">
+              <span class="absolute top-4 left-4 bg-primary text-on-primary text-[11px] font-semibold tracking-wider uppercase px-3 py-1 rounded-full shadow">
+                01 · Trayectoria
+              </span>
+            </div>
+            <div class="md:col-span-7 p-6 sm:p-8 lg:p-10 flex flex-col justify-between">
+              <div>
+                <span class="text-label-eyebrow font-label-eyebrow text-outline uppercase tracking-wider block mb-2">EXPERIENCIA COMPROBADA EN OCCIDENTE</span>
+                <h3 class="text-headline-sm font-headline-sm font-bold text-primary mb-3">Liderazgo y Asesoría Inmobiliaria Regional</h3>
+                <p class="text-body-sm font-body-sm text-on-surface-variant leading-relaxed mb-6">
+                  Somos la firma de intermediación con mayor arraigo en Carretera a El Salvador y la Costa Sur. Asesoramos en la adquisición estratégica de residencias familiares, lotes urbanizados y quintas campestres con análisis real de plusvalía y retorno de inversión.
+                </p>
+                
+                <div class="grid grid-cols-2 gap-3 mb-6">
+                  <div class="p-3 rounded-xl bg-surface-container-low border border-surface-container">
+                    <span class="text-xs text-outline block">Transacciones</span>
+                    <span class="text-base font-bold text-primary">+4,500 Familias</span>
+                  </div>
+                  <div class="p-3 rounded-xl bg-surface-container-low border border-surface-container">
+                    <span class="text-xs text-outline block">Presencia Local</span>
+                    <span class="text-base font-bold text-primary">15+ Años en Carretera a El Salvador</span>
+                  </div>
+                </div>
+              </div>
+
+              <div class="pt-4 border-t border-surface-container flex items-center justify-between">
+                <a href="#propiedades" class="btn-luxury inline-flex items-center gap-2 text-xs font-bold text-primary hover:underline">
+                  <span>Explorar Catálogo Disponible</span>
+                  <span class="material-symbols-outlined text-[16px]">arrow_forward</span>
+                </a>
+              </div>
+            </div>
+          </div>
+
+          <!-- Cuadro Horizontal 2: Certeza Jurídica y Notarial -->
+          <div class="grid grid-cols-1 md:grid-cols-12 rounded-3xl overflow-hidden bg-surface-container-lowest border border-surface-container-high shadow-sm hover:shadow-md transition-shadow group">
+            <div class="md:col-span-5 h-64 md:h-auto min-h-[260px] relative overflow-hidden bg-surface-container">
+              <img src="https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?auto=format&fit=crop&w=1200&q=80" alt="Residencia Segura en Guatemala" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" loading="lazy" decoding="async">
+              <span class="absolute top-4 left-4 bg-primary text-on-primary text-[11px] font-semibold tracking-wider uppercase px-3 py-1 rounded-full shadow">
+                02 · Certeza Notarial
+              </span>
+            </div>
+            <div class="md:col-span-7 p-6 sm:p-8 lg:p-10 flex flex-col justify-between">
+              <div>
+                <span class="text-label-eyebrow font-label-eyebrow text-outline uppercase tracking-wider block mb-2">SEGURIDAD LEGAL GARANTIZADA</span>
+                <h3 class="text-headline-sm font-headline-sm font-bold text-primary mb-3">Blindaje y Validación en el Registro de la Propiedad</h3>
+                <p class="text-body-sm font-body-sm text-on-surface-variant leading-relaxed mb-6">
+                  Protegemos su patrimonio familiar auditando previamente cada título ante el Segundo Registro de la Propiedad en Carretera a El Salvador. Verificamos que los inmuebles estén libres de gravámenes, anotaciones de demanda o hipotecas ocultas antes de cualquier pago.
+                </p>
+
+                <div class="space-y-2 mb-6 text-xs text-on-surface-variant">
+                  <div class="flex items-center gap-2">
+                    <span class="material-symbols-outlined text-[16px] text-primary">verified</span>
+                    <span>Revisión de tracto sucesivo y personería legal sin sorpresas</span>
+                  </div>
+                  <div class="flex items-center gap-2">
+                    <span class="material-symbols-outlined text-[16px] text-primary">description</span>
+                    <span>Acompañamiento presencial completo hasta la firma de escrituras</span>
+                  </div>
+                </div>
+              </div>
+
+              <div class="pt-4 border-t border-surface-container flex items-center justify-between">
+                <a href="https://wa.me/50256513625?text=Hola%20SIGUA%20Inmobiliaria,%20deseo%20informacion" target="_blank" class="btn-luxury inline-flex items-center gap-2 text-xs font-bold text-primary hover:underline">
+                  <span>Consultar con Asesor Notarial</span>
+                  <span class="material-symbols-outlined text-[16px]">arrow_forward</span>
+                </a>
+              </div>
+            </div>
+          </div>
+
+          <!-- Cuadro Horizontal 3: Alianzas Bancarias y Financiamiento -->
+          <div class="grid grid-cols-1 md:grid-cols-12 rounded-3xl overflow-hidden bg-surface-container-lowest border border-surface-container-high shadow-sm hover:shadow-md transition-shadow group">
+            <div class="md:col-span-5 h-64 md:h-auto min-h-[260px] relative overflow-hidden bg-surface-container">
+              <img src="https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&w=1200&q=80" alt="Residencia Campestre en Fraijanes" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" loading="lazy" decoding="async">
+              <span class="absolute top-4 left-4 bg-primary text-on-primary text-[11px] font-semibold tracking-wider uppercase px-3 py-1 rounded-full shadow">
+                03 · Banca
+              </span>
+            </div>
+            <div class="md:col-span-7 p-6 sm:p-8 lg:p-10 flex flex-col justify-between">
+              <div>
+                <span class="text-label-eyebrow font-label-eyebrow text-outline uppercase tracking-wider block mb-2">GESTIÓN HIPOTECARIA ÁGIL</span>
+                <h3 class="text-headline-sm font-headline-sm font-bold text-primary mb-3">Convenios con los Principales Bancos de Guatemala</h3>
+                <p class="text-body-sm font-body-sm text-on-surface-variant leading-relaxed mb-6">
+                  Facilitamos su trámite de crédito con el sistema bancario nacional (Banco Industrial, Banrural, G&amp;T Continental y BAC). Calculamos cuotas mensuales a su medida, optimizamos tasas de interés y gestionamos peritajes oficiales con rapidez.
+                </p>
+
+                <div class="space-y-2 mb-6 text-xs text-on-surface-variant">
+                  <div class="flex items-center gap-2">
+                    <span class="material-symbols-outlined text-[16px] text-primary">account_balance</span>
+                    <span>Alianzas activas: BI, Banrural, G&amp;T Continental y BAC</span>
+                  </div>
+                  <div class="flex items-center gap-2">
+                    <span class="material-symbols-outlined text-[16px] text-primary">percent</span>
+                    <span>Precalificación bancaria y cálculo de cuotas sin costo extra</span>
+                  </div>
+                </div>
+              </div>
+
+              <div class="pt-4 border-t border-surface-container flex items-center justify-between">
+                <a href="https://wa.me/50256513625?text=Hola%20SIGUA%20Inmobiliaria,%20deseo%20informacion" target="_blank" class="btn-luxury inline-flex items-center gap-2 text-xs font-bold text-primary hover:underline">
+                  <span>Solicitar Simulación de Crédito</span>
+                  <span class="material-symbols-outlined text-[16px]">arrow_forward</span>
+                </a>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ASESORES SECTION (With minimalist icons and placeholder advisors requested by user) -->
+    <section class="py-20 lg:py-28 bg-surface-container-lowest border-b border-surface-container-high" id="asesores">
+      <div class="max-w-7xl mx-auto px-6 lg:px-12">
+        <div class="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-6">
+          <div>
+            <span class="text-label-eyebrow font-label-eyebrow text-outline uppercase tracking-wider block mb-2">EQUIPO PROMOTOR REGIONAL</span>
+            <h2 class="text-headline-lg-mobile lg:text-headline-lg font-headline-lg text-primary tracking-tight">
+              Nuestros Asesores Inmobiliarios
+            </h2>
+            <p class="text-body-md font-body-md text-on-surface-variant mt-2 max-w-xl">
+              Profesionales titulados con presencia activa en Carretera a El Salvador, Santa Catarina Pinula y Fraijanes. Asistencia presencial en cada visita y gestión bancaria directa.
+            </p>
+          </div>
+          <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-surface-container text-xs font-semibold text-primary">
+            <span class="w-2 h-2 rounded-full bg-primary"></span>
+            Asesoría Personalizada 7 días
+          </div>
+        </div>
+
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+          
+          <!-- Asesor 1: Juan Carlos Aguirre -->
+          <div class="bg-surface rounded-2xl border border-surface-container-high p-5 flex flex-col justify-between shadow-sm hover:shadow-md transition-shadow group">
+            <div>
+              <div class="aspect-square rounded-xl overflow-hidden mb-4 bg-surface-container">
+                <img class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" alt="Juan Carlos Aguirre" loading="lazy" decoding="async" src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=600&q=80">
+              </div>
+              <span class="text-[10px] font-bold uppercase tracking-wider text-primary bg-surface-container px-2.5 py-0.5 rounded-full inline-block mb-1">Director General</span>
+              <h3 class="text-lg font-bold text-primary">Juan Carlos Aguirre</h3>
+              <p class="text-xs text-outline mb-3">Co-Fundador • Especialista en Carretera a El Salvador</p>
+              
+              <div class="space-y-1.5 text-xs text-on-surface-variant mb-4">
+                <div class="flex items-center gap-2">
+                  <span class="material-symbols-outlined text-[15px] text-outline">location_city</span>
+                  <span>Santa Catarina Pinula & CAES</span>
+                </div>
+                <div class="flex items-center gap-2">
+                  <span class="material-symbols-outlined text-[15px] text-outline">badge</span>
+                  <span>17+ años de experiencia</span>
+                </div>
+              </div>
+            </div>
+
+            <a class="w-full py-2.5 px-4 rounded-xl bg-primary-container text-on-primary hover:bg-neutral-800 transition-colors text-xs font-semibold flex items-center justify-center gap-2 text-center" href="https://wa.me/50256513625?text=Hola%20Juan%20Carlos,%20deseo%20asesoria%20inmobiliaria" target="_blank" rel="noopener noreferrer">
+              <span class="material-symbols-outlined text-[16px]">chat</span>
+              <span>Contactar por WhatsApp</span>
+            </a>
+          </div>
+
+          <!-- Asesor 2: Marjorie Valdez de Aguirre -->
+          <div class="bg-surface rounded-2xl border border-surface-container-high p-5 flex flex-col justify-between shadow-sm hover:shadow-md transition-shadow group">
+            <div>
+              <div class="aspect-square rounded-xl overflow-hidden mb-4 bg-surface-container">
+                <img class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" alt="Marjorie Valdez de Aguirre" loading="lazy" decoding="async" src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=600&q=80">
+              </div>
+              <span class="text-[10px] font-bold uppercase tracking-wider text-primary bg-surface-container px-2.5 py-0.5 rounded-full inline-block mb-1">Directora Comercial</span>
+              <h3 class="text-lg font-bold text-primary">Marjorie Valdez de Aguirre</h3>
+              <p class="text-xs text-outline mb-3">Socia Fundadora • Gestión de Residencias Exclusivas</p>
+              
+              <div class="space-y-1.5 text-xs text-on-surface-variant mb-4">
+                <div class="flex items-center gap-2">
+                  <span class="material-symbols-outlined text-[15px] text-outline">location_city</span>
+                  <span>Terravista, Arrazola & Fraijanes</span>
+                </div>
+                <div class="flex items-center gap-2">
+                  <span class="material-symbols-outlined text-[15px] text-outline">badge</span>
+                  <span>17+ años de trayectoria</span>
+                </div>
+              </div>
+            </div>
+
+            <a class="w-full py-2.5 px-4 rounded-xl bg-primary-container text-on-primary hover:bg-neutral-800 transition-colors text-xs font-semibold flex items-center justify-center gap-2 text-center" href="https://wa.me/50256325705?text=Hola%20Marjorie,%20deseo%20asesoria%20inmobiliaria" target="_blank" rel="noopener noreferrer">
+              <span class="material-symbols-outlined text-[16px]">chat</span>
+              <span>Contactar por WhatsApp</span>
+            </a>
+          </div>
+
+          <!-- Asesor 3: Rodrigo Mendoza -->
+          <div class="bg-surface rounded-2xl border border-surface-container-high p-5 flex flex-col justify-between shadow-sm hover:shadow-md transition-shadow group">
+            <div>
+              <div class="aspect-square rounded-xl overflow-hidden mb-4 bg-surface-container">
+                <img class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" alt="Rodrigo Mendoza" loading="lazy" decoding="async" src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=600&q=80">
+              </div>
+              <span class="text-[10px] font-bold uppercase tracking-wider text-primary bg-surface-container px-2.5 py-0.5 rounded-full inline-block mb-1">Asesor Senior</span>
+              <h3 class="text-lg font-bold text-primary">Rodrigo Mendoza</h3>
+              <p class="text-xs text-outline mb-3">Especialista en Condominios Terravista & CAES</p>
+              
+              <div class="space-y-1.5 text-xs text-on-surface-variant mb-4">
+                <div class="flex items-center gap-2">
+                  <span class="material-symbols-outlined text-[15px] text-outline">location_city</span>
+                  <span>Km 14 a Km 20 Carretera</span>
+                </div>
+                <div class="flex items-center gap-2">
+                  <span class="material-symbols-outlined text-[15px] text-outline">badge</span>
+                  <span>10+ años en el sector</span>
+                </div>
+              </div>
+            </div>
+
+            <a class="w-full py-2.5 px-4 rounded-xl bg-primary-container text-on-primary hover:bg-neutral-800 transition-colors text-xs font-semibold flex items-center justify-center gap-2 text-center" href="https://wa.me/50256513625?text=Hola%20Rodrigo,%20deseo%20consultar%20sobre%20propiedades" target="_blank" rel="noopener noreferrer">
+              <span class="material-symbols-outlined text-[16px]">chat</span>
+              <span>Contactar por WhatsApp</span>
+            </a>
+          </div>
+
+          <!-- Asesor 4: Valeria Morales -->
+          <div class="bg-surface rounded-2xl border border-surface-container-high p-5 flex flex-col justify-between shadow-sm hover:shadow-md transition-shadow group">
+            <div>
+              <div class="aspect-square rounded-xl overflow-hidden mb-4 bg-surface-container">
+                <img class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" alt="Valeria Morales" loading="lazy" decoding="async" src="https://images.unsplash.com/photo-1580489944761-15a19d654956?auto=format&fit=crop&w=600&q=80">
+              </div>
+              <span class="text-[10px] font-bold uppercase tracking-wider text-primary bg-surface-container px-2.5 py-0.5 rounded-full inline-block mb-1">Consultora de Inversión</span>
+              <h3 class="text-lg font-bold text-primary">Valeria Morales</h3>
+              <p class="text-xs text-outline mb-3">Residenciales Arrazola, Panorama & Fraijanes</p>
+              
+              <div class="space-y-1.5 text-xs text-on-surface-variant mb-4">
+                <div class="flex items-center gap-2">
+                  <span class="material-symbols-outlined text-[15px] text-outline">location_city</span>
+                  <span>Fraijanes & San José Pinula</span>
+                </div>
+                <div class="flex items-center gap-2">
+                  <span class="material-symbols-outlined text-[15px] text-outline">badge</span>
+                  <span>8+ años en corretaje</span>
+                </div>
+              </div>
+            </div>
+
+            <a class="w-full py-2.5 px-4 rounded-xl bg-primary-container text-on-primary hover:bg-neutral-800 transition-colors text-xs font-semibold flex items-center justify-center gap-2 text-center" href="https://wa.me/50256325705?text=Hola%20Valeria,%20deseo%20informacion%20de%20propiedades" target="_blank" rel="noopener noreferrer">
+              <span class="material-symbols-outlined text-[16px]">chat</span>
+              <span>Contactar por WhatsApp</span>
+            </a>
+          </div>
+
+        </div>
+      </div>
+
+            <div class="pt-3 border-t border-surface-container-high flex items-center gap-2">
+              <a href="tel:+50256513625" class="btn-luxury flex-1 bg-surface-container-low hover:bg-surface-container text-primary text-xs font-semibold py-2 rounded-lg text-center flex items-center justify-center gap-1">
+                <span class="material-symbols-outlined text-[15px]">call</span>
+                <span>Llamar</span>
+              </a>
+              <a href="https://wa.me/50256513625?text=Hola%20SIGUA%20Inmobiliaria,%20deseo%20informacion" target="_blank" class="btn-luxury flex-1 bg-primary text-on-primary text-xs font-semibold py-2 rounded-lg text-center flex items-center justify-center gap-1">
+                <span>WhatsApp</span>
+              </a>
+            </div>
+          </div>
+
+          <!-- Asesor 2: Carmen López -->
+          <div class="bg-surface rounded-2xl border border-surface-container-high p-5 flex flex-col justify-between shadow-sm hover:shadow-md transition-shadow group">
+            <div>
+              <div class="aspect-square rounded-xl overflow-hidden mb-4 bg-surface-container">
+                <img class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" alt="Carmen López" loading="lazy" decoding="async" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBkuwv6WIAr4cI-kyWWNeMUK34Wu3u_o-FZfGmZSzwceXts-AsVDPG6x4Xim6VnZSJUh1uoVNmgS6Ol1J2aIRdoymEljiWciJPq62pfwvVLPTTSbHGdg7dK-J3qseY5Ho0Lo5A6rt3RqHCvqany1GjguFpYBZ4ElqL1upJcR2DaFeJNrFU3pUDuDxQ5d4AZeIRnYsmEGG4dw2aq4ZRppjmQC1yO-jR8G33ClOZnfyCG">
+              </div>
+              <span class="text-[10px] font-bold uppercase tracking-wider text-primary bg-surface-container px-2.5 py-0.5 rounded-full inline-block mb-1">Consultora Registral</span>
+              <h3 class="text-lg font-bold text-primary">Carmen López</h3>
+              <p class="text-xs text-outline mb-3">Valuaciones &amp; Certeza Notarial</p>
+              
+              <div class="space-y-1.5 text-xs text-on-surface-variant mb-4">
+                <div class="flex items-center gap-2">
+                  <span class="material-symbols-outlined text-[15px] text-outline">verified</span>
+                  <span>Perito Valuador Acreditado</span>
+                </div>
+                <div class="flex items-center gap-2">
+                  <span class="material-symbols-outlined text-[15px] text-outline">description</span>
+                  <span>Gestiones en 2do Registro Propiedad</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="pt-3 border-t border-surface-container-high flex items-center gap-2">
+              <a href="tel:+50256513625" class="btn-luxury flex-1 bg-surface-container-low hover:bg-surface-container text-primary text-xs font-semibold py-2 rounded-lg text-center flex items-center justify-center gap-1">
+                <span class="material-symbols-outlined text-[15px]">call</span>
+                <span>Llamar</span>
+              </a>
+              <a href="https://wa.me/50256513625?text=Hola%20SIGUA%20Inmobiliaria,%20deseo%20informacion" target="_blank" class="btn-luxury flex-1 bg-primary text-on-primary text-xs font-semibold py-2 rounded-lg text-center flex items-center justify-center gap-1">
+                <span>WhatsApp</span>
+              </a>
+            </div>
+          </div>
+
+          <!-- Asesor 3: Ejemplo / Aquí irá un asesor (Teléfono Ficticio 111111) -->
+          <div class="bg-surface rounded-2xl border border-dashed border-outline-variant p-5 flex flex-col justify-between shadow-sm hover:shadow-md transition-shadow group">
+            <div>
+              <div class="aspect-square rounded-xl overflow-hidden mb-4 bg-surface-container-low flex flex-col items-center justify-center text-outline">
+                <span class="material-symbols-outlined text-4xl mb-1">person_add</span>
+                <span class="text-xs font-medium">Asesor Asignado</span>
+              </div>
+              <span class="text-[10px] font-bold uppercase tracking-wider text-outline bg-surface-container px-2.5 py-0.5 rounded-full inline-block mb-1">Ejemplo de Asesor</span>
+              <h3 class="text-lg font-bold text-primary">Aquí irá un asesor</h3>
+              <p class="text-xs text-outline mb-3">Especialista Comercial en Carretera a El Salvador</p>
+              
+              <div class="space-y-1.5 text-xs text-on-surface-variant mb-4">
+                <div class="flex items-center gap-2">
+                  <span class="material-symbols-outlined text-[15px] text-outline">call</span>
+                  <span>Tel: +502 1111-1111</span>
+                </div>
+                <div class="flex items-center gap-2">
+                  <span class="material-symbols-outlined text-[15px] text-outline">mail</span>
+                  <span>asesor1@bienesraicesonlinegt.com</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="pt-3 border-t border-surface-container-high flex items-center gap-2">
+              <a href="tel:111111" class="btn-luxury flex-1 bg-surface-container-low hover:bg-surface-container text-primary text-xs font-semibold py-2 rounded-lg text-center flex items-center justify-center gap-1">
+                <span class="material-symbols-outlined text-[15px]">call</span>
+                <span>111111</span>
+              </a>
+              <a href="https://wa.me/50256513625?text=Hola%20SIGUA%20Inmobiliaria,%20deseo%20informacion" target="_blank" class="btn-luxury flex-1 bg-neutral-800 text-on-primary text-xs font-semibold py-2 rounded-lg text-center flex items-center justify-center gap-1">
+                <span>Contactar</span>
+              </a>
+            </div>
+          </div>
+
+          <!-- Asesor 4: Ejemplo / Aquí irá un asesor (Teléfono Ficticio 111111) -->
+          <div class="bg-surface rounded-2xl border border-dashed border-outline-variant p-5 flex flex-col justify-between shadow-sm hover:shadow-md transition-shadow group">
+            <div>
+              <div class="aspect-square rounded-xl overflow-hidden mb-4 bg-surface-container-low flex flex-col items-center justify-center text-outline">
+                <span class="material-symbols-outlined text-4xl mb-1">person_add</span>
+                <span class="text-xs font-medium">Asesor Asignado</span>
+              </div>
+              <span class="text-[10px] font-bold uppercase tracking-wider text-outline bg-surface-container px-2.5 py-0.5 rounded-full inline-block mb-1">Ejemplo de Asesor</span>
+              <h3 class="text-lg font-bold text-primary">Aquí irá un asesor</h3>
+              <p class="text-xs text-outline mb-3">Especialista en Terrenos &amp; Fraijanes</p>
+              
+              <div class="space-y-1.5 text-xs text-on-surface-variant mb-4">
+                <div class="flex items-center gap-2">
+                  <span class="material-symbols-outlined text-[15px] text-outline">call</span>
+                  <span>Tel: +502 1111-1111</span>
+                </div>
+                <div class="flex items-center gap-2">
+                  <span class="material-symbols-outlined text-[15px] text-outline">mail</span>
+                  <span>asesor2@bienesraicesonlinegt.com</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="pt-3 border-t border-surface-container-high flex items-center gap-2">
+              <a href="tel:111111" class="btn-luxury flex-1 bg-surface-container-low hover:bg-surface-container text-primary text-xs font-semibold py-2 rounded-lg text-center flex items-center justify-center gap-1">
+                <span class="material-symbols-outlined text-[15px]">call</span>
+                <span>111111</span>
+              </a>
+              <a href="https://wa.me/50256513625?text=Hola%20SIGUA%20Inmobiliaria,%20deseo%20informacion" target="_blank" class="btn-luxury flex-1 bg-neutral-800 text-on-primary text-xs font-semibold py-2 rounded-lg text-center flex items-center justify-center gap-1">
+                <span>Contactar</span>
+              </a>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- NUESTROS CLIENTES / OPINIONES GOOGLE MAPS SECTION (Animated Review Carousel) -->
+    <section class="py-20 lg:py-28 bg-surface border-b border-surface-container-high" id="clientes">
+      <div class="max-w-7xl mx-auto px-6 lg:px-12">
+        <div class="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-6">
+          <div>
+            <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-surface-container text-primary text-xs font-semibold mb-3">
+              <span class="material-symbols-outlined text-[16px] text-primary">verified</span>
+              <span>Reseñas Reales en Google Maps</span>
+            </div>
+            <h2 class="text-headline-lg-mobile lg:text-headline-lg font-headline-lg text-primary tracking-tight">
+              Lo que opinan nuestros clientes
+            </h2>
+            <p class="text-body-md font-body-md text-on-surface-variant mt-2 max-w-xl">
+              Transparencia, certeza registral y velocidad en el cierre de créditos hipotecarios comprobada por familias e inversionistas.
+            </p>
+          </div>
+          
+          <!-- Rating Summary Box -->
+          <div class="bg-surface-container-lowest p-4 rounded-2xl border border-surface-container-high shadow-sm flex items-center gap-4">
+            <div class="text-3xl font-bold text-primary">5.0</div>
+            <div>
+              <div class="flex text-amber-500 text-sm">★★★★★</div>
+              <p class="text-[11px] text-outline font-medium">SIGUA Inmobiliaria · Carretera a El Salvador</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Carousel Container -->
+        <div class="relative bg-surface-container-lowest rounded-3xl border border-surface-container-high p-8 lg:p-12 shadow-sm overflow-hidden" onmouseenter="pauseReviewAuto()" onmouseleave="resumeReviewAuto()">
+          
+          <!-- Slider Track (Horizontal Flex) -->
+          <div class="overflow-hidden w-full">
+            <div id="reviews-track" class="flex transition-transform duration-500 ease-out" style="transform: translateX(0%);">
+              
+              <!-- Slide 1 -->
+              <div class="w-full flex-shrink-0 flex flex-col justify-between pr-4 sm:pr-8">
+                <div class="mb-6">
+                  <div class="flex items-center gap-1 text-amber-500 mb-3">
+                    <span class="material-symbols-outlined text-[18px]">star</span>
+                    <span class="material-symbols-outlined text-[18px]">star</span>
+                    <span class="material-symbols-outlined text-[18px]">star</span>
+                    <span class="material-symbols-outlined text-[18px]">star</span>
+                    <span class="material-symbols-outlined text-[18px]">star</span>
+                    <span class="text-xs text-outline font-semibold ml-2">Hace 2 semanas · Google Maps</span>
+                  </div>
+                  <blockquote class="text-headline-sm lg:text-xl font-medium text-primary leading-snug">
+                    “Excelente gestión y total transparencia. Compré mi casa en Condominio Difiori y todo el proceso de escrituración en el Segundo Registro de la Propiedad fue impecable. La claridad en los precios y medidas me dio total tranquilidad.”
+                  </blockquote>
+                </div>
+                <div class="flex items-center gap-3">
+                  <div class="w-10 h-10 rounded-full bg-primary text-on-primary font-bold flex items-center justify-center text-sm shadow-sm">
+                    CM
+                  </div>
+                  <div>
+                    <h4 class="text-sm font-bold text-primary">Ing. Carlos E. Morales</h4>
+                    <p class="text-xs text-outline">Comprador Residencial · Carretera a El Salvador</p>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Slide 2 -->
+              <div class="w-full flex-shrink-0 flex flex-col justify-between pr-4 sm:pr-8">
+                <div class="mb-6">
+                  <div class="flex items-center gap-1 text-amber-500 mb-3">
+                    <span class="material-symbols-outlined text-[18px]">star</span>
+                    <span class="material-symbols-outlined text-[18px]">star</span>
+                    <span class="material-symbols-outlined text-[18px]">star</span>
+                    <span class="material-symbols-outlined text-[18px]">star</span>
+                    <span class="material-symbols-outlined text-[18px]">star</span>
+                    <span class="text-xs text-outline font-semibold ml-2">Hace 1 mes · Google Maps</span>
+                  </div>
+                  <blockquote class="text-headline-sm lg:text-xl font-medium text-primary leading-snug">
+                    “Nos asesoraron de principio a fin para la adquisición de nuestra propiedad en Fraijanes. La gestión del crédito bancario con Banco Industrial fue rapidísima y nos explicaron cada paso con honestidad. Muy recomendados.”
+                  </blockquote>
+                </div>
+                <div class="flex items-center gap-3">
+                  <div class="w-10 h-10 rounded-full bg-neutral-800 text-white font-bold flex items-center justify-center text-sm shadow-sm">
+                    SM
+                  </div>
+                  <div>
+                    <h4 class="text-sm font-bold text-primary">Dra. Sofía Maldonado</h4>
+                    <p class="text-xs text-outline">Inversionista en Fraijanes</p>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Slide 3 -->
+              <div class="w-full flex-shrink-0 flex flex-col justify-between pr-4 sm:pr-8">
+                <div class="mb-6">
+                  <div class="flex items-center gap-1 text-amber-500 mb-3">
+                    <span class="material-symbols-outlined text-[18px]">star</span>
+                    <span class="material-symbols-outlined text-[18px]">star</span>
+                    <span class="material-symbols-outlined text-[18px]">star</span>
+                    <span class="material-symbols-outlined text-[18px]">star</span>
+                    <span class="material-symbols-outlined text-[18px]">star</span>
+                    <span class="text-xs text-outline font-semibold ml-2">Hace 3 semanas · Google Maps</span>
+                  </div>
+                  <blockquote class="text-headline-sm lg:text-xl font-medium text-primary leading-snug">
+                    “SIGUA Inmobiliaria es la referencia seria en Carretera a El Salvador. El conocimiento de las zonas con mayor proyección en Carretera a El Salvador como Las Américas y Zona 8 te permite invertir con datos y plusvalía real comprobada.”
+                  </blockquote>
+                </div>
+                <div class="flex items-center gap-3">
+                  <div class="w-10 h-10 rounded-full bg-neutral-800 text-white font-bold flex items-center justify-center text-sm shadow-sm">
+                    FC
+                  </div>
+                  <div>
+                    <h4 class="text-sm font-bold text-primary">Lic. Fernando Cifuentes</h4>
+                    <p class="text-xs text-outline">Desarrollo Comercial · Zona 9 Carretera a El Salvador</p>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Slide 4 -->
+              <div class="w-full flex-shrink-0 flex flex-col justify-between pr-4 sm:pr-8">
+                <div class="mb-6">
+                  <div class="flex items-center gap-1 text-amber-500 mb-3">
+                    <span class="material-symbols-outlined text-[18px]">star</span>
+                    <span class="material-symbols-outlined text-[18px]">star</span>
+                    <span class="material-symbols-outlined text-[18px]">star</span>
+                    <span class="material-symbols-outlined text-[18px]">star</span>
+                    <span class="material-symbols-outlined text-[18px]">star</span>
+                    <span class="text-xs text-outline font-semibold ml-2">Hace 1 mes · Google Maps</span>
+                  </div>
+                  <blockquote class="text-headline-sm lg:text-xl font-medium text-primary leading-snug">
+                    “Encontramos nuestro apartamento en Zona 2 en cuestión de días. La atención por WhatsApp fue inmediata y nos acompañaron a visitar la propiedad con puntualidad. Excelente servicio profesional.”
+                  </blockquote>
+                </div>
+                <div class="flex items-center gap-3">
+                  <div class="w-10 h-10 rounded-full bg-neutral-800 text-white font-bold flex items-center justify-center text-sm shadow-sm">
+                    AG
+                  </div>
+                  <div>
+                    <h4 class="text-sm font-bold text-primary">Familia Arrivillaga Gómez</h4>
+                    <p class="text-xs text-outline">Residencial Zona 2 · Carretera a El Salvador</p>
+                  </div>
+                </div>
+              </div>
+
+            </div>
+          </div>
+
+          <!-- Carousel Controls -->
+          <div class="flex items-center justify-between mt-8 pt-6 border-t border-surface-container">
+            <div class="flex items-center gap-2">
+              <button onclick="prevReview()" class="btn-luxury w-10 h-10 rounded-full border border-surface-container-high hover:border-primary flex items-center justify-center text-primary bg-surface transition-colors" aria-label="Reseña anterior">
+                <span class="material-symbols-outlined text-[18px]">chevron_left</span>
+              </button>
+              <button onclick="nextReview()" class="btn-luxury w-10 h-10 rounded-full border border-surface-container-high hover:border-primary flex items-center justify-center text-primary bg-surface transition-colors" aria-label="Reseña siguiente">
+                <span class="material-symbols-outlined text-[18px]">chevron_right</span>
+              </button>
+            </div>
+
+            <!-- Dots Indicator -->
+            <div class="flex items-center gap-2">
+              <button onclick="goToReview(0)" class="review-dot w-6 h-2.5 rounded-full bg-primary transition-all duration-300" aria-label="Ir a opinión 1"></button>
+              <button onclick="goToReview(1)" class="review-dot w-2.5 h-2.5 rounded-full bg-surface-container-highest hover:bg-neutral-400 transition-all duration-300" aria-label="Ir a opinión 2"></button>
+              <button onclick="goToReview(2)" class="review-dot w-2.5 h-2.5 rounded-full bg-surface-container-highest hover:bg-neutral-400 transition-all duration-300" aria-label="Ir a opinión 3"></button>
+              <button onclick="goToReview(3)" class="review-dot w-2.5 h-2.5 rounded-full bg-surface-container-highest hover:bg-neutral-400 transition-all duration-300" aria-label="Ir a opinión 4"></button>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- EDITORIAL FOOTER -->
+  <footer class="bg-primary-container text-on-primary docked full-width bottom border-t border-on-secondary-fixed-variant shadow-none">
+    <div class="w-full px-6 lg:px-12 py-16 max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-8">
+      <!-- Brand & Description -->
+      <div class="flex flex-col items-center md:items-start text-center md:text-left max-w-md">
+        <span class="text-headline-md font-headline-md font-bold text-on-primary mb-2">
+          SIGUA Inmobiliaria
+        </span>
+        <p class="text-body-sm font-body-sm text-on-primary-container mb-4">
+          Líderes en intermediación residencial, comercial y de terrenos en Carretera a El Salvador, Fraijanes y el Suroccidente guatemalteco.
+        </p>
+        <p class="text-label-sm font-label-sm text-on-primary-container">
+          © 2026 SIGUA Inmobiliaria. Todos los derechos reservados.
+        </p>
+      </div>
+
+      <!-- Footer Quick Links -->
+      <div class="flex flex-wrap justify-center md:justify-end gap-x-8 gap-y-3 text-label-sm font-label-sm">
+        <a class="text-on-primary font-medium hover:underline transition-colors" href="#mapa">Mapa Interactivo</a>
+        <a class="text-on-primary font-medium hover:underline transition-colors" href="#propiedades">Catálogo</a>
+        <a class="text-on-primary font-medium hover:underline transition-colors" href="#nosotros">Servicios</a>
+        <a class="text-on-primary font-medium hover:underline transition-colors" href="#asesores">Asesores</a>
+        <a class="text-on-primary font-medium hover:underline transition-colors" href="#clientes">Opiniones</a>
+        <a class="text-emerald-400 font-bold hover:underline transition-colors inline-flex items-center gap-1.5" href="panel.html" title="Acceso al Panel CRM Inmobiliario"><span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>Panel CRM</a>
+      </div>
+
+      <!-- Social Icons & Contact Pill -->
+      <div class="flex flex-col items-center md:items-end gap-3">
+        <div class="flex items-center gap-3">
+          <a class="w-8 h-8 rounded-full bg-neutral-800 text-on-primary flex items-center justify-center hover:bg-neutral-700 transition-colors text-xs" href="https://www.facebook.com/bienesraicesonline/" rel="noopener noreferrer" target="_blank" title="Facebook">FB</a>
+          <a class="w-8 h-8 rounded-full bg-neutral-800 text-on-primary flex items-center justify-center hover:bg-neutral-700 transition-colors text-xs" href="https://www.instagram.com/bienesraicesonlinexela/" rel="noopener noreferrer" target="_blank" title="Instagram">IG</a>
+          <a class="w-8 h-8 rounded-full bg-neutral-800 text-on-primary flex items-center justify-center hover:bg-neutral-700 transition-colors text-xs" href="https://vm.tiktok.com/ZSVst9m5/" rel="noopener noreferrer" target="_blank" title="TikTok">TK</a>
+          <a class="w-8 h-8 rounded-full bg-neutral-800 text-on-primary flex items-center justify-center hover:bg-neutral-700 transition-colors text-xs" href="https://wa.me/50256513625?text=Hola%20SIGUA%20Inmobiliaria,%20deseo%20informacion" rel="noopener noreferrer" target="_blank" title="WhatsApp">WA</a>
+        </div>
+        <a class="text-label-sm font-label-sm text-on-primary-container hover:text-on-primary transition-colors" href="mailto:Info@bienesraicesonlinegt.com">
+          Info@bienesraicesonlinegt.com
+        </a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- FULL DETAILED PROPERTY MODAL / DRAWER -->
+  <div id="property-modal" class="fixed inset-0 z-50 flex items-center justify-center p-2 sm:p-4 md:p-6 bg-black/80 modal-backdrop opacity-0 pointer-events-none transition-opacity duration-300">
+    <div id="property-modal-content" class="bg-surface-container-lowest max-w-5xl w-full max-h-[94vh] rounded-3xl overflow-hidden shadow-2xl flex flex-col relative transform scale-95 transition-transform duration-300 border border-neutral-800/10">
+      
+      <!-- Modal Main Image View with Navigation (Vista Previa Ampliada) -->
+      <div class="relative h-72 sm:h-96 md:h-[460px] lg:h-[520px] w-full bg-neutral-950 overflow-hidden flex-shrink-0 group cursor-pointer" onclick="changeModalPhoto(1)" title="Haz clic para ver la siguiente foto">
+        <img id="modal-img" class="w-full h-full object-cover transition-all duration-500 group-hover:scale-105" alt="Detalle Propiedad" src="" decoding="async">
+        <div class="absolute inset-0 bg-gradient-to-t from-black/85 via-black/25 to-transparent pointer-events-none"></div>
+        
+        <!-- Close Button -->
+        <button onclick="closePropertyModal()" class="btn-luxury absolute top-4 right-4 w-10 h-10 rounded-full bg-black/60 hover:bg-black text-white flex items-center justify-center transition-colors z-30" aria-label="Cerrar ventana">
+          <span class="material-symbols-outlined text-[20px]">close</span>
+        </button>
+
+        <!-- Status Tag -->
+        <span id="modal-tag" class="absolute top-4 left-4 bg-primary text-on-primary text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wider shadow z-20">
+          Disponible
+        </span>
+
+        <!-- Image Navigation Prev / Next Arrows -->
+        <button onclick="event.stopPropagation(); changeModalPhoto(-1)" class="btn-luxury absolute left-4 top-1/2 -translate-y-1/2 w-11 h-11 rounded-full bg-black/70 hover:bg-black text-white flex items-center justify-center transition-all hover:scale-110 z-20 shadow-lg border border-white/20" aria-label="Foto anterior">
+          <span class="material-symbols-outlined text-[24px]">chevron_left</span>
+        </button>
+        <button onclick="event.stopPropagation(); changeModalPhoto(1)" class="btn-luxury absolute right-4 top-1/2 -translate-y-1/2 w-11 h-11 rounded-full bg-black/70 hover:bg-black text-white flex items-center justify-center transition-all hover:scale-110 z-20 shadow-lg border border-white/20" aria-label="Foto siguiente">
+          <span class="material-symbols-outlined text-[24px]">chevron_right</span>
+        </button>
+
+        <!-- Current Photo Label Badge -->
+        <div class="absolute top-4 left-1/2 -translate-x-1/2 bg-black/70 backdrop-blur-md text-white text-xs font-semibold px-4 py-1.5 rounded-full z-20 shadow border border-white/10 flex items-center gap-2">
+          <span class="material-symbols-outlined text-[14px] text-white/80">photo_camera</span>
+          <span id="modal-photo-counter">Foto 1 de 5</span>
+          <span class="text-white/40">•</span>
+          <span id="modal-photo-label" class="font-medium text-white">Fachada Exterior</span>
+        </div>
+
+        <!-- Property Title Overlay -->
+        <div class="absolute bottom-4 left-6 right-6 text-white z-10">
+          <span id="modal-loc" class="text-xs uppercase tracking-wider text-white/80 block mb-0.5">Zona 8 · Carretera a El Salvador</span>
+          <h2 id="modal-title" class="text-2xl sm:text-3xl font-bold tracking-tight">Condominio Difiori</h2>
+        </div>
+      </div>
+
+      <!-- Gallery Thumbnail Strip (Fotos de Referencia con Vista Previa Ampliada) -->
+      <div class="bg-surface-container-low px-4 sm:px-6 py-4 border-b border-surface-container-high overflow-x-auto flex-shrink-0 custom-scroll">
+        <div class="flex items-center justify-between mb-2.5">
+          <span class="text-[11px] font-bold text-outline uppercase tracking-wider flex items-center gap-1.5">
+            <span class="material-symbols-outlined text-[15px]">collections</span>
+            <span>Fotos de Referencia del Inmueble (Haz clic para ampliar)</span>
+          </span>
+          <span class="text-[11px] text-outline font-medium hidden sm:inline-block">Desliza para explorar todos los ambientes</span>
+        </div>
+        <div class="flex items-center gap-3 sm:gap-4 pb-1" id="modal-thumbnails-container">
+          <!-- Dynamically populated with large preview cards -->
+        </div>
+      </div>
+
+      <!-- Modal Body (Scrollable) -->
+      <div class="p-6 sm:p-8 overflow-y-auto custom-scroll flex-1 space-y-6">
+        
+        <!-- Price Bar -->
+        <div class="flex flex-wrap items-center justify-between pb-5 border-b border-surface-container gap-4">
+          <div>
+            <span class="text-xs font-semibold text-outline uppercase block">Precio Oficial</span>
+            <div class="flex items-baseline gap-2">
+              <span id="modal-price" class="text-3xl font-bold text-primary">Q 1,850,000</span>
+              <span id="modal-usd" class="text-sm font-semibold text-outline">(~$238,000 USD)</span>
+            </div>
+          </div>
+          <div class="flex flex-wrap items-center gap-2.5">
+            <button id="modal-locate-btn" class="btn-luxury px-4 py-2.5 rounded-full border border-outline-variant hover:border-primary text-xs font-semibold text-primary flex items-center gap-1.5 bg-surface-container-lowest">
+              <span class="material-symbols-outlined text-[16px]">map</span>
+              <span>Ubicar en Mapa</span>
+            </button>
+            <a id="modal-wa-top-btn" href="#" target="_blank" rel="noopener noreferrer" class="btn-luxury px-4 py-2.5 rounded-full bg-black hover:bg-neutral-800 text-white text-xs font-semibold flex items-center gap-2 shadow-sm">
+              <svg class="w-3.5 h-3.5 fill-current text-white" viewBox="0 0 24 24"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z"/></svg>
+              <span>Contactar WhatsApp</span>
+            </a>
+          </div>
+        </div>
+
+        <!-- Specifications Grid -->
+        <div>
+          <h3 class="text-xs font-bold text-outline uppercase tracking-wider mb-3">Ficha Técnica &amp; Dimensiones</h3>
+          <div class="grid grid-cols-2 sm:grid-cols-3 gap-3">
+            <div class="p-3.5 rounded-xl bg-surface-container-low border border-surface-container">
+              <span class="text-xs text-outline flex items-center gap-1 mb-1"><span class="material-symbols-outlined text-[15px]">square_foot</span> Área Construcción</span>
+              <span id="modal-area-m2" class="text-sm font-bold text-primary">280 m²</span>
+            </div>
+            <div class="p-3.5 rounded-xl bg-surface-container-low border border-surface-container">
+              <span class="text-xs text-outline flex items-center gap-1 mb-1"><span class="material-symbols-outlined text-[15px]">terrain</span> Área Terreno</span>
+              <span id="modal-area-v2" class="text-sm font-bold text-primary">220 v²</span>
+            </div>
+            <div class="p-3.5 rounded-xl bg-surface-container-low border border-surface-container">
+              <span class="text-xs text-outline flex items-center gap-1 mb-1"><span class="material-symbols-outlined text-[15px]">bed</span> Habitaciones</span>
+              <span id="modal-beds" class="text-sm font-bold text-primary">4 Dormitorios</span>
+            </div>
+            <div class="p-3.5 rounded-xl bg-surface-container-low border border-surface-container">
+              <span class="text-xs text-outline flex items-center gap-1 mb-1"><span class="material-symbols-outlined text-[15px]">bathtub</span> Baños</span>
+              <span id="modal-baths" class="text-sm font-bold text-primary">3 Baños Completos</span>
+            </div>
+            <div class="p-3.5 rounded-xl bg-surface-container-low border border-surface-container">
+              <span class="text-xs text-outline flex items-center gap-1 mb-1"><span class="material-symbols-outlined text-[15px]">stairs</span> Niveles / Pisos</span>
+              <span id="modal-floors" class="text-sm font-bold text-primary">2 Niveles</span>
+            </div>
+            <div class="p-3.5 rounded-xl bg-surface-container-low border border-surface-container">
+              <span class="text-xs text-outline flex items-center gap-1 mb-1"><span class="material-symbols-outlined text-[15px]">garage</span> Parqueos</span>
+              <span id="modal-garages" class="text-sm font-bold text-primary">2 Autos Techados</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Description -->
+        <div>
+          <h3 class="text-xs font-bold text-outline uppercase tracking-wider mb-2">Descripción de la Propiedad</h3>
+          <p id="modal-desc" class="text-sm text-on-surface-variant leading-relaxed">
+            Residencia diseñada con arquitectura moderna y altos estándares de seguridad en Carretera a El Salvador.
+          </p>
+        </div>
+
+        <!-- Lugares Cercanos (Puntos de Interés) -->
+        <div>
+          <h3 class="text-xs font-bold text-outline uppercase tracking-wider mb-3">Lugares Cercanos &amp; Conectividad</h3>
+          <div id="modal-nearby" class="grid grid-cols-1 sm:grid-cols-2 gap-2 text-xs">
+            <!-- Dynamically populated -->
+          </div>
+        </div>
+
+        <!-- Amenidades & Respaldo -->
+        <div>
+          <h3 class="text-xs font-bold text-outline uppercase tracking-wider mb-3">Características &amp; Amenidades</h3>
+          <div id="modal-features" class="flex flex-wrap gap-2">
+            <!-- Dynamically populated -->
+          </div>
+        </div>
+
+        <!-- BOTÓN NEGRO DESTACADO: AGENDAR CITA POR WHATSAPP -->
+        <div class="pt-6 border-t border-surface-container">
+          <a id="modal-wa-btn-bottom" href="#" target="_blank" rel="noopener noreferrer" class="btn-luxury w-full py-4 px-6 rounded-2xl bg-black hover:bg-neutral-800 text-white font-bold text-base text-center flex items-center justify-center gap-3 shadow-xl transition-transform hover:-translate-y-0.5 active:scale-95">
+            <svg class="w-6 h-6 fill-current text-white flex-shrink-0" viewBox="0 0 24 24"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z"/></svg>
+            <span>Agendar Cita por WhatsApp</span>
+          </a>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <!-- Leaflet JS -->
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+
+  <!-- APPLICATION DATA & LOGIC -->
+  <script>
+    // 10 PROPIEDADES COMPLETAS Y FUNCIONALES
+      const propertiesData = [
+    {
+      id: "1",
+      title: "Casa Estilo Español en Terravista",
+      category: "venta",
+      price: 220000,
+      priceFormatted: "$220,000 USD",
+      beds: 4,
+      baths: 4,
+      sqm: 320,
+      area: "320 m²",
+      location: "Km 16.5 Terravista, Carretera a El Salvador",
+      coords: [14.542, -90.472],
+      img: "https://images.unsplash.com/photo-1600585154526-990dced4db0d?auto=format&fit=crop&w=1200&q=80",
+      featured: true,
+      tag: "Exclusiva"
+    },
+    {
+      id: "2",
+      title: "Residencia Exclusiva Terravista Bosque",
+      category: "venta",
+      price: 385000,
+      priceFormatted: "$385,000 USD",
+      beds: 6,
+      baths: 7,
+      sqm: 455,
+      area: "455 m²",
+      location: "Km 16.5 Terravista, Santa Catarina Pinula",
+      coords: [14.540, -90.470],
+      img: "https://images.unsplash.com/photo-1600607687920-4e2a09cf159d?auto=format&fit=crop&w=1200&q=80",
+      featured: true,
+      tag: "Vista al Bosque"
+    },
+    {
+      id: "3",
+      title: "Casa de Lujo en Arrazola Panorama",
+      category: "venta",
+      price: 380000,
+      priceFormatted: "$380,000 USD",
+      beds: 3,
+      baths: 4,
+      sqm: 280,
+      area: "280 m²",
+      location: "Km 17 Carretera a Olmeca, Fraijanes",
+      coords: [14.535, -90.465],
+      img: "https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?auto=format&fit=crop&w=1200&q=80",
+      featured: true,
+      tag: "4 Parqueos"
+    },
+    {
+      id: "4",
+      title: "Mansión Contemporánea Arrazola 2",
+      category: "venta",
+      price: 425000,
+      priceFormatted: "$425,000 USD",
+      beds: 4,
+      baths: 5,
+      sqm: 420,
+      area: "420 m²",
+      location: "Km 17 Carretera a El Salvador",
+      coords: [14.532, -90.460],
+      img: "https://images.unsplash.com/photo-1613490493576-7fde63acd811?auto=format&fit=crop&w=1200&q=80",
+      featured: true,
+      tag: "Piscina Privada"
+    },
+    {
+      id: "5",
+      title: "Residencia a Estrenar Arrazola Panorama",
+      category: "venta",
+      price: 300000,
+      priceFormatted: "Q 2,350,000 GTQ",
+      beds: 5,
+      baths: 5,
+      sqm: 300,
+      area: "300 m²",
+      location: "Km 17 CAES, Fraijanes",
+      coords: [14.533, -90.462],
+      img: "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1200&q=80",
+      featured: false,
+      tag: "A Estrenar"
+    },
+    {
+      id: "6",
+      title: "Casa Remodelada en Villas Bizantinas",
+      category: "venta",
+      price: 155000,
+      priceFormatted: "Q 1,199,000 GTQ",
+      beds: 3,
+      baths: 3,
+      sqm: 200,
+      area: "200 m²",
+      location: "Km 17 Arrazola 2, Fraijanes",
+      coords: [14.530, -90.458],
+      img: "https://images.unsplash.com/photo-1580587771525-78b9dba3b914?auto=format&fit=crop&w=1200&q=80",
+      featured: false,
+      tag: "Remodelada"
+    },
+    {
+      id: "7",
+      title: "Casa Campestre en Villas de Arrazola",
+      category: "venta",
+      price: 128000,
+      priceFormatted: "Q 990,000 GTQ",
+      beds: 3,
+      baths: 2,
+      sqm: 180,
+      area: "180 m²",
+      location: "Km 19 Carretera a El Salvador",
+      coords: [14.520, -90.450],
+      img: "https://images.unsplash.com/photo-1568605117036-5fe5e7bab0b7?auto=format&fit=crop&w=1200&q=80",
+      featured: false,
+      tag: "Oportunidad"
+    },
+    {
+      id: "8",
+      title: "Townhouse en Renta Jardines de Arrazola",
+      category: "renta",
+      price: 600,
+      priceFormatted: "Q 4,600 / mes",
+      beds: 3,
+      baths: 3,
+      sqm: 165,
+      area: "165 m²",
+      location: "Km 18 CAES, Santa Catarina Pinula",
+      coords: [14.525, -90.455],
+      img: "https://images.unsplash.com/photo-1512917774080-9991f1c4c750?auto=format&fit=crop&w=1200&q=80",
+      featured: false,
+      tag: "En Renta"
+    },
+    {
+      id: "9",
+      title: "Terreno con Vistas en Terravista Sector 3",
+      category: "terreno",
+      price: 70000,
+      priceFormatted: "$70,000 USD",
+      beds: 0,
+      baths: 0,
+      sqm: 260,
+      area: "376 v²",
+      location: "Km 17 Carretera a Olmeca, Terravista",
+      coords: [14.538, -90.468],
+      img: "https://images.unsplash.com/photo-1500382017468-9049fed747ef?auto=format&fit=crop&w=1200&q=80",
+      featured: false,
+      tag: "Terreno"
+    },
+    {
+      id: "10",
+      title: "Residencia Familiar Condominio Campo Grande",
+      category: "venta",
+      price: 295000,
+      priceFormatted: "$295,000 USD",
+      beds: 4,
+      baths: 4,
+      sqm: 340,
+      area: "340 m²",
+      location: "Km 19 Carretera a El Salvador, Fraijanes",
+      coords: [14.515, -90.445],
+      img: "https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&w=1200&q=80",
+      featured: true,
+      tag: "Condominio Exclusivo"
+    }
+  ];
+
+    let currentActivePropertyId = 1;
+    let map = null;
+    let markersLayer = null;
+    let activeMarkerPin = null;
+
+    // INICIALIZACIÓN DE LEAFLET MAP CON FONDO GOOGLE MAPS Y CAPAS ALTERNAS
+    function initMap() {
+      // Coordenadas centrales en Carretera a El Salvador (Carretera a El Salvador)
+      map = L.map('property-map', {
+        center: [14.8510, -91.5320],
+        zoom: 13,
+        scrollWheelZoom: false
+      });
+
+      // Capa Google Maps Calles (Roadmap) - Por defecto (Sin marca de agua de API key)
+      const googleRoad = L.tileLayer('https://mt{s}.google.com/vt/lyrs=m&x={x}&y={y}&z={z}', {
+        subdomains: ['0', '1', '2', '3'],
+        maxZoom: 20,
+        attribution: '&copy; Google Maps'
+      });
+
+      // Capa Google Maps Satélite Híbrido (Imágenes aéreas con calles y nombres)
+      const googleHybrid = L.tileLayer('https://mt{s}.google.com/vt/lyrs=y&x={x}&y={y}&z={z}', {
+        subdomains: ['0', '1', '2', '3'],
+        maxZoom: 20,
+        attribution: '&copy; Google Maps'
+      });
+
+      // Capa OpenStreetMap Estándar
+      const osmMap = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        maxZoom: 19,
+        attribution: '&copy; OpenStreetMap contributors'
+      });
+
+      // Capa Esri World Street Map (Alta precisión topográfica)
+      const esriMap = L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Street_Map/MapServer/tile/{z}/{y}/{x}', {
+        maxZoom: 19,
+        attribution: '&copy; Esri &mdash; StreetMap'
+      });
+
+      // Agregar Google Maps Calles por defecto
+      googleRoad.addTo(map);
+
+      // Selector de Capas Interactivo
+      const baseMaps = {
+        "🗺️ Google Maps": googleRoad,
+        "🛰️ Satélite Híbrido": googleHybrid,
+        "📍 OpenStreetMap": osmMap,
+        "📐 Esri Calles": esriMap
+      };
+      L.control.layers(baseMaps, null, { position: 'topright' }).addTo(map);
+
+      markersLayer = L.layerGroup().addTo(map);
+      renderMapPins(propertiesData);
+      selectPropertyOnMap(1, false);
+    }
+
+    // RENDERIZAR PINES EN EL MAPA
+    function renderMapPins(props) {
+      if (!markersLayer) return;
+      markersLayer.clearLayers();
+
+      props.forEach(p => {
+        // Precio abreviado para el globo del mapa
+        let shortPrice = p.price_q.split('/')[0].trim();
+
+        const customIcon = L.divIcon({
+          className: 'custom-map-pin',
+          html: `<div class="pin-pill ${p.id === currentActivePropertyId ? 'active-pin' : ''}" id="map-pin-${p.id}">
+                  <span class="w-1.5 h-1.5 rounded-full ${p.deal === 'Renta' ? 'bg-amber-400' : 'bg-white'}"></span>
+                  <span>${shortPrice}</span>
+                 </div>`,
+          iconSize: [80, 30],
+          iconAnchor: [40, 15]
+        });
+
+        const marker = L.marker([p.lat, p.lng], { icon: customIcon });
+        marker.on('click', () => {
+          selectPropertyOnMap(p.id, true);
+        });
+
+        markersLayer.addLayer(marker);
+      });
+    }
+
+    // SELECCIÓN Y ANIMACIÓN DE IDA (FLY TO) HACIA LA CASA
+    function selectPropertyOnMap(propId, animate = true) {
+      currentActivePropertyId = propId;
+      const prop = propertiesData.find(p => p.id === propId);
+      if (!prop) return;
+
+      // Actualizar globito activo visualmente
+      document.querySelectorAll('.pin-pill').forEach(el => el.classList.remove('active-pin'));
+      const activePinEl = document.getElementById(`map-pin-${propId}`);
+      if (activePinEl) activePinEl.classList.add('active-pin');
+
+      // Animación suave de cámara Leaflet
+      if (animate && map) {
+        map.flyTo([prop.lat, prop.lng], 14, {
+          duration: 1.4,
+          easeLinearity: 0.25
+        });
+      }
+
+      // Actualizar tarjeta flotante en el mapa
+      const cardImg = document.getElementById('map-card-img');
+      const cardTitle = document.getElementById('map-card-title');
+      const cardLoc = document.getElementById('map-card-loc');
+      const cardArea = document.getElementById('map-card-area');
+      const cardBeds = document.getElementById('map-card-beds');
+      const cardBaths = document.getElementById('map-card-baths');
+      const cardGarages = document.getElementById('map-card-garages');
+      const cardPrice = document.getElementById('map-card-price');
+      const cardUsd = document.getElementById('map-card-usd');
+      const cardTag = document.getElementById('map-card-tag');
+
+      if (cardImg) cardImg.src = prop.img;
+      if (cardTitle) cardTitle.innerText = prop.title;
+      if (cardLoc) cardLoc.innerHTML = `<span class="material-symbols-outlined text-[15px]">location_on</span> ${prop.zone}`;
+      if (cardArea) cardArea.innerText = prop.area_m2;
+      if (cardBeds) cardBeds.innerText = prop.beds ? `${prop.beds} Hab` : "Terreno";
+      if (cardBaths) cardBaths.innerText = prop.baths ? `${prop.baths} Bñ` : "Titulado";
+      if (cardGarages) cardGarages.innerText = prop.garages ? `${prop.garages} Autos` : "Acceso";
+      if (cardPrice) cardPrice.innerText = prop.price_q;
+      if (cardUsd) cardUsd.innerText = `(~${prop.price_usd})`;
+      if (cardTag) {
+        cardTag.innerText = prop.tag;
+        cardTag.className = `absolute top-2.5 right-2.5 ${prop.deal === 'Renta' ? 'bg-amber-600' : 'bg-primary'} text-on-primary text-[10px] font-bold px-2.5 py-1 rounded-full uppercase tracking-wider shadow-sm`;
+      }
+
+      // Animación sutil con GSAP en la tarjeta del mapa
+      if (typeof gsap !== 'undefined') {
+        gsap.fromTo("#map-property-card", 
+          { scale: 0.96, opacity: 0.8 }, 
+          { scale: 1, opacity: 1, duration: 0.35, ease: "power2.out" }
+        );
+      }
+    }
+
+    // CENTRADOR RÁPIDO DEL MAPA
+    function centerMap(region) {
+      if (!map) return;
+      if (region === 'xela') {
+        map.flyTo([14.8450, -91.5300], 13, { duration: 1.2 });
+      } else if (region === 'reu') {
+        map.flyTo([14.5400, -91.6700], 13, { duration: 1.2 });
+      } else {
+        const group = new L.featureGroup(markersLayer.getLayers());
+        map.flyToBounds(group.getBounds().pad(0.15), { duration: 1.4 });
+      }
+    }
+
+    let currentGalleryPhotos = [];
+    let currentGalleryIndex = 0;
+
+    // RENDERIZAR CUADRÍCULA DE 10 PROPIEDADES (100% VISIBLE SIN BLOQUEOS)
+    function renderPropertiesGrid(props) {
+      const container = document.getElementById('properties-grid');
+      const counterMsg = document.getElementById('properties-count-msg');
+      if (!container) return;
+
+      container.innerHTML = '';
+
+      if (props.length === 0) {
+        container.innerHTML = `
+          <div class="col-span-full py-16 text-center bg-surface rounded-2xl border border-surface-container">
+            <span class="material-symbols-outlined text-4xl text-outline mb-2">search_off</span>
+            <p class="text-lg font-bold text-primary">No se encontraron propiedades con estos filtros</p>
+            <p class="text-sm text-outline mt-1 mb-4">Intenta ajustar tu rango de presupuesto o cambiar la ubicación.</p>
+            <button onclick="resetFilters()" class="btn-luxury px-5 py-2 rounded-full bg-primary text-on-primary text-xs font-semibold">
+              Restablecer Filtros
+            </button>
+          </div>
+        `;
+        if (counterMsg) counterMsg.innerText = "0 propiedades encontradas";
+        return;
+      }
+
+      props.forEach(p => {
+        const card = document.createElement('div');
+        // Totalmente opaco y visible de inmediato sin retrasos de opacidad
+        card.className = "bg-surface rounded-2xl border border-surface-container-high overflow-hidden shadow-sm hover:shadow-md transition-shadow group flex flex-col";
+        card.style.opacity = "1";
+        card.style.visibility = "visible";
+
+        const photoCount = (p.gallery && p.gallery.length) ? p.gallery.length : 5;
+
+        card.innerHTML = `
+          <div class="relative aspect-[4/3] overflow-hidden bg-surface-container cursor-pointer" onclick="openPropertyModal(${p.id})">
+            <img class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" alt="${p.title}" src="${p.img}" loading="lazy" decoding="async">
+            <span class="absolute top-3 left-3 ${p.deal === 'Renta' ? 'bg-amber-600' : 'bg-primary'} text-on-primary text-[10px] font-semibold tracking-wider uppercase px-2.5 py-1 rounded-full shadow">
+              ${p.tag}
+            </span>
+            <span class="absolute top-3 right-3 bg-black/60 text-white text-[10px] font-medium px-2 py-0.5 rounded-full flex items-center gap-1 shadow">
+              <span class="material-symbols-outlined text-[12px]">photo_library</span>
+              ${photoCount} fotos
+            </span>
+            <button onclick="event.stopPropagation(); locateOnMapFromCard(${p.id})" class="btn-luxury absolute bottom-3 right-3 bg-black/75 hover:bg-black text-white text-[11px] font-medium px-2.5 py-1 rounded-full flex items-center gap-1 shadow">
+              <span class="material-symbols-outlined text-[13px]">map</span>
+              <span>Ver en Mapa</span>
+            </button>
+          </div>
+          <div class="p-5 flex flex-col flex-1">
+            <span class="text-xs text-outline uppercase font-medium block mb-1 truncate">${p.zone}</span>
+            <h3 class="text-headline-sm font-headline-sm font-bold text-primary group-hover:text-neutral-700 transition-colors truncate cursor-pointer" onclick="openPropertyModal(${p.id})">
+              ${p.title}
+            </h3>
+            
+            <!-- Specs -->
+            <div class="flex items-center justify-between text-xs text-on-surface-variant my-3 pt-2 border-t border-surface-container">
+              <span class="flex items-center gap-1">
+                <span class="material-symbols-outlined text-[15px] text-outline">square_foot</span>
+                ${p.area_m2}
+              </span>
+              <span class="flex items-center gap-1">
+                <span class="material-symbols-outlined text-[15px] text-outline">${p.beds > 0 ? 'bed' : 'terrain'}</span>
+                ${p.beds > 0 ? `${p.beds} Hab` : 'Terreno'}
+              </span>
+              <span class="flex items-center gap-1">
+                <span class="material-symbols-outlined text-[15px] text-outline">${p.baths > 0 ? 'bathtub' : 'description'}</span>
+                ${p.baths > 0 ? `${p.baths} Bñ` : 'Titulado'}
+              </span>
+            </div>
+
+            <!-- Price & Button -->
+            <div class="mt-auto pt-3 border-t border-surface-container flex items-center justify-between">
+              <div>
+                <span class="text-[10px] text-outline uppercase block font-semibold">${p.deal}</span>
+                <span class="text-base font-bold text-primary">${p.price_q}</span>
+              </div>
+              <button onclick="openPropertyModal(${p.id})" class="btn-luxury bg-primary hover:bg-neutral-800 text-on-primary px-3.5 py-2 rounded-full text-xs font-semibold">
+                Ver Detalles
+              </button>
+            </div>
+          </div>
+        `;
+        container.appendChild(card);
+      });
+
+      if (counterMsg) {
+        counterMsg.innerText = `Mostrando ${props.length} de 10 propiedades disponibles`;
+      }
+    }
+
+    // ACCIÓN "VER EN MAPA" DESDE LA TARJETA
+    function locateOnMapFromCard(propId) {
+      document.getElementById('mapa').scrollIntoView({ behavior: 'smooth' });
+      setTimeout(() => {
+        selectPropertyOnMap(propId, true);
+      }, 400);
+    }
+
+    // ESTADO DE FILTROS INTELIGENTES (Panel Oscuro)
+    let selectedFilterCity = 'all';
+    let selectedFilterType = 'all';
+    let budgetMinVal = 0;
+    let budgetMaxVal = 5000000;
+
+    function toggleFilterDropdown(menuId, chevronId) {
+      const menu = document.getElementById(menuId);
+      const chevron = document.getElementById(chevronId);
+      if (!menu) return;
+
+      const isHidden = menu.classList.contains('hidden');
+
+      // Cerrar otros dropdowns abiertos
+      document.querySelectorAll('[id^="menu-dropdown-"]').forEach(m => m.classList.add('hidden'));
+      document.querySelectorAll('[id^="chevron-"]').forEach(c => c.style.transform = 'rotate(0deg)');
+
+      if (isHidden) {
+        menu.classList.remove('hidden');
+        if (chevron) chevron.style.transform = 'rotate(180deg)';
+      }
+    }
+
+    function selectFilterLocation(val, label) {
+      selectedFilterCity = val;
+      const labelEl = document.getElementById('label-selected-location');
+      if (labelEl) labelEl.innerText = label;
+
+      // Actualizar checkmarks
+      document.querySelectorAll('.opt-check-loc').forEach(el => {
+        if (el.dataset.val === val) {
+          el.classList.remove('hidden');
+        } else {
+          el.classList.add('hidden');
+        }
+      });
+
+      // Cerrar menú
+      const menu = document.getElementById('menu-dropdown-location');
+      if (menu) menu.classList.add('hidden');
+      const chevron = document.getElementById('chevron-location');
+      if (chevron) chevron.style.transform = 'rotate(0deg)';
+
+      applyFilters();
+    }
+
+    function selectFilterType(val, label) {
+      selectedFilterType = val;
+      const labelEl = document.getElementById('label-selected-type');
+      if (labelEl) labelEl.innerText = label;
+
+      // Actualizar checkmarks
+      document.querySelectorAll('.opt-check-type').forEach(el => {
+        if (el.dataset.val === val) {
+          el.classList.remove('hidden');
+        } else {
+          el.classList.add('hidden');
+        }
+      });
+
+      // Cerrar menú
+      const menu = document.getElementById('menu-dropdown-type');
+      if (menu) menu.classList.add('hidden');
+      const chevron = document.getElementById('chevron-type');
+      if (chevron) chevron.style.transform = 'rotate(0deg)';
+
+      applyFilters();
+    }
+
+    function initBudgetSlider() {
+      const minInput = document.getElementById('slider-min');
+      const maxInput = document.getElementById('slider-max');
+      if (!minInput || !maxInput) return;
+
+      const updateSlider = function(e) {
+        let min = parseInt(minInput.value);
+        let max = parseInt(maxInput.value);
+
+        if (min > max - 100000) {
+          if (e && e.target === minInput) {
+            minInput.value = max - 100000;
+            min = max - 100000;
+          } else {
+            maxInput.value = min + 100000;
+            max = min + 100000;
+          }
+        }
+
+        budgetMinVal = min;
+        budgetMaxVal = max;
+
+        const minPercent = (min / 5000000) * 100;
+        const maxPercent = (max / 5000000) * 100;
+
+        const line = document.getElementById('slider-range-line');
+        if (line) {
+          line.style.left = `${minPercent}%`;
+          line.style.width = `${maxPercent - minPercent}%`;
+        }
+
+        const displayLabel = document.getElementById('budget-display-value');
+        if (displayLabel) {
+          if (min === 0 && max >= 5000000) {
+            displayLabel.innerText = "Q 0 - Q 5,000,000+";
+          } else if (min === 0) {
+            displayLabel.innerText = `Hasta Q ${max.toLocaleString('en-US')}`;
+          } else if (max >= 5000000) {
+            displayLabel.innerText = `Desde Q ${min.toLocaleString('en-US')}+`;
+          } else {
+            displayLabel.innerText = `Q ${min.toLocaleString('en-US')} - Q ${max.toLocaleString('en-US')}`;
+          }
+        }
+
+        applyFilters();
+      };
+
+      minInput.addEventListener('input', updateSlider);
+      maxInput.addEventListener('input', updateSlider);
+    }
+
+    // Cerrar dropdowns si se hace clic fuera del botón y menú
+    document.addEventListener('click', (e) => {
+      if (!e.target.closest('#btn-dropdown-location') && !e.target.closest('#menu-dropdown-location')) {
+        const m = document.getElementById('menu-dropdown-location');
+        if (m) m.classList.add('hidden');
+        const c = document.getElementById('chevron-location');
+        if (c) c.style.transform = 'rotate(0deg)';
+      }
+      if (!e.target.closest('#btn-dropdown-type') && !e.target.closest('#menu-dropdown-type')) {
+        const m = document.getElementById('menu-dropdown-type');
+        if (m) m.classList.add('hidden');
+        const c = document.getElementById('chevron-type');
+        if (c) c.style.transform = 'rotate(0deg)';
+      }
+    });
+
+    // FILTRADO INTELIGENTE (Ubicación, Tipo, Presupuesto Funcional)
+    function applyFilters() {
+      let filtered = propertiesData.filter(p => {
+        // Filtro Ubicación
+        if (selectedFilterCity !== 'all' && p.city !== selectedFilterCity) return false;
+
+        // Filtro Tipo
+        if (selectedFilterType !== 'all' && p.type !== selectedFilterType) return false;
+
+        // Filtro Presupuesto con la Raya Blanca Interactiva
+        if (p.price_val < budgetMinVal) return false;
+        if (budgetMaxVal < 5000000 && p.price_val > budgetMaxVal) return false;
+
+        return true;
+      });
+
+      renderPropertiesGrid(filtered);
+      renderMapPins(filtered);
+
+      if (filtered.length > 0) {
+        selectPropertyOnMap(filtered[0].id, false);
+      }
+    }
+
+    function executeSearchNow() {
+      applyFilters();
+      const el = document.getElementById('propiedades');
+      if (el) {
+        el.scrollIntoView({ behavior: 'smooth' });
+      }
+    }
+
+    
+    // ACTUALIZAR ÍCONO ACTIVO Y CONTRASTE DINÁMICO DEL DOCK (Oscuro en blanco, Blanco en oscuro)
+    function initDockScrollspy() {
+      const sections = [
+        { id: 'mapa', btnId: 'dock-btn-map' },
+        { id: 'propiedades', btnId: 'dock-btn-props' },
+        { id: 'nosotros', btnId: 'dock-btn-services' },
+        { id: 'asesores', btnId: 'dock-btn-advisors' },
+        { id: 'clientes', btnId: 'dock-btn-reviews' }
+      ];
+
+      function onScroll() {
+        const scrollPos = window.scrollY + 180;
+        let currentActive = 'dock-btn-hero';
+
+        sections.forEach(sec => {
+          const el = document.getElementById(sec.id);
+          if (el && el.offsetTop <= scrollPos) {
+            currentActive = sec.btnId;
+          }
+        });
+
+        // Actualizar clase de icono activo
+        document.querySelectorAll('.dock-icon-btn').forEach(btn => {
+          if (btn.id === currentActive) {
+            btn.classList.add('active-dock');
+          } else {
+            btn.classList.remove('active-dock');
+          }
+        });
+
+        // CONTRASTE DINÁMICO: Detectar si el dock está sobre fondos oscuros o blancos
+        const dock = document.getElementById('floating-dock-container');
+        if (dock) {
+          const heroSec = document.querySelector('section'); // Hero con foto oscura
+          const searchPanel = document.querySelector('#mapa .bg-\[\#121214\]') || document.querySelector('#mapa');
+          const footerSec = document.querySelector('footer');
+
+          const dockRect = dock.getBoundingClientRect();
+          const dockMid = dockRect.top + dockRect.height / 2;
+
+          let isOverDark = false;
+
+          // 1. Hero (con foto oscura y degradado superior)
+          if (heroSec) {
+            const hRect = heroSec.getBoundingClientRect();
+            if (hRect.top <= dockMid && hRect.bottom >= dockMid + 40) {
+              isOverDark = true;
+            }
+          }
+
+          // 2. Panel oscuro de búsqueda
+          if (!isOverDark && searchPanel) {
+            const sRect = searchPanel.getBoundingClientRect();
+            if (sRect.top <= dockMid && sRect.bottom >= dockMid) {
+              isOverDark = true;
+            }
+          }
+
+          // 3. Footer oscuro
+          if (!isOverDark && footerSec) {
+            const fRect = footerSec.getBoundingClientRect();
+            if (fRect.top <= dockMid) {
+              isOverDark = true;
+            }
+          }
+
+          if (isOverDark) {
+            // "cuando toque cosas oscuras que sea blanco"
+            dock.classList.remove('dock-dark-mode');
+            dock.classList.add('dock-light-mode');
+          } else {
+            // "cuando esta en lo blanco, que toda la barra sea oscura"
+            dock.classList.remove('dock-light-mode');
+            dock.classList.add('dock-dark-mode');
+          }
+        }
+      }
+
+      window.addEventListener('scroll', onScroll, { passive: true });
+      onScroll(); // Evaluar estado inicial al cargar
+    }
+
+    // FILTROS DE PESTAÑAS (Todas, Carretera a El Salvador, Reu, Venta, Renta)
+    function setTabFilter(tabKey) {
+      document.querySelectorAll('.tab-pill').forEach(btn => {
+        if (btn.getAttribute('data-tab') === tabKey) {
+          btn.className = "tab-pill btn-luxury bg-primary text-on-primary px-4 py-2 rounded-full text-label-sm font-semibold";
+        } else {
+          btn.className = "tab-pill btn-luxury bg-surface-container-low hover:bg-surface-container-high text-on-surface px-4 py-2 rounded-full text-label-sm font-medium transition-colors";
+        }
+      });
+
+      let filtered = propertiesData;
+      if (tabKey === 'Carretera a El Salvador' || tabKey === 'Fraijanes') {
+        filtered = propertiesData.filter(p => p.city === tabKey);
+      } else if (tabKey === 'Venta' || tabKey === 'Renta') {
+        filtered = propertiesData.filter(p => p.deal === tabKey);
+      }
+
+      renderPropertiesGrid(filtered);
+      renderMapPins(filtered);
+      if (filtered.length > 0) {
+        selectPropertyOnMap(filtered[0].id, false);
+      }
+    }
+
+    function resetFilters() {
+      selectedFilterCity = 'all';
+      selectedFilterType = 'all';
+      budgetMinVal = 0;
+      budgetMaxVal = 5000000;
+      const minInput = document.getElementById('slider-min');
+      const maxInput = document.getElementById('slider-max');
+      if (minInput) minInput.value = 0;
+      if (maxInput) maxInput.value = 5000000;
+      const line = document.getElementById('slider-range-line');
+      if (line) {
+        line.style.left = '0%';
+        line.style.width = '100%';
+      }
+      const displayLabel = document.getElementById('budget-display-value');
+      if (displayLabel) displayLabel.innerText = "Q 0 - Q 5,000,000+";
+      const locLabel = document.getElementById('label-selected-location');
+      if (locLabel) locLabel.innerText = "Todas las Ubicaciones (10)";
+      const typeLabel = document.getElementById('label-selected-type');
+      if (typeLabel) typeLabel.innerText = "Todos los Tipos";
+      setTabFilter('all');
+      applyFilters();
+    }
+
+    // ABRIR MODAL CON GALERÍA DE FOTOS INTERIORES & EXTERIORES
+    function openPropertyModal(propId) {
+      const prop = propertiesData.find(p => p.id === propId);
+      if (!prop) return;
+
+      currentActivePropertyId = prop.id;
+      currentGalleryPhotos = (prop.gallery && prop.gallery.length > 0) 
+        ? prop.gallery 
+        : [{ url: prop.img, label: "Fachada Principal" }];
+      currentGalleryIndex = 0;
+
+      // Actualizar datos de texto
+      document.getElementById('modal-title').innerText = prop.title;
+      document.getElementById('modal-loc').innerText = `${prop.zone} · ${prop.sub}`;
+      document.getElementById('modal-price').innerText = prop.price_q;
+      document.getElementById('modal-usd').innerText = `(~${prop.price_usd})`;
+      document.getElementById('modal-area-m2').innerText = prop.area_m2;
+      document.getElementById('modal-area-v2').innerText = prop.area_v2;
+      document.getElementById('modal-beds').innerText = prop.beds ? `${prop.beds} Dormitorios` : "No aplica";
+      document.getElementById('modal-baths').innerText = prop.baths ? `${prop.baths} Baños` : "No aplica";
+      document.getElementById('modal-floors').innerText = prop.floors;
+      document.getElementById('modal-garages').innerText = prop.garages ? `${prop.garages} Espacios` : "Fácil acceso";
+      document.getElementById('modal-desc').innerText = prop.desc;
+      document.getElementById('modal-tag').innerText = prop.tag;
+
+      // Mostrar foto 0
+      showModalPhoto(0);
+
+      // Renderizar miniaturas amplias de referencia (Vista Previa Ampliada)
+      const thumbsContainer = document.getElementById('modal-thumbnails-container');
+      thumbsContainer.innerHTML = '';
+      currentGalleryPhotos.forEach((item, idx) => {
+        const thumb = document.createElement('button');
+        thumb.className = `modal-thumb relative flex-shrink-0 w-36 sm:w-48 md:w-56 h-24 sm:h-32 md:h-36 rounded-2xl overflow-hidden border-2 transition-all duration-200 group text-left shadow-sm ${idx === 0 ? 'border-black ring-4 ring-black/15 scale-100' : 'border-surface-container-high opacity-70 hover:opacity-100 hover:border-neutral-400'}`;
+        thumb.onclick = () => showModalPhoto(idx);
+        thumb.innerHTML = `
+          <img src="${item.url}" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" alt="${item.label}" loading="lazy">
+          <div class="absolute inset-0 bg-gradient-to-t from-black/85 via-black/25 to-transparent flex flex-col justify-end p-2.5 sm:p-3 pointer-events-none">
+            <span class="text-[10px] font-semibold text-white/75 uppercase tracking-wider block">Foto ${idx + 1} de ${currentGalleryPhotos.length}</span>
+            <span class="text-xs sm:text-sm font-bold text-white truncate block">${item.label}</span>
+          </div>
+        `;
+        thumbsContainer.appendChild(thumb);
+      });
+
+      // Puntos de interés cercanos
+      const nearbyContainer = document.getElementById('modal-nearby');
+      nearbyContainer.innerHTML = '';
+      prop.nearby.forEach(item => {
+        const el = document.createElement('div');
+        el.className = "flex items-center gap-2 p-2 rounded-lg bg-surface border border-surface-container";
+        el.innerHTML = `<span class="material-symbols-outlined text-[16px] text-primary">check_circle</span> <span class="text-on-surface">${item}</span>`;
+        nearbyContainer.appendChild(el);
+      });
+
+      // Amenidades
+      const featContainer = document.getElementById('modal-features');
+      featContainer.innerHTML = '';
+      prop.features.forEach(f => {
+        const el = document.createElement('span');
+        el.className = "px-3 py-1 bg-surface-container rounded-full text-xs font-medium text-primary border border-surface-container-high";
+        el.innerText = f;
+        featContainer.appendChild(el);
+      });
+
+      // Botón Negro Destacado: Agendar Cita por WhatsApp (Bottom y Top)
+      const waMsg = encodeURIComponent(`Hola SIGUA Inmobiliaria, deseo agendar una cita por WhatsApp para visitar la propiedad: ${prop.title} ubicada en ${prop.zone} (Precio: ${prop.price_q}). ¿Qué días y horarios tienen disponibles para coordinar la visita?`);
+      const bottomBtn = document.getElementById('modal-wa-btn-bottom');
+      if (bottomBtn) {
+        bottomBtn.href = `https://wa.me/50256513625?text=${waMsg}`;
+      }
+      const topBtn = document.getElementById('modal-wa-top-btn');
+      if (topBtn) {
+        topBtn.href = `https://wa.me/50256513625?text=${waMsg}`;
+      }
+
+      // Botón Ubicar en Mapa
+      document.getElementById('modal-locate-btn').onclick = () => {
+        closePropertyModal();
+        locateOnMapFromCard(prop.id);
+      };
+
+      // Apertura limpia del modal
+      const modal = document.getElementById('property-modal');
+      const content = document.getElementById('property-modal-content');
+      modal.classList.remove('opacity-0', 'pointer-events-none');
+      content.classList.remove('scale-95');
+      content.classList.add('scale-100');
+    }
+
+    // MOSTRAR FOTO ESPECÍFICA EN EL MODAL
+    function showModalPhoto(index) {
+      if (!currentGalleryPhotos || currentGalleryPhotos.length === 0) return;
+      if (index < 0) index = currentGalleryPhotos.length - 1;
+      if (index >= currentGalleryPhotos.length) index = 0;
+      currentGalleryIndex = index;
+
+      const photo = currentGalleryPhotos[index];
+      const mainImg = document.getElementById('modal-img');
+      const counterEl = document.getElementById('modal-photo-counter');
+      const labelEl = document.getElementById('modal-photo-label');
+
+      if (mainImg) {
+        mainImg.src = photo.url;
+      }
+      if (counterEl) counterEl.innerText = `Foto ${index + 1} de ${currentGalleryPhotos.length}`;
+      if (labelEl) labelEl.innerText = photo.label;
+
+      // Actualizar borde y realce de miniatura activa (Vista Previa Ampliada)
+      const thumbs = document.querySelectorAll('.modal-thumb');
+      thumbs.forEach((t, i) => {
+        if (i === index) {
+          t.className = "modal-thumb relative flex-shrink-0 w-36 sm:w-48 md:w-56 h-24 sm:h-32 md:h-36 rounded-2xl overflow-hidden border-2 border-black ring-4 ring-black/15 scale-100 transition-all duration-200 group text-left shadow-md";
+        } else {
+          t.className = "modal-thumb relative flex-shrink-0 w-36 sm:w-48 md:w-56 h-24 sm:h-32 md:h-36 rounded-2xl overflow-hidden border-2 border-surface-container-high opacity-70 hover:opacity-100 hover:border-neutral-400 transition-all duration-200 group text-left";
+        }
+      });
+    }
+
+    function changeModalPhoto(direction) {
+      showModalPhoto(currentGalleryIndex + direction);
+    }
+
+    function closePropertyModal() {
+      const modal = document.getElementById('property-modal');
+      const content = document.getElementById('property-modal-content');
+      content.classList.remove('scale-100');
+      content.classList.add('scale-95');
+      modal.classList.add('opacity-0', 'pointer-events-none');
+    }
+
+    // Cerrar modal con tecla ESC o clic en backdrop
+    document.getElementById('property-modal').addEventListener('click', (e) => {
+      if (e.target.id === 'property-modal') {
+        closePropertyModal();
+      }
+    });
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') closePropertyModal();
+    });
+
+    // CARRUSEL DE CLIENTES / RESEÑAS GOOGLE MAPS (Horizontal Flex Slide - Zero Overlap)
+    let currentReviewIndex = 0;
+    const totalReviews = 4;
+    let reviewTimer = null;
+
+    function showReview(index) {
+      if (index < 0) index = totalReviews - 1;
+      if (index >= totalReviews) index = 0;
+      currentReviewIndex = index;
+
+      const track = document.getElementById('reviews-track');
+      if (track) {
+        track.style.transform = `translateX(-${index * 100}%)`;
+      }
+
+      const reviewDots = document.querySelectorAll('.review-dot');
+      reviewDots.forEach((dot, idx) => {
+        if (idx === index) {
+          dot.className = "review-dot w-6 h-2.5 rounded-full bg-primary transition-all duration-300";
+        } else {
+          dot.className = "review-dot w-2.5 h-2.5 rounded-full bg-surface-container-highest hover:bg-neutral-400 transition-all duration-300";
+        }
+      });
+    }
+
+    function nextReview() {
+      showReview(currentReviewIndex + 1);
+    }
+    function prevReview() {
+      showReview(currentReviewIndex - 1);
+    }
+    function goToReview(idx) {
+      showReview(idx);
+    }
+
+    function startReviewAuto() {
+      if (reviewTimer) clearInterval(reviewTimer);
+      reviewTimer = setInterval(nextReview, 5000);
+    }
+    function pauseReviewAuto() {
+      if (reviewTimer) clearInterval(reviewTimer);
+    }
+    function resumeReviewAuto() {
+      pauseReviewAuto();
+      startReviewAuto();
+    }
+
+    // ARRANQUE GENERAL DEL DOM
+    document.addEventListener('DOMContentLoaded', () => {
+      initMap();
+      initBudgetSlider();
+      initDockScrollspy();
+      renderPropertiesGrid(propertiesData);
+      showReview(0);
+      startReviewAuto();
+    });
+  </script>
+
+</body>
+</html>
