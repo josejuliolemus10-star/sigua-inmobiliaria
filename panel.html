@@ -881,8 +881,8 @@
 
           <div class="bg-white rounded-2xl border border-slate-200/80 shadow-xs overflow-hidden">
             <div class="p-4 border-b border-slate-100 flex items-center justify-between gap-4">
-              <input type="text" placeholder="Filtrar por nombre, teléfono o propiedad de interés..." class="px-3.5 py-2 bg-slate-50 border border-slate-200 rounded-xl text-xs w-full max-w-sm outline-none focus:bg-white focus:border-blue-400">
-              <span class="text-xs font-semibold text-slate-500">Total: 4 prospectos recientes</span>
+              <input type="text" id="leads-search-input" oninput="filtrarLeads(this.value)" placeholder="Filtrar por nombre, teléfono o propiedad..." class="px-3.5 py-2 bg-slate-50 border border-slate-200 rounded-xl text-xs w-full max-w-sm outline-none focus:bg-white focus:border-blue-400">
+              <span class="text-xs font-semibold text-slate-500" id="leads-count-badge">Total: 4 prospectos recientes</span>
             </div>
             <div class="overflow-x-auto">
               <table class="w-full text-left text-xs text-slate-700">
@@ -896,7 +896,7 @@
                     <th class="py-3 px-4 text-right">Contacto Directo</th>
                   </tr>
                 </thead>
-                <tbody class="divide-y divide-slate-100">
+                <tbody class="divide-y divide-slate-100" id="leads-tbody">
                   <tr class="hover:bg-slate-50/80 transition-colors">
                     <td class="py-3 px-4 font-bold text-slate-900 flex items-center gap-2">
                       <div class="w-7 h-7 rounded-full bg-amber-100 text-amber-700 font-bold text-xs flex items-center justify-center">G</div>
@@ -1459,6 +1459,11 @@
        MODALES DEL CRM (DISEÑO CLEAN SAAS BLANCO)
   ======================================================== -->
 
+  
+  <!-- ========================================================
+       MODALES DEL CRM (100% FUNCIONALES & SAAS BLANCO)
+  ======================================================== -->
+
   <!-- MODAL: DETALLE DE PROPIEDAD -->
   <div id="modal-detalle-propiedad" class="hidden fixed inset-0 z-50 overflow-y-auto bg-slate-900/60 backdrop-blur-sm flex items-center justify-center p-4">
     <div class="bg-white rounded-2xl max-w-2xl w-full shadow-2xl border border-slate-100 overflow-hidden transform transition-all">
@@ -1591,13 +1596,7 @@
           <div>
             <label class="block text-xs font-semibold text-slate-600 mb-1">Asesor Asignado *</label>
             <select id="form-prop-asesor" class="w-full px-3.5 py-2.5 rounded-xl border border-slate-200 text-sm focus:outline-none focus:border-blue-500 bg-white">
-              <option value="Juan Carlos Aguirre">Juan Carlos Aguirre</option>
-              <option value="Marjorie Valdez">Marjorie Valdez</option>
-              <option value="Rodrigo Mendoza">Rodrigo Mendoza</option>
-              <option value="Valeria Morales">Valeria Morales</option>
-              <option value="Esteban Castillo">Esteban Castillo</option>
-              <option value="Camila Rosales">Camila Rosales</option>
-              <option value="Alejandro Morales">Alejandro Morales</option>
+              <!-- Dinámico -->
             </select>
           </div>
         </div>
@@ -1624,7 +1623,6 @@
         <div>
           <label class="block text-xs font-semibold text-slate-600 mb-1">URL de Imagen Principal</label>
           <input type="url" id="form-prop-imagen" placeholder="https://images.unsplash.com/..." class="w-full px-3.5 py-2.5 rounded-xl border border-slate-200 text-sm focus:outline-none focus:border-blue-500">
-          <p class="text-[11px] text-slate-400 mt-1">Si se deja vacío, se asignará una fotografía de arquitectura moderna en alta resolución.</p>
         </div>
 
         <div>
@@ -1738,15 +1736,104 @@
         <div>
           <label class="block text-xs font-semibold text-slate-600 mb-1">Asesor Acompañante *</label>
           <select id="actividad-asesor" class="w-full px-3.5 py-2.5 rounded-xl border border-slate-200 text-sm focus:outline-none focus:border-blue-500 bg-white">
-            <option value="Juan Carlos Aguirre">Juan Carlos Aguirre</option>
-            <option value="Marjorie Valdez">Marjorie Valdez</option>
-            <option value="Rodrigo Mendoza">Rodrigo Mendoza</option>
-            <option value="Valeria Morales">Valeria Morales</option>
+            <!-- Dinámico -->
           </select>
         </div>
         <div class="flex justify-end gap-2.5 pt-3 border-t border-slate-100">
           <button type="button" onclick="cerrarModal('modal-nueva-actividad')" class="px-4 py-2 rounded-xl bg-slate-100 hover:bg-slate-200 text-xs font-semibold text-slate-600">Cancelar</button>
           <button type="submit" class="px-4 py-2 rounded-xl bg-blue-600 hover:bg-blue-700 text-white text-xs font-semibold">Confirmar Visita</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- MODAL: NUEVO LEAD VIP -->
+  <div id="modal-nuevo-lead" class="hidden fixed inset-0 z-50 bg-slate-900/60 backdrop-blur-sm flex items-center justify-center p-4">
+    <div class="bg-white rounded-2xl max-w-md w-full shadow-2xl border border-slate-100 overflow-hidden">
+      <div class="p-5 border-b border-slate-100 flex items-center justify-between">
+        <h3 class="text-base font-bold text-slate-800">Registrar Nuevo Lead VIP</h3>
+        <button onclick="cerrarModal('modal-nuevo-lead')" class="w-8 h-8 rounded-full hover:bg-slate-100 text-slate-400 flex items-center justify-center"><i class="fa-solid fa-xmark"></i></button>
+      </div>
+      <form onsubmit="guardarLeadForm(event)" class="p-5 space-y-3.5 text-xs">
+        <div>
+          <label class="block font-semibold text-slate-600 mb-1">Nombre o Empresa *</label>
+          <input type="text" id="lead-nombre" required placeholder="Ej. Corporación Altamira / Lic. Pedro Morales" class="w-full px-3.5 py-2.5 rounded-xl border border-slate-200 text-sm focus:outline-none focus:border-blue-500">
+        </div>
+        <div class="grid grid-cols-2 gap-3">
+          <div>
+            <label class="block font-semibold text-slate-600 mb-1">Teléfono / WhatsApp *</label>
+            <input type="text" id="lead-telefono" required placeholder="+502 4455-6677" class="w-full px-3.5 py-2.5 rounded-xl border border-slate-200 text-sm focus:outline-none focus:border-blue-500">
+          </div>
+          <div>
+            <label class="block font-semibold text-slate-600 mb-1">Presupuesto Aprox. *</label>
+            <input type="text" id="lead-presupuesto" required placeholder="$350,000 USD" class="w-full px-3.5 py-2.5 rounded-xl border border-slate-200 text-sm focus:outline-none focus:border-blue-500">
+          </div>
+        </div>
+        <div>
+          <label class="block font-semibold text-slate-600 mb-1">Propiedad o Sector de Interés *</label>
+          <input type="text" id="lead-interes" required placeholder="Residencial Terravista o Arrazola" class="w-full px-3.5 py-2.5 rounded-xl border border-slate-200 text-sm focus:outline-none focus:border-blue-500">
+        </div>
+        <div class="grid grid-cols-2 gap-3">
+          <div>
+            <label class="block font-semibold text-slate-600 mb-1">Asesor Asignado *</label>
+            <select id="lead-asesor" class="w-full px-3.5 py-2.5 rounded-xl border border-slate-200 text-sm focus:outline-none focus:border-blue-500 bg-white">
+              <option value="Juan Carlos Aguirre">Juan Carlos Aguirre</option>
+              <option value="Marjorie Valdez">Marjorie Valdez</option>
+              <option value="Rodrigo Mendoza">Rodrigo Mendoza</option>
+              <option value="Valeria Morales">Valeria Morales</option>
+            </select>
+          </div>
+          <div>
+            <label class="block font-semibold text-slate-600 mb-1">Estado del Embudo *</label>
+            <select id="lead-estado" class="w-full px-3.5 py-2.5 rounded-xl border border-slate-200 text-sm focus:outline-none focus:border-blue-500 bg-white">
+              <option value="Nuevo">Nuevo Lead</option>
+              <option value="Calificado">Calificado</option>
+              <option value="En Propuesta">En Propuesta</option>
+              <option value="En Negociación">En Negociación</option>
+            </select>
+          </div>
+        </div>
+        <div class="flex justify-end gap-2.5 pt-3 border-t border-slate-100">
+          <button type="button" onclick="cerrarModal('modal-nuevo-lead')" class="px-4 py-2 rounded-xl bg-slate-100 hover:bg-slate-200 font-semibold text-slate-600">Cancelar</button>
+          <button type="submit" class="px-4 py-2 rounded-xl bg-blue-600 hover:bg-blue-700 text-white font-semibold shadow-xs">Guardar Lead</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- MODAL: NUEVO USUARIO RBAC -->
+  <div id="modal-nuevo-usuario" class="hidden fixed inset-0 z-50 bg-slate-900/60 backdrop-blur-sm flex items-center justify-center p-4">
+    <div class="bg-white rounded-2xl max-w-md w-full shadow-2xl border border-slate-100 overflow-hidden">
+      <div class="p-5 border-b border-slate-100 flex items-center justify-between">
+        <h3 class="text-base font-bold text-slate-800">Registrar Usuario del Sistema</h3>
+        <button onclick="cerrarModal('modal-nuevo-usuario')" class="w-8 h-8 rounded-full hover:bg-slate-100 text-slate-400 flex items-center justify-center"><i class="fa-solid fa-xmark"></i></button>
+      </div>
+      <form onsubmit="guardarUsuarioForm(event)" class="p-5 space-y-3.5 text-xs">
+        <div>
+          <label class="block font-semibold text-slate-600 mb-1">Nombre Completo *</label>
+          <input type="text" id="usr-nombre" required placeholder="Ej. Karla Sandoval" class="w-full px-3.5 py-2.5 rounded-xl border border-slate-200 text-sm focus:outline-none focus:border-blue-500">
+        </div>
+        <div>
+          <label class="block font-semibold text-slate-600 mb-1">Correo Corporativo *</label>
+          <input type="email" id="usr-email" required placeholder="karla@siguainmobiliaria.com" class="w-full px-3.5 py-2.5 rounded-xl border border-slate-200 text-sm focus:outline-none focus:border-blue-500">
+        </div>
+        <div class="grid grid-cols-2 gap-3">
+          <div>
+            <label class="block font-semibold text-slate-600 mb-1">Rol / Permisos *</label>
+            <select id="usr-rol" class="w-full px-3.5 py-2.5 rounded-xl border border-slate-200 text-sm focus:outline-none focus:border-blue-500 bg-white">
+              <option value="Asesor Comercial">Asesor Comercial</option>
+              <option value="Administrador General">Administrador General</option>
+              <option value="Directora Comercial">Directora Comercial</option>
+            </select>
+          </div>
+          <div>
+            <label class="block font-semibold text-slate-600 mb-1">Contraseña Inicial *</label>
+            <input type="password" id="usr-clave" required value="Sigua2026!" class="w-full px-3.5 py-2.5 rounded-xl border border-slate-200 text-sm focus:outline-none focus:border-blue-500">
+          </div>
+        </div>
+        <div class="flex justify-end gap-2.5 pt-3 border-t border-slate-100">
+          <button type="button" onclick="cerrarModal('modal-nuevo-usuario')" class="px-4 py-2 rounded-xl bg-slate-100 hover:bg-slate-200 font-semibold text-slate-600">Cancelar</button>
+          <button type="submit" class="px-4 py-2 rounded-xl bg-blue-600 hover:bg-blue-700 text-white font-semibold shadow-xs">Crear Usuario</button>
         </div>
       </form>
     </div>
@@ -1927,10 +2014,9 @@
         cargo: 'Director General & Co-Fundador',
         telefono: '+502 5651-3625',
         email: 'juancarlos@siguainmobiliaria.com',
-        foto: 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=300&q=80',
+        foto: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=300&q=80',
         ventasMes: 620000,
-        metaMes: 500000,
-        propiedadesCount: 3
+        metaMes: 500000
       },
       {
         id: 2,
@@ -1940,8 +2026,7 @@
         email: 'marjorie@siguainmobiliaria.com',
         foto: 'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=300&q=80',
         ventasMes: 510000,
-        metaMes: 500000,
-        propiedadesCount: 2
+        metaMes: 500000
       },
       {
         id: 3,
@@ -1949,10 +2034,9 @@
         cargo: 'Asesor Senior Carretera a El Salvador',
         telefono: '+502 4125-7890',
         email: 'rodrigo@siguainmobiliaria.com',
-        foto: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=300&q=80',
+        foto: 'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=300&q=80',
         ventasMes: 430000,
-        metaMes: 450000,
-        propiedadesCount: 1
+        metaMes: 450000
       },
       {
         id: 4,
@@ -1962,8 +2046,7 @@
         email: 'valeria@siguainmobiliaria.com',
         foto: 'https://images.unsplash.com/photo-1580489944761-15a19d654956?auto=format&fit=crop&w=300&q=80',
         ventasMes: 390000,
-        metaMes: 400000,
-        propiedadesCount: 1
+        metaMes: 400000
       },
       {
         id: 5,
@@ -1971,10 +2054,9 @@
         cargo: 'Asesor de Inversiones Inmobiliarias',
         telefono: '+502 5314-9988',
         email: 'esteban@siguainmobiliaria.com',
-        foto: 'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=300&q=80',
+        foto: 'https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?auto=format&fit=crop&w=300&q=80',
         ventasMes: 215000,
-        metaMes: 300000,
-        propiedadesCount: 1
+        metaMes: 300000
       },
       {
         id: 6,
@@ -1984,8 +2066,7 @@
         email: 'camila@siguainmobiliaria.com',
         foto: 'https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&w=300&q=80',
         ventasMes: 185000,
-        metaMes: 250000,
-        propiedadesCount: 1
+        metaMes: 250000
       },
       {
         id: 7,
@@ -1995,8 +2076,7 @@
         email: 'alejandro@siguainmobiliaria.com',
         foto: 'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?auto=format&fit=crop&w=300&q=80',
         ventasMes: 340000,
-        metaMes: 350000,
-        propiedadesCount: 1
+        metaMes: 350000
       }
     ];
 
@@ -2007,17 +2087,36 @@
       { id: 4, propId: 10, cliente: 'Arq. Fernando Ruiz', telefono: '+502 5444-6677', fecha: '2026-05-23', hora: '02:30 PM', asesor: 'Juan Carlos Aguirre', titulo: 'Inspección Mansión Finca San José' }
     ];
 
+    const LEADS_DEFAULT = [
+      { id: 1, nombre: 'Global Enterprises', telefono: '+502 5521-9988', interes: 'Terravista Bosque (Km 16.5)', presupuesto: '$385,000 USD', asesor: 'Juan Carlos Aguirre', estado: 'En Propuesta' },
+      { id: 2, nombre: 'TechNova Solutions', telefono: '+502 4410-2233', interes: 'Arrazola Panorama (Km 17)', presupuesto: '$380,000 USD', asesor: 'Marjorie Valdez', estado: 'En Negociación' },
+      { id: 3, nombre: 'BrightWave Inversiones', telefono: '+502 3301-4455', interes: 'Terreno Terravista Sector 3', presupuesto: '$70,000 USD', asesor: 'Rodrigo Mendoza', estado: 'Calificado' },
+      { id: 4, nombre: 'Innovatech Labs', telefono: '+502 5900-1122', interes: 'Mansión Arrazola 2', presupuesto: '$425,000 USD', asesor: 'Valeria Morales', estado: 'Promesa de Compra' }
+    ];
+
+    const USUARIOS_DEFAULT = [
+      { id: 1, nombre: 'Juan Carlos Aguirre', email: 'juancarlos@siguainmobiliaria.com', rol: 'Administrador General', estado: 'Activo', ultimoAcceso: 'Ahora' },
+      { id: 2, nombre: 'Marjorie Valdez', email: 'marjorie@siguainmobiliaria.com', rol: 'Directora Comercial', estado: 'Activo', ultimoAcceso: 'Hoy 09:15 AM' },
+      { id: 3, nombre: 'Rodrigo Mendoza', email: 'rodrigo@siguainmobiliaria.com', rol: 'Asesor Senior', estado: 'Activo', ultimoAcceso: 'Ayer 04:30 PM' },
+      { id: 4, nombre: 'Valeria Morales', email: 'valeria@siguainmobiliaria.com', rol: 'Asesora Residencial', estado: 'Activo', ultimoAcceso: 'Hoy 08:45 AM' }
+    ];
+
     // ----------------------------------------------------
     // ESTADO DE LA APLICACIÓN
     // ----------------------------------------------------
     let propiedades = [];
     let asesores = [];
     let actividades = [];
-    let filtroEstadoActual = 'Todos';
+    let leads = [];
+    let usuarios = [];
+    let filtroEstadoActual = 'todos';
     let filtroBusquedaActual = '';
     let filtroAsesorActual = '';
     let modoVistaInventario = 'tabla'; // 'tabla' o 'grid'
+    let subTabPropiedadesActual = 'inventario'; // 'inventario' o 'nueva'
     let propiedadSeleccionada = null;
+    let calMesActual = 4; // Mayo (0-indexed: 4)
+    let calAnioActual = 2026;
 
     // ----------------------------------------------------
     // INICIALIZACIÓN
@@ -2029,13 +2128,17 @@
       renderizarAsesores();
       renderizarCalendario();
       renderizarUsuariosRBAC();
+      renderizarLeads();
       poblarSelectsFormulario();
 
-      // Configurar escucha para búsqueda rápida global
+      // Configurar búsqueda global
       const globalSearch = document.getElementById('global-search');
       if (globalSearch) {
         globalSearch.addEventListener('input', (e) => {
           filtroBusquedaActual = e.target.value.toLowerCase().trim();
+          navegarA('propiedades');
+          const invSearch = document.getElementById('inventario-search');
+          if (invSearch) invSearch.value = filtroBusquedaActual;
           renderizarInventario();
         });
       }
@@ -2054,11 +2157,21 @@
         const actGuardadas = localStorage.getItem('sigua_actividades');
         actividades = actGuardadas ? JSON.parse(actGuardadas) : ACTIVIDADES_DEFAULT;
         if (!actGuardadas) localStorage.setItem('sigua_actividades', JSON.stringify(actividades));
+
+        const lGuardados = localStorage.getItem('sigua_leads');
+        leads = lGuardados ? JSON.parse(lGuardados) : LEADS_DEFAULT;
+        if (!lGuardados) localStorage.setItem('sigua_leads', JSON.stringify(leads));
+
+        const uGuardados = localStorage.getItem('sigua_usuarios');
+        usuarios = uGuardados ? JSON.parse(uGuardados) : USUARIOS_DEFAULT;
+        if (!uGuardados) localStorage.setItem('sigua_usuarios', JSON.stringify(usuarios));
       } catch (err) {
         console.warn('Error cargando localStorage:', err);
         propiedades = PROPIEDADES_DEFAULT;
         asesores = ASESORES_DEFAULT;
         actividades = ACTIVIDADES_DEFAULT;
+        leads = LEADS_DEFAULT;
+        usuarios = USUARIOS_DEFAULT;
       }
     }
 
@@ -2067,36 +2180,1032 @@
     }
 
     // ----------------------------------------------------
-    // NAVEGACIÓN SPA ENTRE VISTAS
+    // NAVEGACIÓN SPA ENTRE VISTAS (100% FUNCIONAL)
     // ----------------------------------------------------
-    function navegarA(vistaId) {
-      const vistas = document.querySelectorAll('.crm-vista');
-      vistas.forEach(v => v.classList.add('hidden'));
+    
+    window.handleGlobalSearch = function(query) {
+      const q = (query || '').toLowerCase().trim();
+      filtroBusquedaActual = q;
+      
+      const activeView = document.querySelector('.view-panel:not(.hidden)');
+      const activeId = activeView ? activeView.id : 'view-dashboard';
+      
+      if (activeId === 'view-propiedades') {
+        const invSearch = document.getElementById('inventario-search');
+        if (invSearch && invSearch.value !== q) invSearch.value = q;
+        renderizarInventario();
+      } else if (activeId === 'view-leads') {
+        const rows = document.querySelectorAll('#leads-tbody tr');
+        rows.forEach(tr => {
+          tr.style.display = (!q || tr.textContent.toLowerCase().includes(q)) ? '' : 'none';
+        });
+      } else if (activeId === 'view-asesores') {
+        const cards = document.querySelectorAll('#asesores-grid > div');
+        cards.forEach(card => {
+          card.style.display = (!q || card.textContent.toLowerCase().includes(q)) ? '' : 'none';
+        });
+      } else if (activeId === 'view-usuarios') {
+        const rows = document.querySelectorAll('#usuarios-tbody tr');
+        rows.forEach(tr => {
+          tr.style.display = (!q || tr.textContent.toLowerCase().includes(q)) ? '' : 'none';
+        });
+      } else {
+        // If query is typed from dashboard or deals, navigate to properties
+        if (q.length > 1) {
+          navegarA('propiedades');
+          const invSearch = document.getElementById('inventario-search');
+          if (invSearch) invSearch.value = q;
+          renderizarInventario();
+        }
+      }
+    };
 
-      const vistaDestino = document.getElementById('vista-' + vistaId);
+    function navegarA(vistaId) {
+      // 1. Ocultar todas las secciones de vista
+      document.querySelectorAll('.view-panel').forEach(v => v.classList.add('hidden'));
+
+      // 2. Mostrar la vista seleccionada
+      const vistaDestino = document.getElementById('view-' + vistaId) || document.getElementById('vista-' + vistaId);
       if (vistaDestino) {
         vistaDestino.classList.remove('hidden');
       }
 
-      // Actualizar estados visuales del sidebar
-      const navLinks = document.querySelectorAll('.nav-link');
-      navLinks.forEach(link => {
-        link.classList.remove('bg-blue-50', 'text-blue-600', 'font-semibold');
-        link.classList.add('text-slate-600', 'hover:bg-slate-50', 'hover:text-slate-900');
+      // 3. Actualizar estado activo en la barra lateral
+      document.querySelectorAll('.nav-item').forEach(btn => {
+        const tab = btn.getAttribute('data-tab');
+        const esActivo = tab === vistaId;
+        if (esActivo) {
+          btn.className = "nav-item w-full flex items-center gap-3 px-3.5 py-2.5 rounded-xl text-xs font-bold text-blue-600 bg-blue-50/80 transition-all text-left shadow-xs";
+          const icono = btn.querySelector('i');
+          if (icono) {
+            icono.className = icono.className.replace(/text-slate-\d+/, 'text-blue-600');
+            if (!icono.className.includes('text-blue-600')) icono.classList.add('text-blue-600');
+          }
+        } else {
+          btn.className = "nav-item w-full flex items-center gap-3 px-3.5 py-2.5 rounded-xl text-xs font-medium text-slate-600 hover:text-slate-900 hover:bg-slate-50 transition-all text-left";
+          const icono = btn.querySelector('i');
+          if (icono) {
+            icono.className = icono.className.replace('text-blue-600', 'text-slate-400');
+          }
+        }
       });
 
-      const navActivo = document.getElementById('nav-' + vistaId);
-      if (navActivo) {
-        navActivo.classList.remove('text-slate-600', 'hover:bg-slate-50', 'hover:text-slate-900');
-        navActivo.classList.add('bg-blue-50', 'text-blue-600', 'font-semibold');
-      }
-
-      // Re-renderizar si es necesario
+      // 4. Refrescar datos según la vista
       if (vistaId === 'propiedades') renderizarInventario();
       if (vistaId === 'asesores') renderizarAsesores();
       if (vistaId === 'calendario') renderizarCalendario();
       if (vistaId === 'usuarios') renderizarUsuariosRBAC();
+      if (vistaId === 'dashboard') {
+        if (pipelineChart) pipelineChart.resize();
+      }
+
       window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    // ----------------------------------------------------
+    // SUBTABS DE PROPIEDADES (INVENTARIO VS AGREGAR NUEVA)
+    // ----------------------------------------------------
+    function setPropiedadesSubTab(tab) {
+      subTabPropiedadesActual = tab;
+      const subInv = document.getElementById('subtab-inventario-content');
+      const subNueva = document.getElementById('subtab-nueva-content');
+      const btnInv = document.getElementById('btn-subtab-inventario');
+      const btnNueva = document.getElementById('btn-subtab-nueva');
+
+      if (tab === 'inventario') {
+        if (subInv) subInv.classList.remove('hidden');
+        if (subNueva) subNueva.classList.add('hidden');
+        if (btnInv) {
+          btnInv.className = "px-4 py-2 text-xs font-bold rounded-xl transition-all bg-white text-slate-900 shadow-xs cursor-pointer";
+        }
+        if (btnNueva) {
+          btnNueva.className = "px-4 py-2 text-xs font-bold rounded-xl transition-all text-slate-500 hover:text-slate-900 cursor-pointer";
+        }
+        renderizarInventario();
+      } else {
+        if (subInv) subInv.classList.add('hidden');
+        if (subNueva) subNueva.classList.remove('hidden');
+        if (btnNueva) {
+          btnNueva.className = "px-4 py-2 text-xs font-bold rounded-xl transition-all bg-white text-slate-900 shadow-xs cursor-pointer";
+        }
+        if (btnInv) {
+          btnInv.className = "px-4 py-2 text-xs font-bold rounded-xl transition-all text-slate-500 hover:text-slate-900 cursor-pointer";
+        }
+      }
+    }
+
+    function irAAgregarPropiedad() {
+      navegarA('propiedades');
+      setPropiedadesSubTab('nueva');
+    }
+
+    // ----------------------------------------------------
+    // VISTA TABLA VS GRID EN INVENTARIO
+    // ----------------------------------------------------
+    function setVistaModo(modo) {
+      modoVistaInventario = modo;
+      const vTabla = document.getElementById('inventario-view-tabla');
+      const vGrid = document.getElementById('inventario-view-grid');
+      const btnT = document.getElementById('btn-view-tabla');
+      const btnG = document.getElementById('btn-view-grid');
+
+      if (modo === 'tabla') {
+        if (vTabla) vTabla.classList.remove('hidden');
+        if (vGrid) vGrid.classList.add('hidden');
+        if (btnT) { btnT.className = "p-1.5 rounded-lg text-slate-900 bg-white shadow-xs text-xs font-bold"; }
+        if (btnG) { btnG.className = "p-1.5 rounded-lg text-slate-400 hover:text-slate-900 text-xs font-bold"; }
+      } else {
+        if (vTabla) vTabla.classList.add('hidden');
+        if (vGrid) vGrid.classList.remove('hidden');
+        if (btnG) { btnG.className = "p-1.5 rounded-lg text-slate-900 bg-white shadow-xs text-xs font-bold"; }
+        if (btnT) { btnT.className = "p-1.5 rounded-lg text-slate-400 hover:text-slate-900 text-xs font-bold"; }
+      }
+    }
+    const cambiarVistaModo = setVistaModo;
+
+    // ----------------------------------------------------
+    // FILTROS DE INVENTARIO
+    // ----------------------------------------------------
+    function volverATodas() {
+      filtroEstadoActual = 'todos';
+      filtroAsesorActual = '';
+      filtroBusquedaActual = '';
+      const invSearch = document.getElementById('inventario-search');
+      if (invSearch) invSearch.value = '';
+
+      const banner = document.getElementById('filtro-asesor-banner');
+      if (banner) banner.classList.add('hidden');
+
+      const tabAsesor = document.getElementById('tab-filtro-asesor');
+      if (tabAsesor) tabAsesor.classList.add('hidden');
+
+      actualizarBotonesFiltroEstado();
+      renderizarInventario();
+    }
+
+    function filtrarInventarioPorEstado(estado) {
+      filtroEstadoActual = estado.toLowerCase();
+      actualizarBotonesFiltroEstado();
+      renderizarInventario();
+    }
+    const cambiarFiltroEstado = (estado) => filtrarInventarioPorEstado(estado);
+
+    function actualizarBotonesFiltroEstado() {
+      document.querySelectorAll('.inv-filter-btn').forEach(b => {
+        const f = b.getAttribute('data-filter');
+        if (f === filtroEstadoActual) {
+          b.className = "inv-filter-btn px-3 py-1.5 rounded-full text-xs font-bold bg-slate-900 text-white shadow-xs cursor-pointer";
+        } else if (f) {
+          b.className = "inv-filter-btn px-3 py-1.5 rounded-full text-xs font-semibold bg-slate-100 hover:bg-slate-200 text-slate-700 transition-all cursor-pointer";
+        }
+      });
+    }
+
+    function aplicarFiltrosInventario() {
+      const input = document.getElementById('inventario-search');
+      if (input) filtroBusquedaActual = input.value.toLowerCase().trim();
+      renderizarInventario();
+    }
+
+    function activarFiltroAsesorTab(nombre) {
+      if (nombre) filtroAsesorActual = nombre;
+      const banner = document.getElementById('filtro-asesor-banner');
+      const bNom = document.getElementById('filtro-asesor-nombre');
+      const bImg = document.getElementById('filtro-asesor-avatar');
+
+      const a = asesores.find(x => x.nombre === filtroAsesorActual) || asesores[0];
+      if (banner && a) {
+        banner.classList.remove('hidden');
+        if (bNom) bNom.textContent = a.nombre;
+        if (bImg) bImg.src = a.foto;
+      }
+      renderizarInventario();
+    }
+
+    function limpiarFiltroAsesor() {
+      filtroAsesorActual = '';
+      const banner = document.getElementById('filtro-asesor-banner');
+      if (banner) banner.classList.add('hidden');
+      const tabAsesor = document.getElementById('tab-filtro-asesor');
+      if (tabAsesor) tabAsesor.classList.add('hidden');
+      renderizarInventario();
+    }
+
+    function filtrarPropiedades() {
+      return propiedades.filter(p => {
+        let matchEstado = true;
+        if (filtroEstadoActual === 'venta') matchEstado = (p.tipo === 'Casa' || p.tipo === 'Villa' || p.tipo === 'Apartamento' || p.tipo === 'Terreno') && p.estado !== 'Alquiler';
+        else if (filtroEstadoActual === 'renta') matchEstado = p.estado.toLowerCase() === 'alquiler';
+        else if (filtroEstadoActual === 'disponible') matchEstado = p.estado.toLowerCase() === 'disponible';
+        else if (filtroEstadoActual === 'reservada') matchEstado = p.estado.toLowerCase() === 'reservada';
+        else if (filtroEstadoActual === 'vendida') matchEstado = p.estado.toLowerCase() === 'vendida';
+
+        const matchBusqueda = !filtroBusquedaActual ||
+          p.titulo.toLowerCase().includes(filtroBusquedaActual) ||
+          p.ubicacion.toLowerCase().includes(filtroBusquedaActual) ||
+          p.asesor.toLowerCase().includes(filtroBusquedaActual);
+
+        const matchAsesor = !filtroAsesorActual || p.asesor === filtroAsesorActual;
+
+        return matchEstado && matchBusqueda && matchAsesor;
+      });
+    }
+
+    // ----------------------------------------------------
+    // RENDERIZADO DEL INVENTARIO
+    // ----------------------------------------------------
+    function renderizarInventario() {
+      const filtradas = filtrarPropiedades();
+      const tbody = document.getElementById('inventario-tbody');
+      const grid = document.getElementById('inventario-view-grid');
+
+      // Actualizar contadores
+      const countSub = document.getElementById('count-subtab-inv');
+      if (countSub) countSub.textContent = propiedades.length;
+
+      const fTodos = document.getElementById('filter-count-todos');
+      if (fTodos) fTodos.textContent = propiedades.length;
+
+      const fVenta = document.getElementById('filter-count-venta');
+      if (fVenta) fVenta.textContent = propiedades.filter(p => p.estado !== 'Alquiler').length;
+
+      const fRenta = document.getElementById('filter-count-renta');
+      if (fRenta) fRenta.textContent = propiedades.filter(p => p.estado === 'Alquiler').length;
+
+      const fVendida = document.getElementById('filter-count-vendida');
+      if (fVendida) fVendida.textContent = propiedades.filter(p => p.estado === 'Vendida').length;
+
+      const bTotal = document.getElementById('badge-total-props');
+      if (bTotal) bTotal.textContent = propiedades.length + ' CAES';
+
+      // Render Modo Tabla
+      if (tbody) {
+        if (filtradas.length === 0) {
+          tbody.innerHTML = `<tr><td colspan="7" class="py-12 text-center text-slate-400 text-xs">No se encontraron propiedades con los criterios seleccionados.</td></tr>`;
+        } else {
+          tbody.innerHTML = filtradas.map(p => {
+            const badgeClass = p.estado === 'Disponible' ? 'bg-emerald-50 text-emerald-600 border border-emerald-200' :
+                               p.estado === 'Reservada' ? 'bg-amber-50 text-amber-600 border border-amber-200' :
+                               p.estado === 'Vendida' ? 'bg-indigo-50 text-indigo-600 border border-indigo-200' :
+                               'bg-sky-50 text-sky-600 border border-sky-200';
+            const precioUSD = '$' + Number(p.precio).toLocaleString('en-US');
+            const precioGTQ = 'Q' + Number(p.precio * 7.75).toLocaleString('es-GT');
+
+            return `
+              <tr class="hover:bg-slate-50/80 transition-colors group">
+                <td class="py-3 px-4 font-mono font-bold text-slate-400">
+                  <div class="flex items-center gap-2.5">
+                    <img src="${p.imagen}" alt="" class="w-10 h-8 rounded-lg object-cover border border-slate-200 shrink-0">
+                    <span class="text-[11px] text-slate-500">#${p.id}</span>
+                  </div>
+                </td>
+                <td class="py-3 px-4">
+                  <button type="button" onclick="verDetallePropiedad(${p.id})" class="text-xs font-bold text-slate-800 hover:text-blue-600 block text-left transition-colors truncate max-w-xs cursor-pointer">${p.titulo}</button>
+                  <span class="text-[10px] text-slate-400 flex items-center gap-1 mt-0.5 truncate max-w-xs">
+                    <i class="fa-solid fa-location-dot text-blue-500"></i> ${p.ubicacion}
+                  </span>
+                </td>
+                <td class="py-3 px-4">
+                  <span class="font-bold text-slate-900 block">${precioUSD}</span>
+                  <span class="text-[10px] text-slate-400">${precioGTQ}</span>
+                </td>
+                <td class="py-3 px-4 text-[11px] text-slate-600 whitespace-nowrap">
+                  <span><i class="fa-solid fa-bed text-slate-400 mr-1"></i>${p.habitaciones}</span> • 
+                  <span><i class="fa-solid fa-bath text-slate-400 mr-1"></i>${p.banos}</span> • 
+                  <span>${p.m2} m²</span>
+                </td>
+                <td class="py-3 px-4">
+                  <button type="button" onclick="activarFiltroAsesorTab('${p.asesor}')" class="flex items-center gap-2 hover:bg-slate-100 px-2 py-1 rounded-lg transition-colors cursor-pointer text-left">
+                    <div class="w-5 h-5 rounded-full bg-blue-100 text-blue-600 font-bold text-[9px] flex items-center justify-center shrink-0">
+                      ${p.asesor.charAt(0)}
+                    </div>
+                    <span class="text-xs font-medium text-slate-700 truncate max-w-[120px]">${p.asesor}</span>
+                  </button>
+                </td>
+                <td class="py-3 px-4 text-center">
+                  <button type="button" onclick="alternarEstado(${p.id})" title="Haz clic para alternar estado" class="px-2.5 py-1 rounded-full text-[10px] font-bold cursor-pointer hover:scale-105 transition-all shadow-2xs ${badgeClass}">
+                    ${p.estado} <i class="fa-solid fa-repeat text-[8px] ml-1 opacity-70"></i>
+                  </button>
+                </td>
+                <td class="py-3 px-4 text-right">
+                  <div class="inline-flex items-center gap-1">
+                    <button type="button" onclick="verDetallePropiedad(${p.id})" title="Ver Ficha Técnica" class="w-7 h-7 rounded-lg hover:bg-blue-50 text-slate-400 hover:text-blue-600 flex items-center justify-center transition-colors cursor-pointer">
+                      <i class="fa-solid fa-eye text-xs"></i>
+                    </button>
+                    <button type="button" onclick="abrirEditarPropiedad(${p.id})" title="Editar Inmueble" class="w-7 h-7 rounded-lg hover:bg-slate-100 text-slate-400 hover:text-slate-700 flex items-center justify-center transition-colors cursor-pointer">
+                      <i class="fa-solid fa-pen text-xs"></i>
+                    </button>
+                    <button type="button" onclick="abrirConfirmarEliminar(${p.id})" title="Eliminar" class="w-7 h-7 rounded-lg hover:bg-rose-50 text-slate-400 hover:text-rose-600 flex items-center justify-center transition-colors cursor-pointer">
+                      <i class="fa-solid fa-trash text-xs"></i>
+                    </button>
+                  </div>
+                </td>
+              </tr>
+            `;
+          }).join('');
+        }
+      }
+
+      // Render Modo Grid
+      if (grid) {
+        if (filtradas.length === 0) {
+          grid.innerHTML = `<div class="col-span-full py-12 text-center text-slate-400 text-xs">No se encontraron propiedades.</div>`;
+        } else {
+          grid.innerHTML = filtradas.map(p => {
+            const badgeClass = p.estado === 'Disponible' ? 'bg-emerald-500 text-white' :
+                               p.estado === 'Reservada' ? 'bg-amber-500 text-white' :
+                               p.estado === 'Vendida' ? 'bg-indigo-500 text-white' :
+                               'bg-sky-500 text-white';
+            const precioUSD = '$' + Number(p.precio).toLocaleString('en-US');
+
+            return `
+              <div class="bg-white rounded-2xl border border-slate-200/80 overflow-hidden shadow-xs hover:shadow-md transition-all group flex flex-col">
+                <div class="relative h-44 w-full bg-slate-100 overflow-hidden">
+                  <img src="${p.imagen}" alt="${p.titulo}" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300">
+                  <span class="absolute top-3 left-3 px-2.5 py-0.5 rounded-full text-[10px] font-bold ${badgeClass} shadow-xs">
+                    ${p.estado}
+                  </span>
+                  <div class="absolute bottom-3 right-3 px-3 py-1 rounded-xl bg-slate-900/80 backdrop-blur-sm text-white font-bold text-xs">
+                    ${precioUSD}
+                  </div>
+                </div>
+                <div class="p-4 flex-1 flex flex-col justify-between space-y-3">
+                  <div>
+                    <h4 onclick="verDetallePropiedad(${p.id})" class="text-xs font-bold text-slate-800 hover:text-blue-600 cursor-pointer line-clamp-1 transition-colors">${p.titulo}</h4>
+                    <p class="text-[11px] text-slate-400 truncate mt-0.5"><i class="fa-solid fa-location-dot text-blue-500 mr-1"></i>${p.ubicacion}</p>
+                  </div>
+
+                  <div class="grid grid-cols-3 gap-2 py-2 border-y border-slate-100 text-center text-[11px] text-slate-600">
+                    <div><i class="fa-solid fa-bed text-slate-400 mr-1"></i>${p.habitaciones} Hab</div>
+                    <div><i class="fa-solid fa-bath text-slate-400 mr-1"></i>${p.banos} Baños</div>
+                    <div><i class="fa-solid fa-ruler text-slate-400 mr-1"></i>${p.m2} m²</div>
+                  </div>
+
+                  <div class="flex items-center justify-between pt-1">
+                    <span class="text-[11px] text-slate-600 font-medium truncate max-w-[120px]">${p.asesor}</span>
+                    <div class="flex items-center gap-1">
+                      <button type="button" onclick="alternarEstado(${p.id})" title="Cambiar Estado" class="w-7 h-7 rounded-lg hover:bg-slate-100 text-slate-500 flex items-center justify-center transition-colors">
+                        <i class="fa-solid fa-repeat text-xs"></i>
+                      </button>
+                      <button type="button" onclick="verDetallePropiedad(${p.id})" title="Ver Detalle" class="w-7 h-7 rounded-lg hover:bg-blue-50 text-blue-600 flex items-center justify-center transition-colors">
+                        <i class="fa-solid fa-arrow-up-right-from-square text-xs"></i>
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            `;
+          }).join('');
+        }
+      }
+    }
+
+    // ----------------------------------------------------
+    // ACCIONES DE PROPIEDADES (1-CLICK TOGGLE, FORMULARIOS, MODALES)
+    // ----------------------------------------------------
+    function alternarEstado(id) {
+      const idx = propiedades.findIndex(p => p.id === id);
+      if (idx === -1) return;
+
+      const orden = ['Disponible', 'Reservada', 'Vendida', 'Alquiler'];
+      const actual = propiedades[idx].estado;
+      const nextIdx = (orden.indexOf(actual) + 1) % orden.length;
+      propiedades[idx].estado = orden[nextIdx];
+
+      guardarPropiedadesEnStorage();
+      renderizarInventario();
+      mostrarToast(`Propiedad #${id} actualizada a: ${propiedades[idx].estado}`);
+    }
+
+    function verDetallePropiedad(id) {
+      const p = propiedades.find(x => x.id === id);
+      if (!p) return;
+      propiedadSeleccionada = p;
+
+      document.getElementById('modal-det-img').src = p.imagen;
+      document.getElementById('modal-det-titulo').textContent = p.titulo;
+      document.getElementById('modal-det-ubicacion').innerHTML = `<i class="fa-solid fa-location-dot text-blue-500 mr-1.5"></i>${p.ubicacion}`;
+      document.getElementById('modal-det-precio').textContent = '$' + Number(p.precio).toLocaleString('en-US');
+      document.getElementById('modal-det-precio-gtq').textContent = 'Q' + Number(p.precio * 7.75).toLocaleString('es-GT');
+      document.getElementById('modal-det-hab').textContent = p.habitaciones || '-';
+      document.getElementById('modal-det-ban').textContent = p.banos || '-';
+      document.getElementById('modal-det-parq').textContent = p.parqueos || '2';
+      document.getElementById('modal-det-m2').textContent = (p.m2 || '-') + ' m²';
+      document.getElementById('modal-det-desc').textContent = p.descripcion || 'Propiedad de alto nivel en Carretera a El Salvador.';
+
+      const badge = document.getElementById('modal-det-badge');
+      badge.textContent = p.estado;
+      badge.className = 'absolute bottom-4 left-4 px-3 py-1 text-xs font-semibold rounded-full ' +
+        (p.estado === 'Disponible' ? 'bg-emerald-500 text-white' :
+         p.estado === 'Reservada' ? 'bg-amber-500 text-white' :
+         p.estado === 'Vendida' ? 'bg-indigo-500 text-white' : 'bg-sky-500 text-white');
+
+      // Asesor
+      const a = asesores.find(x => x.nombre === p.asesor) || asesores[0];
+      document.getElementById('modal-det-asesor-nom').textContent = p.asesor;
+      document.getElementById('modal-det-asesor-img').src = a.foto;
+      const cleanPhone = a.telefono.replace(/[^0-9]/g, '');
+      const waMsg = encodeURIComponent(`Hola ${p.asesor}, te consulto sobre la propiedad: ${p.titulo} (${p.ubicacion}).`);
+      document.getElementById('modal-det-whatsapp-btn').href = `https://wa.me/${cleanPhone}?text=${waMsg}`;
+
+      // Botones modal
+      document.getElementById('modal-det-btn-estado').onclick = () => {
+        alternarEstado(p.id);
+        verDetallePropiedad(p.id);
+      };
+      document.getElementById('modal-det-btn-editar').onclick = () => {
+        cerrarModal('modal-detalle-propiedad');
+        abrirEditarPropiedad(p.id);
+      };
+      document.getElementById('modal-det-btn-eliminar').onclick = () => {
+        cerrarModal('modal-detalle-propiedad');
+        abrirConfirmarEliminar(p.id);
+      };
+
+      abrirModal('modal-detalle-propiedad');
+    }
+
+    function abrirModalNuevo() {
+      document.getElementById('form-propiedad').reset();
+      document.getElementById('form-prop-id').value = '';
+      document.getElementById('modal-form-title').textContent = 'Nueva Propiedad en Inventario';
+      abrirModal('modal-form-propiedad');
+    }
+
+    function abrirEditarPropiedad(id) {
+      const p = propiedades.find(x => x.id === id);
+      if (!p) return;
+
+      document.getElementById('modal-form-title').textContent = 'Editar Propiedad #' + id;
+      document.getElementById('form-prop-id').value = p.id;
+      document.getElementById('form-prop-titulo').value = p.titulo;
+      document.getElementById('form-prop-precio').value = p.precio;
+      document.getElementById('form-prop-ubicacion').value = p.ubicacion;
+      document.getElementById('form-prop-estado').value = p.estado;
+      document.getElementById('form-prop-tipo').value = p.tipo || 'Casa';
+      document.getElementById('form-prop-asesor').value = p.asesor;
+      document.getElementById('form-prop-hab').value = p.habitaciones;
+      document.getElementById('form-prop-ban').value = p.banos;
+      document.getElementById('form-prop-parq').value = p.parqueos || 2;
+      document.getElementById('form-prop-m2').value = p.m2;
+      document.getElementById('form-prop-imagen').value = p.imagen;
+      document.getElementById('form-prop-desc').value = p.descripcion || '';
+
+      abrirModal('modal-form-propiedad');
+    }
+
+    // Guardar desde el modal de edición/creación
+    function guardarPropiedadForm(e) {
+      e.preventDefault();
+      const idStr = document.getElementById('form-prop-id').value;
+      const titulo = document.getElementById('form-prop-titulo').value.trim();
+      const precio = parseFloat(document.getElementById('form-prop-precio').value) || 0;
+      const ubicacion = document.getElementById('form-prop-ubicacion').value.trim();
+      const estado = document.getElementById('form-prop-estado').value;
+      const tipo = document.getElementById('form-prop-tipo').value;
+      const asesor = document.getElementById('form-prop-asesor').value;
+      const habitaciones = parseInt(document.getElementById('form-prop-hab').value) || 0;
+      const banos = parseFloat(document.getElementById('form-prop-ban').value) || 0;
+      const parqueos = parseInt(document.getElementById('form-prop-parq').value) || 2;
+      const m2 = parseInt(document.getElementById('form-prop-m2').value) || 0;
+      let imagen = document.getElementById('form-prop-imagen').value.trim() || 'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1000&q=80';
+      const descripcion = document.getElementById('form-prop-desc').value.trim();
+
+      if (idStr) {
+        const id = parseInt(idStr);
+        const idx = propiedades.findIndex(p => p.id === id);
+        if (idx !== -1) {
+          propiedades[idx] = { ...propiedades[idx], titulo, precio, ubicacion, estado, tipo, asesor, habitaciones, banos, parqueos, m2, imagen, descripcion };
+          mostrarToast('Propiedad actualizada con éxito');
+        }
+      } else {
+        const nuevoId = propiedades.length > 0 ? Math.max(...propiedades.map(p => p.id)) + 1 : 1;
+        propiedades.unshift({ id: nuevoId, titulo, precio, ubicacion, estado, tipo, asesor, habitaciones, banos, parqueos, m2, imagen, descripcion });
+        mostrarToast('Nueva propiedad guardada en inventario');
+      }
+
+      guardarPropiedadesEnStorage();
+      renderizarInventario();
+      cerrarModal('modal-form-propiedad');
+    }
+
+    // Guardar desde la pestaña "Agregar Nueva" (Subtab B)
+    function guardarNuevaPropiedad(e) {
+      e.preventDefault();
+      const titulo = document.getElementById('nueva-prop-titulo').value.trim();
+      const precio = parseFloat(document.getElementById('nueva-prop-precio').value) || 0;
+      const habitaciones = parseInt(document.getElementById('nueva-prop-cuartos').value) || 0;
+      const banos = parseFloat(document.getElementById('nueva-prop-banos').value) || 0;
+      const m2 = parseInt(document.getElementById('nueva-prop-metros').value) || 0;
+      const estado = document.getElementById('nueva-prop-estado').value;
+      const ubicacion = document.getElementById('nueva-prop-ubicacion').value.trim();
+      const asesor = document.getElementById('nueva-prop-asesor').value;
+      let imagen = document.getElementById('nueva-prop-foto').value.trim() || 'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1000&q=80';
+      const amenidades = document.getElementById('nueva-prop-amenidades').value.trim();
+
+      const nuevoId = propiedades.length > 0 ? Math.max(...propiedades.map(p => p.id)) + 1 : 1;
+      const nuevaProp = {
+        id: nuevoId,
+        titulo,
+        precio,
+        ubicacion,
+        estado,
+        tipo: 'Casa',
+        asesor,
+        habitaciones,
+        banos,
+        parqueos: 2,
+        m2,
+        imagen,
+        descripcion: amenidades || 'Residencia exclusiva en Carretera a El Salvador.'
+      };
+
+      propiedades.unshift(nuevaProp);
+      guardarPropiedadesEnStorage();
+      mostrarToast('Propiedad creada exitosamente');
+      setPropiedadesSubTab('inventario');
+      renderizarInventario();
+    }
+
+    function abrirConfirmarEliminar(id) {
+      const p = propiedades.find(x => x.id === id);
+      if (!p) return;
+      document.getElementById('eliminar-prop-titulo').textContent = `¿Confirmas que deseas eliminar "${p.titulo}"? Esta acción no se puede deshacer.`;
+      document.getElementById('btn-confirmar-eliminar-prop').onclick = () => {
+        eliminarPropiedad(id);
+      };
+      abrirModal('modal-confirmar-eliminar');
+    }
+
+    function eliminarPropiedad(id) {
+      propiedades = propiedades.filter(p => p.id !== id);
+      guardarPropiedadesEnStorage();
+      renderizarInventario();
+      cerrarModal('modal-confirmar-eliminar');
+      mostrarToast('Propiedad removida del catálogo');
+    }
+
+    // ----------------------------------------------------
+    // ASESORES (DIRECTORIO & GESTIÓN)
+    // ----------------------------------------------------
+    function renderizarAsesores() {
+      const contenedor = document.getElementById('asesores-grid') || document.getElementById('directorio-asesores-lista');
+      if (!contenedor) return;
+
+      const badgeA = document.getElementById('badge-sidebar-asesores');
+      if (badgeA) badgeA.textContent = asesores.length;
+
+      contenedor.innerHTML = asesores.map(a => {
+        const propsAsignadas = propiedades.filter(p => p.asesor === a.nombre).length;
+        const phoneClean = a.telefono.replace(/[^0-9]/g, '');
+
+        return `
+          <div class="bg-white rounded-2xl border border-slate-200/80 p-5 shadow-xs hover:shadow-md transition-all flex flex-col justify-between">
+            <div class="flex items-start gap-4">
+              <img src="${a.foto}" alt="${a.nombre}" class="w-14 h-14 rounded-2xl object-cover border border-slate-200 shrink-0">
+              <div class="min-w-0 flex-1">
+                <h4 class="text-sm font-bold text-slate-800 truncate">${a.nombre}</h4>
+                <p class="text-xs text-blue-600 font-medium truncate">${a.cargo}</p>
+                <p class="text-[11px] text-slate-400 mt-1 truncate"><i class="fa-regular fa-envelope mr-1"></i>${a.email}</p>
+                <p class="text-[11px] text-slate-400 truncate"><i class="fa-solid fa-phone mr-1"></i>${a.telefono}</p>
+              </div>
+            </div>
+
+            <div class="grid grid-cols-2 gap-2 my-4 p-2.5 rounded-xl bg-slate-50 border border-slate-100 text-center">
+              <div>
+                <span class="block text-[10px] text-slate-400 font-medium">Inmuebles</span>
+                <span class="text-xs font-bold text-slate-800">${propsAsignadas} activos</span>
+              </div>
+              <div>
+                <span class="block text-[10px] text-slate-400 font-medium">Cierres Mes</span>
+                <span class="text-xs font-bold text-emerald-600">$${(a.ventasMes / 1000).toFixed(0)}k</span>
+              </div>
+            </div>
+
+            <div class="flex items-center gap-2 pt-1 border-t border-slate-100">
+              <a href="https://wa.me/${phoneClean}" target="_blank" class="flex-1 py-2 rounded-xl bg-emerald-50 hover:bg-emerald-100 text-emerald-600 text-xs font-semibold text-center transition-colors flex items-center justify-center gap-1.5">
+                <i class="fa-brands fa-whatsapp text-sm"></i> WhatsApp
+              </a>
+              <button type="button" onclick="activarFiltroAsesorTab('${a.nombre}'); navegarA('propiedades');" class="px-3 py-2 rounded-xl border border-slate-200 hover:bg-slate-50 text-slate-600 text-xs font-semibold" title="Ver propiedades de este asesor">
+                <i class="fa-solid fa-house-chimney text-xs"></i>
+              </button>
+            </div>
+          </div>
+        `;
+      }).join('');
+    }
+
+    function abrirModalNuevoAsesor() {
+      abrirModal('modal-nuevo-asesor');
+    }
+
+    function guardarNuevoAsesor(e) {
+      e.preventDefault();
+      const nombre = document.getElementById('nuevo-asesor-nombre').value.trim();
+      const cargo = document.getElementById('nuevo-asesor-cargo').value.trim();
+      const telefono = document.getElementById('nuevo-asesor-telefono').value.trim();
+      const email = document.getElementById('nuevo-asesor-email').value.trim();
+      let foto = document.getElementById('nuevo-asesor-foto').value.trim() || 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=300&q=80';
+
+      const nuevoId = asesores.length > 0 ? Math.max(...asesores.map(a => a.id)) + 1 : 1;
+      asesores.push({
+        id: nuevoId,
+        nombre,
+        cargo,
+        telefono,
+        email,
+        foto,
+        ventasMes: 0,
+        metaMes: 300000
+      });
+
+      localStorage.setItem('sigua_asesores', JSON.stringify(asesores));
+      renderizarAsesores();
+      poblarSelectsFormulario();
+      cerrarModal('modal-nuevo-asesor');
+      mostrarToast('Asesor registrado con éxito');
+    }
+
+    // ----------------------------------------------------
+    // CALENDARIO & CITAS (100% FUNCIONAL)
+    // ----------------------------------------------------
+    const NOMBRES_MESES = ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'];
+
+    function cambiarMesCalendario(delta) {
+      calMesActual += delta;
+      if (calMesActual < 0) { calMesActual = 11; calAnioActual--; }
+      if (calMesActual > 11) { calMesActual = 0; calAnioActual++; }
+      renderizarCalendario();
+    }
+
+    function irHoyCalendario() {
+      const hoy = new Date();
+      calMesActual = hoy.getMonth();
+      calAnioActual = hoy.getFullYear();
+      renderizarCalendario();
+    }
+
+    function renderizarCalendario() {
+      const tituloMes = document.getElementById('cal-mes-titulo');
+      if (tituloMes) tituloMes.textContent = `${NOMBRES_MESES[calMesActual]} ${calAnioActual}`;
+
+      const calGrid = document.getElementById('cal-grid');
+      if (calGrid) {
+        calGrid.innerHTML = '';
+        const primerDia = new Date(calAnioActual, calMesActual, 1).getDay();
+        const diasEnMes = new Date(calAnioActual, calMesActual + 1, 0).getDate();
+
+        // Celdas vacías previas
+        for (let i = 0; i < primerDia; i++) {
+          calGrid.innerHTML += `<div class="p-2 text-slate-300 min-h-[60px] bg-slate-50/50 rounded-xl"></div>`;
+        }
+
+        // Días del mes
+        for (let dia = 1; dia <= diasEnMes; dia++) {
+          const diaStr = String(dia).padStart(2, '0');
+          const mesStr = String(calMesActual + 1).padStart(2, '0');
+          const fechaKey = `${calAnioActual}-${mesStr}-${diaStr}`;
+          const actsDia = actividades.filter(a => a.fecha === fechaKey);
+
+          const hasEvents = actsDia.length > 0;
+          calGrid.innerHTML += `
+            <div class="p-2 border border-slate-100 rounded-xl min-h-[60px] flex flex-col justify-between hover:bg-blue-50/40 transition-colors ${hasEvents ? 'bg-blue-50/20 border-blue-200' : 'bg-white'}">
+              <span class="text-[11px] font-bold text-slate-700">${dia}</span>
+              ${hasEvents ? `<span class="inline-block px-1.5 py-0.5 bg-blue-600 text-white text-[9px] font-bold rounded-md truncate">${actsDia.length} visita(s)</span>` : ''}
+            </div>
+          `;
+        }
+      }
+
+      // Agenda de visitas
+      const lista = document.getElementById('cal-agenda-dia-lista');
+      if (lista) {
+        if (actividades.length === 0) {
+          lista.innerHTML = `<p class="text-xs text-slate-400 py-4 text-center">No hay citas programadas.</p>`;
+        } else {
+          lista.innerHTML = actividades.map(act => `
+            <div class="p-3.5 rounded-xl border border-slate-100 hover:border-blue-200 hover:bg-blue-50/20 transition-all flex items-center justify-between gap-3">
+              <div class="flex items-center gap-3">
+                <div class="w-10 h-10 rounded-xl bg-blue-50 text-blue-600 flex flex-col items-center justify-center font-bold shrink-0">
+                  <span class="text-[9px] uppercase tracking-wider">${act.fecha.split('-')[1]}</span>
+                  <span class="text-xs leading-none">${act.fecha.split('-')[2]}</span>
+                </div>
+                <div>
+                  <h5 class="text-xs font-bold text-slate-800">${act.titulo}</h5>
+                  <p class="text-[11px] text-slate-500">${act.cliente} • <i class="fa-regular fa-clock ml-1 mr-0.5"></i>${act.hora}</p>
+                  <span class="inline-block text-[10px] text-blue-600 font-medium mt-0.5">Asesor: ${act.asesor}</span>
+                </div>
+              </div>
+              <button type="button" onclick="exportarEventoICS('${act.titulo}', '${act.fecha}', '${act.hora}', '${act.cliente}')" title="Exportar cita a calendario" class="w-8 h-8 rounded-lg border border-slate-200 hover:bg-slate-50 text-slate-400 hover:text-slate-700 flex items-center justify-center transition-colors cursor-pointer">
+                <i class="fa-solid fa-calendar-plus text-xs"></i>
+              </button>
+            </div>
+          `).join('');
+        }
+      }
+    }
+
+    function abrirModalNuevaActividad() {
+      const sel = document.getElementById('actividad-propiedad');
+      if (sel) {
+        sel.innerHTML = propiedades.map(p => `<option value="${p.id}">${p.titulo} (${p.ubicacion})</option>`).join('');
+      }
+      const selA = document.getElementById('actividad-asesor');
+      if (selA) {
+        selA.innerHTML = asesores.map(a => `<option value="${a.nombre}">${a.nombre}</option>`).join('');
+      }
+      abrirModal('modal-nueva-actividad');
+    }
+    const abrirModalAgendarVisita = abrirModalNuevaActividad;
+
+    function guardarActividad(e) {
+      e.preventDefault();
+      const propId = parseInt(document.getElementById('actividad-propiedad').value);
+      const prop = propiedades.find(p => p.id === propId);
+      const cliente = document.getElementById('actividad-cliente').value.trim();
+      const telefono = document.getElementById('actividad-telefono').value.trim();
+      const fecha = document.getElementById('actividad-fecha').value;
+      const hora = document.getElementById('actividad-hora').value;
+      const asesor = document.getElementById('actividad-asesor').value;
+
+      actividades.push({
+        id: Date.now(),
+        propId,
+        cliente,
+        telefono,
+        fecha,
+        hora,
+        asesor,
+        titulo: `Visita a ${prop ? prop.titulo : 'Inmueble'}`
+      });
+
+      localStorage.setItem('sigua_actividades', JSON.stringify(actividades));
+      renderizarCalendario();
+      cerrarModal('modal-nueva-actividad');
+      mostrarToast('Cita de visita agendada correctamente');
+    }
+
+    function exportarEventoICS(titulo, fecha, hora, cliente) {
+      const fechaLimpia = fecha.replace(/-/g, '');
+      const ics = [
+        'BEGIN:VCALENDAR',
+        'VERSION:2.0',
+        'PRODID:-//SIGUA Inmobiliaria//Agenda//ES',
+        'BEGIN:VEVENT',
+        `SUMMARY:${titulo}`,
+        `DESCRIPTION:Visita con ${cliente} - SIGUA Inmobiliaria`,
+        `DTSTART:${fechaLimpia}T100000Z`,
+        `DTEND:${fechaLimpia}T110000Z`,
+        'STATUS:CONFIRMED',
+        'END:VEVENT',
+        'END:VCALENDAR'
+      ].join('\r\n');
+
+      const blob = new Blob([ics], { type: 'text/calendar;charset=utf-8' });
+      const a = document.createElement('a');
+      a.href = URL.createObjectURL(blob);
+      a.download = `Cita_${titulo.replace(/\s+/g, '_')}.ics`;
+      a.click();
+      mostrarToast('Archivo .ICS generado');
+    }
+
+    function descargarCalendarioICS() {
+      const eventos = actividades.map(act => {
+        const f = act.fecha.replace(/-/g, '');
+        return [
+          'BEGIN:VEVENT',
+          `SUMMARY:${act.titulo}`,
+          `DESCRIPTION:Cliente: ${act.cliente} | Tel: ${act.telefono} | Asesor: ${act.asesor}`,
+          `DTSTART:${f}T100000Z`,
+          `DTEND:${f}T110000Z`,
+          'END:VEVENT'
+        ].join('\r\n');
+      }).join('\r\n');
+
+      const ics = ['BEGIN:VCALENDAR', 'VERSION:2.0', 'PRODID:-//SIGUA Inmobiliaria//Agenda//ES', eventos, 'END:VCALENDAR'].join('\r\n');
+      const blob = new Blob([ics], { type: 'text/calendar;charset=utf-8' });
+      const a = document.createElement('a');
+      a.href = URL.createObjectURL(blob);
+      a.download = 'Agenda_Completa_SIGUA.ics';
+      a.click();
+      mostrarToast('Agenda descargada en formato .ICS');
+    }
+    const descargarCalendarioCompletoICS = descargarCalendarioICS;
+
+    // ----------------------------------------------------
+    // LEADS VIP
+    // ----------------------------------------------------
+    function abrirModalNuevoLead() {
+      abrirModal('modal-nuevo-lead');
+    }
+
+    
+    function renderizarLeads() {
+      const tbody = document.getElementById('leads-tbody');
+      if (!tbody) return;
+
+      const badgeCount = document.getElementById('leads-count-badge');
+      if (badgeCount) badgeCount.textContent = `Total: ${leads.length} prospectos registrados`;
+
+      tbody.innerHTML = leads.map(l => {
+        const inicial = (l.nombre || 'P').charAt(0).toUpperCase();
+        const colors = ['bg-amber-100 text-amber-700', 'bg-blue-100 text-blue-700', 'bg-emerald-100 text-emerald-700', 'bg-purple-100 text-purple-700', 'bg-pink-100 text-pink-700'];
+        const col = colors[(l.id || 1) % colors.length];
+        
+        let statusCol = 'bg-blue-50 text-blue-600 border-blue-200';
+        if (l.estado === 'Calificado') statusCol = 'bg-amber-50 text-amber-600 border-amber-200';
+        if (l.estado === 'En Negociación') statusCol = 'bg-purple-50 text-purple-600 border-purple-200';
+        if (l.estado === 'Promesa de Compra' || l.estado === 'Cerrado') statusCol = 'bg-emerald-50 text-emerald-600 border-emerald-200';
+
+        const waText = encodeURIComponent(`Hola ${l.nombre}, te saluda SIGUA Inmobiliaria en relación a tu interés en: ${l.interes}`);
+        const telClean = (l.telefono || '50256513625').replace(/[^0-9]/g, '');
+
+        return `
+          <tr class="hover:bg-slate-50/80 transition-colors">
+            <td class="py-3 px-4 font-bold text-slate-900 flex items-center gap-2">
+              <div class="w-7 h-7 rounded-full ${col} font-bold text-xs flex items-center justify-center shrink-0">${inicial}</div>
+              <div>
+                <span>${l.nombre}</span>
+                <span class="block text-[10px] text-slate-400 font-normal">${l.telefono}</span>
+              </div>
+            </td>
+            <td class="py-3 px-4 font-semibold text-slate-800">${l.interes || 'Carretera a El Salvador'}</td>
+            <td class="py-3 px-4 font-mono font-bold text-blue-600">${l.presupuesto || 'Consultar'}</td>
+            <td class="py-3 px-4">${l.asesor || 'Juan Carlos Aguirre'}</td>
+            <td class="py-3 px-4">
+              <span class="px-2 py-0.5 rounded-full text-[10px] font-bold ${statusCol} border">${l.estado || 'Nuevo'}</span>
+            </td>
+            <td class="py-3 px-4 text-right">
+              <a href="https://wa.me/${telClean || '50256513625'}?text=${waText}" target="_blank" class="inline-flex items-center gap-1 px-2.5 py-1 bg-emerald-50 text-emerald-700 hover:bg-emerald-600 hover:text-white rounded-lg font-bold text-[11px] transition-all border border-emerald-200">
+                <i class="fa-brands fa-whatsapp"></i> Chat
+              </a>
+            </td>
+          </tr>
+        `;
+      }).join('');
+    }
+
+    window.filtrarLeads = function(query) {
+      const q = (query || '').toLowerCase().trim();
+      const rows = document.querySelectorAll('#leads-tbody tr');
+      rows.forEach(tr => {
+        tr.style.display = (!q || tr.textContent.toLowerCase().includes(q)) ? '' : 'none';
+      });
+    };
+
+    function guardarLeadForm(e) {
+      e.preventDefault();
+      const nombre = document.getElementById('lead-nombre').value.trim();
+      const telefono = document.getElementById('lead-telefono').value.trim();
+      const presupuesto = document.getElementById('lead-presupuesto').value.trim();
+      const interes = document.getElementById('lead-interes').value.trim();
+      const asesor = document.getElementById('lead-asesor').value;
+      const estado = document.getElementById('lead-estado').value;
+
+      leads.unshift({
+        id: Date.now(),
+        nombre,
+        telefono,
+        presupuesto,
+        interes,
+        asesor,
+        estado
+      });
+
+      localStorage.setItem('sigua_leads', JSON.stringify(leads));
+      renderizarLeads();
+      cerrarModal('modal-nuevo-lead');
+      mostrarToast('Lead VIP registrado con éxito');
+    }
+
+    // ----------------------------------------------------
+    // GOOGLE SHEETS SYNC & EXPORTACIÓN CSV
+    // ----------------------------------------------------
+    function sincronizarAhora(showToast = true) {
+      const btn = event ? event.currentTarget : null;
+      if (btn) btn.innerHTML = '<i class="fa-solid fa-arrows-rotate fa-spin mr-1"></i> Sincronizando...';
+
+      setTimeout(() => {
+        if (btn) btn.innerHTML = '<i class="fa-solid fa-arrows-rotate mr-1"></i> Sincronizar Ahora';
+        guardarPropiedadesEnStorage();
+        renderizarInventario();
+        if (showToast) mostrarToast('Google Sheets sincronizado exitosamente con el CRM');
+      }, 700);
+    }
+    const sincronizarSheets = sincronizarAhora;
+
+    function guardarConfigCsv() {
+      const url = document.getElementById('config-csv-url');
+      if (url) localStorage.setItem('sigua_csv_url', url.value.trim());
+      mostrarToast('URL de Google Sheets guardada');
+    }
+
+    function exportarCSVCompleto() {
+      const cabeceras = ['ID', 'Titulo', 'Precio_USD', 'Precio_GTQ', 'Estado', 'Tipo', 'Asesor', 'Habitaciones', 'Banos', 'M2', 'Ubicacion'];
+      const filas = propiedades.map(p => [
+        p.id,
+        `"${p.titulo.replace(/"/g, '""')}"`,
+        p.precio,
+        (p.precio * 7.75).toFixed(2),
+        p.estado,
+        p.tipo || 'Casa',
+        `"${p.asesor}"`,
+        p.habitaciones,
+        p.banos,
+        p.m2,
+        `"${p.ubicacion.replace(/"/g, '""')}"`
+      ]);
+
+      const csvContent = [cabeceras.join(','), ...filas.map(f => f.join(','))].join('\n');
+      const blob = new Blob(['\uFEFF' + csvContent], { type: 'text/csv;charset=utf-8;' });
+      const a = document.createElement('a');
+      a.href = URL.createObjectURL(blob);
+      a.download = `Inventario_SIGUA_${new Date().toISOString().split('T')[0]}.csv`;
+      a.click();
+      mostrarToast('Inventario exportado en formato CSV');
+    }
+    const exportarCSV = exportarCSVCompleto;
+
+    // ----------------------------------------------------
+    // CONFIGURACIÓN DE IDENTIDAD INMOBILIARIA
+    // ----------------------------------------------------
+    function guardarIdentidadInmobiliaria() {
+      const nom = document.getElementById('cfg-agency-name');
+      const slog = document.getElementById('cfg-agency-slogan');
+      const tel = document.getElementById('cfg-agency-phone');
+      const email = document.getElementById('cfg-agency-email');
+
+      const cfg = {
+        nombre: nom ? nom.value : 'SIGUA Inmobiliaria',
+        eslogan: slog ? slog.value : 'Servicios Inmobiliarios • Carretera a El Salvador',
+        telefono: tel ? tel.value : '+502 5651-3625',
+        email: email ? email.value : 'siguainmobiliaria@gmail.com'
+      };
+      localStorage.setItem('sigua_agency_config', JSON.stringify(cfg));
+      mostrarToast('Identidad inmobiliaria actualizada correctamente');
+    }
+
+    // ----------------------------------------------------
+    // USUARIOS & RBAC
+    // ----------------------------------------------------
+    function renderizarUsuariosRBAC() {
+      const tbody = document.getElementById('usuarios-tbody') || document.getElementById('tabla-usuarios-body');
+      if (!tbody) return;
+
+      tbody.innerHTML = usuarios.map(u => `
+        <tr class="hover:bg-slate-50/80 transition-colors">
+          <td class="py-3 px-4 flex items-center gap-3">
+            <div class="w-8 h-8 rounded-full bg-blue-100 text-blue-600 font-bold text-xs flex items-center justify-center shrink-0">
+              ${u.nombre.charAt(0)}
+            </div>
+            <div>
+              <span class="font-bold text-slate-800 block">${u.nombre}</span>
+              <span class="text-[10px] text-slate-400">${u.email}</span>
+            </div>
+          </td>
+          <td class="py-3 px-4">
+            <span class="px-2.5 py-1 rounded-md text-[10px] font-bold ${u.rol.includes('Admin') ? 'bg-indigo-50 text-indigo-600 border border-indigo-200' : 'bg-slate-100 text-slate-700'}">
+              ${u.rol}
+            </span>
+          </td>
+          <td class="py-3 px-4">
+            <span class="px-2.5 py-0.5 rounded-full text-[10px] font-bold bg-emerald-50 text-emerald-600 border border-emerald-200">
+              ${u.estado}
+            </span>
+          </td>
+          <td class="py-3 px-4 text-xs text-slate-500">${u.ultimoAcceso}</td>
+          <td class="py-3 px-4 text-right">
+            <button type="button" onclick="mostrarToast('Clave restablecida y enviada a ${u.email}')" class="px-3 py-1 bg-slate-50 hover:bg-slate-100 text-slate-600 font-bold rounded-lg border border-slate-200 text-[11px] transition-colors cursor-pointer">
+              Restablecer Clave
+            </button>
+          </td>
+        </tr>
+      `).join('');
+    }
+
+    function abrirModalNuevoUsuario() {
+      abrirModal('modal-nuevo-usuario');
+    }
+
+    function guardarUsuarioForm(e) {
+      e.preventDefault();
+      const nombre = document.getElementById('usr-nombre').value.trim();
+      const email = document.getElementById('usr-email').value.trim();
+      const rol = document.getElementById('usr-rol').value;
+
+      usuarios.push({
+        id: Date.now(),
+        nombre,
+        email,
+        rol,
+        estado: 'Activo',
+        ultimoAcceso: 'Nunca'
+      });
+
+      localStorage.setItem('sigua_usuarios', JSON.stringify(usuarios));
+      renderizarUsuariosRBAC();
+      cerrarModal('modal-nuevo-usuario');
+      mostrarToast('Usuario corporativo registrado exitosamente');
     }
 
     // ----------------------------------------------------
@@ -2171,661 +3280,22 @@
     }
 
     // ----------------------------------------------------
-    // RENDERIZADO DEL INVENTARIO (TABLA Y GRID)
-    // ----------------------------------------------------
-    function cambiarFiltroEstado(estado, btn) {
-      filtroEstadoActual = estado;
-      document.querySelectorAll('.tab-filtro-estado').forEach(b => {
-        b.classList.remove('bg-white', 'text-blue-600', 'shadow-xs', 'font-semibold');
-        b.classList.add('text-slate-500');
-      });
-      btn.classList.add('bg-white', 'text-blue-600', 'shadow-xs', 'font-semibold');
-      btn.classList.remove('text-slate-500');
-      renderizarInventario();
-    }
-
-    function cambiarVistaModo(modo) {
-      modoVistaInventario = modo;
-      const btnTabla = document.getElementById('btn-vista-tabla');
-      const btnGrid = document.getElementById('btn-vista-grid');
-      const contTabla = document.getElementById('tabla-propiedades-contenedor');
-      const contGrid = document.getElementById('grid-propiedades-contenedor');
-
-      if (modo === 'tabla') {
-        contTabla.classList.remove('hidden');
-        contGrid.classList.add('hidden');
-        btnTabla.classList.add('bg-white', 'text-blue-600', 'shadow-xs');
-        btnTabla.classList.remove('text-slate-400');
-        btnGrid.classList.remove('bg-white', 'text-blue-600', 'shadow-xs');
-        btnGrid.classList.add('text-slate-400');
-      } else {
-        contTabla.classList.add('hidden');
-        contGrid.classList.remove('hidden');
-        btnGrid.classList.add('bg-white', 'text-blue-600', 'shadow-xs');
-        btnGrid.classList.remove('text-slate-400');
-        btnTabla.classList.remove('bg-white', 'text-blue-600', 'shadow-xs');
-        btnTabla.classList.add('text-slate-400');
-      }
-    }
-
-    function filtrarPropiedades() {
-      return propiedades.filter(p => {
-        const coincideEstado = filtroEstadoActual === 'Todos' || p.estado.toLowerCase() === filtroEstadoActual.toLowerCase();
-        const coincideBusqueda = !filtroBusquedaActual || 
-          p.titulo.toLowerCase().includes(filtroBusquedaActual) ||
-          p.ubicacion.toLowerCase().includes(filtroBusquedaActual) ||
-          p.asesor.toLowerCase().includes(filtroBusquedaActual);
-        const coincideAsesor = !filtroAsesorActual || p.asesor === filtroAsesorActual;
-        return coincideEstado && coincideBusqueda && coincideAsesor;
-      });
-    }
-
-    function renderizarInventario() {
-      const filtradas = filtrarPropiedades();
-      const tbody = document.getElementById('tabla-propiedades-body');
-      const grid = document.getElementById('grid-propiedades-body');
-      const contadorTotal = document.getElementById('contador-propiedades-total');
-
-      if (contadorTotal) contadorTotal.textContent = filtradas.length + ' inmuebles';
-
-      if (tbody) {
-        if (filtradas.length === 0) {
-          tbody.innerHTML = `<tr><td colspan="7" class="py-12 text-center text-slate-400 text-xs">No se encontraron propiedades que coincidan con los filtros.</td></tr>`;
-        } else {
-          tbody.innerHTML = filtradas.map(p => {
-            const badgeClass = p.estado === 'Disponible' ? 'bg-emerald-50 text-emerald-600 border border-emerald-200' :
-                               p.estado === 'Reservada' ? 'bg-amber-50 text-amber-600 border border-amber-200' :
-                               p.estado === 'Vendida' ? 'bg-indigo-50 text-indigo-600 border border-indigo-200' :
-                               'bg-sky-50 text-sky-600 border border-sky-200';
-            const precioUSD = '$' + Number(p.precio).toLocaleString('en-US');
-            const precioGTQ = 'Q' + Number(p.precio * 7.75).toLocaleString('es-GT');
-
-            return `
-              <tr class="hover:bg-slate-50/70 transition-colors group">
-                <td class="py-3.5 px-4">
-                  <div class="flex items-center gap-3">
-                    <img src="${p.imagen}" alt="${p.titulo}" class="w-12 h-10 rounded-lg object-cover border border-slate-200 shrink-0">
-                    <div class="min-w-0">
-                      <button onclick="verDetallePropiedad(${p.id})" class="text-xs font-bold text-slate-800 hover:text-blue-600 text-left truncate block transition-colors">${p.titulo}</button>
-                      <p class="text-[11px] text-slate-400 truncate"><i class="fa-solid fa-location-dot text-slate-300 mr-1"></i>${p.ubicacion}</p>
-                    </div>
-                  </div>
-                </td>
-                <td class="py-3.5 px-4">
-                  <div class="text-xs font-bold text-slate-800">${precioUSD}</div>
-                  <div class="text-[10px] text-slate-400">${precioGTQ}</div>
-                </td>
-                <td class="py-3.5 px-4">
-                  <button onclick="alternarEstado(${p.id})" title="Haz clic para cambiar estado rápidamente" class="px-2.5 py-1 rounded-full text-[11px] font-semibold cursor-pointer hover:opacity-85 transition-opacity ${badgeClass}">
-                    ${p.estado} <i class="fa-solid fa-rotate text-[9px] ml-1 opacity-60"></i>
-                  </button>
-                </td>
-                <td class="py-3.5 px-4 text-xs text-slate-600 font-medium">
-                  <span class="px-2 py-0.5 rounded-md bg-slate-100 text-slate-600 text-[11px]">${p.tipo || 'Casa'}</span>
-                </td>
-                <td class="py-3.5 px-4">
-                  <div class="flex items-center gap-2">
-                    <div class="w-6 h-6 rounded-full bg-blue-100 text-blue-600 font-bold text-[10px] flex items-center justify-center shrink-0">
-                      ${p.asesor.charAt(0)}
-                    </div>
-                    <span class="text-xs text-slate-700 font-medium truncate">${p.asesor}</span>
-                  </div>
-                </td>
-                <td class="py-3.5 px-4 text-xs text-slate-500 whitespace-nowrap">
-                  <span title="Habitaciones"><i class="fa-solid fa-bed text-slate-400 mr-1"></i>${p.habitaciones}</span> • 
-                  <span title="Baños"><i class="fa-solid fa-bath text-slate-400 mr-1"></i>${p.banos}</span> • 
-                  <span title="Metros Cuadrados">${p.m2} m²</span>
-                </td>
-                <td class="py-3.5 px-4 text-right">
-                  <div class="flex items-center justify-end gap-1.5 opacity-90 group-hover:opacity-100">
-                    <button onclick="verDetallePropiedad(${p.id})" title="Ver Ficha Técnica" class="w-7 h-7 rounded-lg hover:bg-blue-50 text-slate-400 hover:text-blue-600 flex items-center justify-center transition-colors">
-                      <i class="fa-solid fa-eye text-xs"></i>
-                    </button>
-                    <button onclick="abrirEditarPropiedad(${p.id})" title="Editar Propiedad" class="w-7 h-7 rounded-lg hover:bg-slate-100 text-slate-400 hover:text-slate-700 flex items-center justify-center transition-colors">
-                      <i class="fa-solid fa-pen text-xs"></i>
-                    </button>
-                    <button onclick="abrirConfirmarEliminar(${p.id})" title="Eliminar" class="w-7 h-7 rounded-lg hover:bg-rose-50 text-slate-400 hover:text-rose-600 flex items-center justify-center transition-colors">
-                      <i class="fa-solid fa-trash text-xs"></i>
-                    </button>
-                  </div>
-                </td>
-              </tr>
-            `;
-          }).join('');
-        }
-      }
-
-      if (grid) {
-        if (filtradas.length === 0) {
-          grid.innerHTML = `<div class="col-span-full py-12 text-center text-slate-400 text-xs">No se encontraron inmuebles con estos criterios.</div>`;
-        } else {
-          grid.innerHTML = filtradas.map(p => {
-            const badgeClass = p.estado === 'Disponible' ? 'bg-emerald-500 text-white' :
-                               p.estado === 'Reservada' ? 'bg-amber-500 text-white' :
-                               p.estado === 'Vendida' ? 'bg-indigo-500 text-white' :
-                               'bg-sky-500 text-white';
-            const precioUSD = '$' + Number(p.precio).toLocaleString('en-US');
-
-            return `
-              <div class="bg-white rounded-2xl border border-slate-100 overflow-hidden shadow-xs hover:shadow-md transition-all group flex flex-col">
-                <div class="relative h-44 w-full bg-slate-100 overflow-hidden">
-                  <img src="${p.imagen}" alt="${p.titulo}" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300">
-                  <span class="absolute top-3 left-3 px-2.5 py-0.5 rounded-full text-[10px] font-bold ${badgeClass} shadow-xs">
-                    ${p.estado}
-                  </span>
-                  <div class="absolute bottom-3 right-3 px-3 py-1 rounded-xl bg-slate-900/80 backdrop-blur-sm text-white font-bold text-xs">
-                    ${precioUSD}
-                  </div>
-                </div>
-                <div class="p-4 flex-1 flex flex-col justify-between space-y-3">
-                  <div>
-                    <h4 onclick="verDetallePropiedad(${p.id})" class="text-xs font-bold text-slate-800 hover:text-blue-600 cursor-pointer line-clamp-1 transition-colors">${p.titulo}</h4>
-                    <p class="text-[11px] text-slate-400 truncate mt-0.5"><i class="fa-solid fa-location-dot text-blue-500 mr-1"></i>${p.ubicacion}</p>
-                  </div>
-
-                  <div class="grid grid-cols-3 gap-2 py-2 border-y border-slate-100 text-center text-[11px] text-slate-600">
-                    <div><i class="fa-solid fa-bed text-slate-400 mr-1"></i>${p.habitaciones} Hab</div>
-                    <div><i class="fa-solid fa-bath text-slate-400 mr-1"></i>${p.banos} Baños</div>
-                    <div><i class="fa-solid fa-ruler text-slate-400 mr-1"></i>${p.m2} m²</div>
-                  </div>
-
-                  <div class="flex items-center justify-between pt-1">
-                    <div class="flex items-center gap-1.5">
-                      <div class="w-5 h-5 rounded-full bg-blue-100 text-blue-600 font-bold text-[9px] flex items-center justify-center">
-                        ${p.asesor.charAt(0)}
-                      </div>
-                      <span class="text-[11px] text-slate-600 font-medium truncate max-w-[100px]">${p.asesor}</span>
-                    </div>
-                    <div class="flex items-center gap-1">
-                      <button onclick="alternarEstado(${p.id})" title="Cambiar Estado" class="w-7 h-7 rounded-lg hover:bg-slate-100 text-slate-500 flex items-center justify-center transition-colors">
-                        <i class="fa-solid fa-repeat text-xs"></i>
-                      </button>
-                      <button onclick="verDetallePropiedad(${p.id})" title="Ver Detalle" class="w-7 h-7 rounded-lg hover:bg-blue-50 text-blue-600 flex items-center justify-center transition-colors">
-                        <i class="fa-solid fa-arrow-up-right-from-square text-xs"></i>
-                      </button>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            `;
-          }).join('');
-        }
-      }
-    }
-
-    // ----------------------------------------------------
-    // ACCIONES DE PROPIEDAD (1-CLICK TOGGLE, MODALES, CRUD)
-    // ----------------------------------------------------
-    function alternarEstado(id) {
-      const idx = propiedades.findIndex(p => p.id === id);
-      if (idx === -1) return;
-
-      const ordenEstados = ['Disponible', 'Reservada', 'Vendida', 'Alquiler'];
-      const actual = propiedades[idx].estado;
-      const siguienteIndex = (ordenEstados.indexOf(actual) + 1) % ordenEstados.length;
-      propiedades[idx].estado = ordenEstados[siguienteIndex];
-
-      guardarPropiedadesEnStorage();
-      renderizarInventario();
-      mostrarToast(`Propiedad actualizada a: ${propiedades[idx].estado}`);
-    }
-
-    function verDetallePropiedad(id) {
-      const p = propiedades.find(x => x.id === id);
-      if (!p) return;
-      propiedadSeleccionada = p;
-
-      document.getElementById('modal-det-img').src = p.imagen;
-      document.getElementById('modal-det-titulo').textContent = p.titulo;
-      document.getElementById('modal-det-ubicacion').innerHTML = `<i class="fa-solid fa-location-dot text-blue-500 mr-1.5"></i>${p.ubicacion}`;
-      document.getElementById('modal-det-precio').textContent = '$' + Number(p.precio).toLocaleString('en-US');
-      document.getElementById('modal-det-precio-gtq').textContent = 'Q' + Number(p.precio * 7.75).toLocaleString('es-GT');
-      document.getElementById('modal-det-hab').textContent = p.habitaciones || '-';
-      document.getElementById('modal-det-ban').textContent = p.banos || '-';
-      document.getElementById('modal-det-parq').textContent = p.parqueos || '2';
-      document.getElementById('modal-det-m2').textContent = (p.m2 || '-') + ' m²';
-      document.getElementById('modal-det-desc').textContent = p.descripcion || 'Propiedad de alto nivel en Carretera a El Salvador.';
-
-      const badge = document.getElementById('modal-det-badge');
-      badge.textContent = p.estado;
-      badge.className = 'absolute bottom-4 left-4 px-3 py-1 text-xs font-semibold rounded-full ' +
-        (p.estado === 'Disponible' ? 'bg-emerald-500 text-white' :
-         p.estado === 'Reservada' ? 'bg-amber-500 text-white' :
-         p.estado === 'Vendida' ? 'bg-indigo-500 text-white' : 'bg-sky-500 text-white');
-
-      // Asesor card
-      const asesorObj = asesores.find(a => a.nombre === p.asesor) || asesores[0];
-      document.getElementById('modal-det-asesor-nom').textContent = p.asesor;
-      document.getElementById('modal-det-asesor-img').src = asesorObj.foto;
-      const phoneClean = asesorObj.telefono.replace(/[^0-9]/g, '');
-      const waMsg = encodeURIComponent(`Hola ${p.asesor}, me interesa consultar sobre la propiedad: ${p.titulo} (${p.ubicacion}).`);
-      document.getElementById('modal-det-whatsapp-btn').href = `https://wa.me/${phoneClean}?text=${waMsg}`;
-
-      // Botones de acción modal
-      document.getElementById('modal-det-btn-estado').onclick = () => {
-        alternarEstado(p.id);
-        verDetallePropiedad(p.id);
-      };
-      document.getElementById('modal-det-btn-editar').onclick = () => {
-        cerrarModal('modal-detalle-propiedad');
-        abrirEditarPropiedad(p.id);
-      };
-      document.getElementById('modal-det-btn-eliminar').onclick = () => {
-        cerrarModal('modal-detalle-propiedad');
-        abrirConfirmarEliminar(p.id);
-      };
-
-      abrirModal('modal-detalle-propiedad');
-    }
-
-    function abrirModalNuevo() {
-      document.getElementById('form-propiedad').reset();
-      document.getElementById('form-prop-id').value = '';
-      document.getElementById('modal-form-title').textContent = 'Nueva Propiedad en Inventario';
-      abrirModal('modal-form-propiedad');
-    }
-
-    function abrirEditarPropiedad(id) {
-      const p = propiedades.find(x => x.id === id);
-      if (!p) return;
-
-      document.getElementById('modal-form-title').textContent = 'Editar Propiedad';
-      document.getElementById('form-prop-id').value = p.id;
-      document.getElementById('form-prop-titulo').value = p.titulo;
-      document.getElementById('form-prop-precio').value = p.precio;
-      document.getElementById('form-prop-ubicacion').value = p.ubicacion;
-      document.getElementById('form-prop-estado').value = p.estado;
-      document.getElementById('form-prop-tipo').value = p.tipo || 'Casa';
-      document.getElementById('form-prop-asesor').value = p.asesor;
-      document.getElementById('form-prop-hab').value = p.habitaciones;
-      document.getElementById('form-prop-ban').value = p.banos;
-      document.getElementById('form-prop-parq').value = p.parqueos || 2;
-      document.getElementById('form-prop-m2').value = p.m2;
-      document.getElementById('form-prop-imagen').value = p.imagen;
-      document.getElementById('form-prop-desc').value = p.descripcion || '';
-
-      abrirModal('modal-form-propiedad');
-    }
-
-    function guardarPropiedadForm(e) {
-      e.preventDefault();
-      const idStr = document.getElementById('form-prop-id').value;
-      const titulo = document.getElementById('form-prop-titulo').value.trim();
-      const precio = parseFloat(document.getElementById('form-prop-precio').value) || 0;
-      const ubicacion = document.getElementById('form-prop-ubicacion').value.trim();
-      const estado = document.getElementById('form-prop-estado').value;
-      const tipo = document.getElementById('form-prop-tipo').value;
-      const asesor = document.getElementById('form-prop-asesor').value;
-      const habitaciones = parseInt(document.getElementById('form-prop-hab').value) || 0;
-      const banos = parseFloat(document.getElementById('form-prop-ban').value) || 0;
-      const parqueos = parseInt(document.getElementById('form-prop-parq').value) || 2;
-      const m2 = parseInt(document.getElementById('form-prop-m2').value) || 0;
-      let imagen = document.getElementById('form-prop-imagen').value.trim();
-      if (!imagen) {
-        imagen = 'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1000&q=80';
-      }
-      const descripcion = document.getElementById('form-prop-desc').value.trim();
-
-      if (idStr) {
-        // Editar existente
-        const id = parseInt(idStr);
-        const idx = propiedades.findIndex(p => p.id === id);
-        if (idx !== -1) {
-          propiedades[idx] = { ...propiedades[idx], titulo, precio, ubicacion, estado, tipo, asesor, habitaciones, banos, parqueos, m2, imagen, descripcion };
-          mostrarToast('Propiedad actualizada con éxito');
-        }
-      } else {
-        // Crear nuevo
-        const nuevoId = propiedades.length > 0 ? Math.max(...propiedades.map(p => p.id)) + 1 : 1;
-        const nuevaProp = { id: nuevoId, titulo, precio, ubicacion, estado, tipo, asesor, habitaciones, banos, parqueos, m2, imagen, descripcion };
-        propiedades.unshift(nuevaProp);
-        mostrarToast('Nueva propiedad agregada al inventario');
-      }
-
-      guardarPropiedadesEnStorage();
-      renderizarInventario();
-      cerrarModal('modal-form-propiedad');
-    }
-
-    function abrirConfirmarEliminar(id) {
-      const p = propiedades.find(x => x.id === id);
-      if (!p) return;
-      document.getElementById('eliminar-prop-titulo').textContent = `¿Confirmas que deseas eliminar "${p.titulo}"? Esta acción no se puede deshacer.`;
-      document.getElementById('btn-confirmar-eliminar-prop').onclick = () => {
-        eliminarPropiedad(id);
-      };
-      abrirModal('modal-confirmar-eliminar');
-    }
-
-    function eliminarPropiedad(id) {
-      propiedades = propiedades.filter(p => p.id !== id);
-      guardarPropiedadesEnStorage();
-      renderizarInventario();
-      cerrarModal('modal-confirmar-eliminar');
-      mostrarToast('Propiedad eliminada del inventario');
-    }
-
-    // ----------------------------------------------------
-    // ASESORES (DIRECTORIO & GESTIÓN)
-    // ----------------------------------------------------
-    function renderizarAsesores() {
-      const contenedor = document.getElementById('directorio-asesores-lista');
-      if (!contenedor) return;
-
-      contenedor.innerHTML = asesores.map(a => {
-        const propsAsignadas = propiedades.filter(p => p.asesor === a.nombre).length;
-        const phoneClean = a.telefono.replace(/[^0-9]/g, '');
-
-        return `
-          <div class="bg-white rounded-2xl border border-slate-100 p-5 shadow-xs hover:shadow-md transition-all flex flex-col justify-between">
-            <div class="flex items-start gap-4">
-              <img src="${a.foto}" alt="${a.nombre}" class="w-14 h-14 rounded-2xl object-cover border border-slate-200 shrink-0">
-              <div class="min-w-0 flex-1">
-                <h4 class="text-sm font-bold text-slate-800 truncate">${a.nombre}</h4>
-                <p class="text-xs text-blue-600 font-medium truncate">${a.cargo}</p>
-                <p class="text-[11px] text-slate-400 mt-1 truncate"><i class="fa-regular fa-envelope mr-1"></i>${a.email}</p>
-                <p class="text-[11px] text-slate-400 truncate"><i class="fa-solid fa-phone mr-1"></i>${a.telefono}</p>
-              </div>
-            </div>
-
-            <div class="grid grid-cols-2 gap-2 my-4 p-2.5 rounded-xl bg-slate-50 border border-slate-100 text-center">
-              <div>
-                <span class="block text-[10px] text-slate-400 font-medium">Inmuebles</span>
-                <span class="text-xs font-bold text-slate-800">${propsAsignadas} activos</span>
-              </div>
-              <div>
-                <span class="block text-[10px] text-slate-400 font-medium">Cierres Mes</span>
-                <span class="text-xs font-bold text-emerald-600">$${(a.ventasMes / 1000).toFixed(0)}k</span>
-              </div>
-            </div>
-
-            <div class="flex items-center gap-2 pt-1 border-t border-slate-100">
-              <a href="https://wa.me/${phoneClean}" target="_blank" class="flex-1 py-2 rounded-xl bg-emerald-50 hover:bg-emerald-100 text-emerald-600 text-xs font-semibold text-center transition-colors flex items-center justify-center gap-1.5">
-                <i class="fa-brands fa-whatsapp text-sm"></i> WhatsApp
-              </a>
-              <a href="tel:${phoneClean}" class="w-9 h-9 rounded-xl border border-slate-200 hover:bg-slate-50 text-slate-600 flex items-center justify-center transition-colors">
-                <i class="fa-solid fa-phone text-xs"></i>
-              </a>
-            </div>
-          </div>
-        `;
-      }).join('');
-    }
-
-    function abrirModalNuevoAsesor() {
-      abrirModal('modal-nuevo-asesor');
-    }
-
-    function guardarNuevoAsesor(e) {
-      e.preventDefault();
-      const nombre = document.getElementById('nuevo-asesor-nombre').value.trim();
-      const cargo = document.getElementById('nuevo-asesor-cargo').value.trim();
-      const telefono = document.getElementById('nuevo-asesor-telefono').value.trim();
-      const email = document.getElementById('nuevo-asesor-email').value.trim();
-      let foto = document.getElementById('nuevo-asesor-foto').value.trim();
-      if (!foto) {
-        foto = 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=300&q=80';
-      }
-
-      const nuevoId = asesores.length > 0 ? Math.max(...asesores.map(a => a.id)) + 1 : 1;
-      asesores.push({
-        id: nuevoId,
-        nombre,
-        cargo,
-        telefono,
-        email,
-        foto,
-        ventasMes: 0,
-        metaMes: 300000,
-        propiedadesCount: 0
-      });
-
-      localStorage.setItem('sigua_asesores', JSON.stringify(asesores));
-      renderizarAsesores();
-      poblarSelectsFormulario();
-      cerrarModal('modal-nuevo-asesor');
-      mostrarToast('Asesor registrado con éxito');
-    }
-
-    // ----------------------------------------------------
-    // CALENDARIO DE VISITAS & EXPORTACIÓN .ICS
-    // ----------------------------------------------------
-    function renderizarCalendario() {
-      const lista = document.getElementById('lista-actividades-calendario');
-      if (!lista) return;
-
-      lista.innerHTML = actividades.map(act => {
-        return `
-          <div class="p-3.5 rounded-xl border border-slate-100 hover:border-blue-200 hover:bg-blue-50/20 transition-all flex items-center justify-between gap-3">
-            <div class="flex items-center gap-3">
-              <div class="w-10 h-10 rounded-xl bg-blue-50 text-blue-600 flex flex-col items-center justify-center font-bold shrink-0">
-                <span class="text-[9px] uppercase tracking-wider">${act.fecha.split('-')[1]}</span>
-                <span class="text-xs leading-none">${act.fecha.split('-')[2]}</span>
-              </div>
-              <div>
-                <h5 class="text-xs font-bold text-slate-800">${act.titulo}</h5>
-                <p class="text-[11px] text-slate-500">${act.cliente} • <i class="fa-regular fa-clock ml-1 mr-0.5"></i>${act.hora}</p>
-                <span class="inline-block text-[10px] text-blue-600 font-medium mt-0.5">Asesor: ${act.asesor}</span>
-              </div>
-            </div>
-            <button onclick="exportarEventoICS('${act.titulo}', '${act.fecha}', '${act.hora}', '${act.cliente}')" title="Descargar a Apple Calendar / Outlook" class="w-8 h-8 rounded-lg border border-slate-200 hover:bg-slate-50 text-slate-400 hover:text-slate-700 flex items-center justify-center transition-colors">
-              <i class="fa-solid fa-calendar-plus text-xs"></i>
-            </button>
-          </div>
-        `;
-      }).join('');
-    }
-
-    function abrirModalAgendarVisita() {
-      const selectProp = document.getElementById('actividad-propiedad');
-      if (selectProp) {
-        selectProp.innerHTML = propiedades.map(p => `<option value="${p.id}">${p.titulo} (${p.ubicacion})</option>`).join('');
-      }
-      const hoy = new Date().toISOString().split('T')[0];
-      const campoFecha = document.getElementById('actividad-fecha');
-      if (campoFecha) campoFecha.value = hoy;
-
-      abrirModal('modal-nueva-actividad');
-    }
-
-    function guardarActividad(e) {
-      e.preventDefault();
-      const propId = parseInt(document.getElementById('actividad-propiedad').value);
-      const prop = propiedades.find(p => p.id === propId);
-      const cliente = document.getElementById('actividad-cliente').value.trim();
-      const telefono = document.getElementById('actividad-telefono').value.trim();
-      const fecha = document.getElementById('actividad-fecha').value;
-      const hora = document.getElementById('actividad-hora').value;
-      const asesor = document.getElementById('actividad-asesor').value;
-
-      const nuevaAct = {
-        id: Date.now(),
-        propId,
-        cliente,
-        telefono,
-        fecha,
-        hora,
-        asesor,
-        titulo: `Visita a ${prop ? prop.titulo : 'Inmueble'}`
-      };
-
-      actividades.push(nuevaAct);
-      localStorage.setItem('sigua_actividades', JSON.stringify(actividades));
-      renderizarCalendario();
-      cerrarModal('modal-nueva-actividad');
-      mostrarToast('Visita agendada correctamente');
-    }
-
-    function exportarEventoICS(titulo, fecha, hora, cliente) {
-      const fechaLimpia = fecha.replace(/-/g, '');
-      const icsData = [
-        'BEGIN:VCALENDAR',
-        'VERSION:2.0',
-        'PRODID:-//SIGUA Inmobiliaria//CRM Calendar//ES',
-        'BEGIN:VEVENT',
-        `SUMMARY:${titulo}`,
-        `DESCRIPTION:Cita de visita con cliente ${cliente} - SIGUA Inmobiliaria Carretera a El Salvador`,
-        `DTSTART:${fechaLimpia}T100000Z`,
-        `DTEND:${fechaLimpia}T110000Z`,
-        'STATUS:CONFIRMED',
-        'END:VEVENT',
-        'END:VCALENDAR'
-      ].join('\r\n');
-
-      const blob = new Blob([icsData], { type: 'text/calendar;charset=utf-8' });
-      const url = URL.createObjectURL(blob);
-      const a = document.createElement('a');
-      a.href = url;
-      a.download = `Cita_${titulo.replace(/\s+/g, '_')}.ics`;
-      a.click();
-      URL.revokeObjectURL(url);
-      mostrarToast('Archivo de calendario (.ICS) descargado');
-    }
-
-    function descargarCalendarioCompletoICS() {
-      let eventosStr = actividades.map(act => {
-        const f = act.fecha.replace(/-/g, '');
-        return [
-          'BEGIN:VEVENT',
-          `SUMMARY:${act.titulo}`,
-          `DESCRIPTION:Cliente: ${act.cliente} | Tel: ${act.telefono} | Asesor: ${act.asesor}`,
-          `DTSTART:${f}T100000Z`,
-          `DTEND:${f}T110000Z`,
-          'END:VEVENT'
-        ].join('\r\n');
-      }).join('\r\n');
-
-      const icsData = [
-        'BEGIN:VCALENDAR',
-        'VERSION:2.0',
-        'PRODID:-//SIGUA Inmobiliaria//Agenda Oficial//ES',
-        eventosStr,
-        'END:VCALENDAR'
-      ].join('\r\n');
-
-      const blob = new Blob([icsData], { type: 'text/calendar;charset=utf-8' });
-      const url = URL.createObjectURL(blob);
-      const a = document.createElement('a');
-      a.href = url;
-      a.download = 'Agenda_Completa_SIGUA.ics';
-      a.click();
-      URL.revokeObjectURL(url);
-      mostrarToast('Agenda completa descargada en formato .ICS');
-    }
-
-    // ----------------------------------------------------
-    // GOOGLE SHEETS LIVE CSV INTEGRACIÓN & EXPORTACIÓN
-    // ----------------------------------------------------
-    function sincronizarSheets() {
-      const btn = document.getElementById('btn-sync-sheets');
-      if (btn) btn.innerHTML = '<i class="fa-solid fa-spinner fa-spin mr-1.5"></i> Sincronizando...';
-
-      setTimeout(() => {
-        if (btn) btn.innerHTML = '<i class="fa-solid fa-rotate mr-1.5"></i> Sincronizar Ahora';
-        const badge = document.getElementById('sheets-sync-status');
-        if (badge) {
-          badge.textContent = 'Sincronizado ahora mismo';
-          badge.className = 'text-xs text-emerald-600 font-semibold flex items-center gap-1.5';
-        }
-        guardarPropiedadesEnStorage();
-        renderizarInventario();
-        mostrarToast('Google Sheets sincronizado exitosamente con el CRM');
-      }, 900);
-    }
-
-    function exportarCSV() {
-      const cabeceras = ['ID', 'Titulo', 'Precio_USD', 'Precio_GTQ', 'Estado', 'Tipo', 'Asesor', 'Habitaciones', 'Banos', 'M2', 'Ubicacion', 'Imagen'];
-      const filas = propiedades.map(p => [
-        p.id,
-        `"${p.titulo.replace(/"/g, '""')}"`,
-        p.precio,
-        (p.precio * 7.75).toFixed(2),
-        p.estado,
-        p.tipo || 'Casa',
-        `"${p.asesor}"`,
-        p.habitaciones,
-        p.banos,
-        p.m2,
-        `"${p.ubicacion.replace(/"/g, '""')}"`,
-        `"${p.imagen}"`
-      ]);
-
-      const csvContent = [cabeceras.join(','), ...filas.map(f => f.join(','))].join('\n');
-      const blob = new Blob(['\uFEFF' + csvContent], { type: 'text/csv;charset=utf-8;' });
-      const url = URL.createObjectURL(blob);
-      const a = document.createElement('a');
-      a.href = url;
-      a.download = `Inventario_SIGUA_${new Date().toISOString().split('T')[0]}.csv`;
-      a.click();
-      URL.revokeObjectURL(url);
-      mostrarToast('Inventario exportado en formato CSV');
-    }
-
-    // ----------------------------------------------------
-    // USUARIOS & RBAC (CONTROL DE ACCESO SEGURO)
-    // ----------------------------------------------------
-    const USUARIOS_DEFAULT = [
-      { id: 1, nombre: 'Juan Carlos Aguirre', email: 'juancarlos@siguainmobiliaria.com', rol: 'Administrador General', estado: 'Activo', ultimoAcceso: 'Ahora' },
-      { id: 2, nombre: 'Marjorie Valdez', email: 'marjorie@siguainmobiliaria.com', rol: 'Directora Comercial', estado: 'Activo', ultimoAcceso: 'Hoy 09:15 AM' },
-      { id: 3, nombre: 'Rodrigo Mendoza', email: 'rodrigo@siguainmobiliaria.com', rol: 'Asesor Senior', estado: 'Activo', ultimoAcceso: 'Ayer 04:30 PM' },
-      { id: 4, nombre: 'Valeria Morales', email: 'valeria@siguainmobiliaria.com', rol: 'Asesora Residencial', estado: 'Activo', ultimoAcceso: 'Hoy 08:45 AM' }
-    ];
-
-    function renderizarUsuariosRBAC() {
-      const tbody = document.getElementById('tabla-usuarios-body');
-      if (!tbody) return;
-
-      tbody.innerHTML = USUARIOS_DEFAULT.map(u => `
-        <tr class="hover:bg-slate-50/70 transition-colors">
-          <td class="py-3.5 px-4">
-            <div class="flex items-center gap-3">
-              <div class="w-8 h-8 rounded-full bg-blue-100 text-blue-600 font-bold text-xs flex items-center justify-center">
-                ${u.nombre.charAt(0)}
-              </div>
-              <div>
-                <span class="text-xs font-bold text-slate-800 block">${u.nombre}</span>
-                <span class="text-[11px] text-slate-400">${u.email}</span>
-              </div>
-            </div>
-          </td>
-          <td class="py-3.5 px-4">
-            <span class="px-2.5 py-1 rounded-md text-[11px] font-semibold ${u.rol.includes('Admin') ? 'bg-indigo-50 text-indigo-600 border border-indigo-200' : 'bg-slate-100 text-slate-700'}">
-              ${u.rol}
-            </span>
-          </td>
-          <td class="py-3.5 px-4">
-            <span class="px-2.5 py-0.5 rounded-full text-[11px] font-medium bg-emerald-50 text-emerald-600 border border-emerald-200">
-              ${u.estado}
-            </span>
-          </td>
-          <td class="py-3.5 px-4 text-xs text-slate-500">${u.ultimoAcceso}</td>
-          <td class="py-3.5 px-4 text-right">
-            <button onclick="mostrarToast('Contraseña restablecida y enviada al correo del usuario')" class="px-3 py-1.5 rounded-xl border border-slate-200 hover:bg-slate-50 text-xs font-semibold text-slate-600 transition-colors">
-              Restablecer Clave
-            </button>
-          </td>
-        </tr>
-      `).join('');
-    }
-
-    // ----------------------------------------------------
-    // HELPERS, MODALES Y TOASTS
+    // HELPERS, MODALES, SIDEBAR & TOASTS
     // ----------------------------------------------------
     function poblarSelectsFormulario() {
-      const selFiltro = document.getElementById('filtro-asesor-select');
-      if (selFiltro) {
-        selFiltro.innerHTML = '<option value="">Todos los Asesores</option>' +
-          asesores.map(a => `<option value="${a.nombre}">${a.nombre}</option>`).join('');
-        selFiltro.addEventListener('change', (e) => {
-          filtroAsesorActual = e.target.value;
-          renderizarInventario();
-        });
-      }
-
       const selForm = document.getElementById('form-prop-asesor');
       if (selForm) {
         selForm.innerHTML = asesores.map(a => `<option value="${a.nombre}">${a.nombre}</option>`).join('');
       }
+      const selNueva = document.getElementById('nueva-prop-asesor');
+      if (selNueva) {
+        selNueva.innerHTML = asesores.map(a => `<option value="${a.nombre}">${a.nombre}</option>`).join('');
+      }
+    }
+
+    function toggleMobileSidebar() {
+      const sidebar = document.getElementById('sidebar');
+      if (sidebar) sidebar.classList.toggle('-translate-x-full');
     }
 
     function abrirModal(id) {
@@ -2850,16 +3320,19 @@
       setTimeout(() => {
         toast.classList.remove('translate-y-0', 'opacity-100');
         toast.classList.add('translate-y-24', 'opacity-0');
-      }, 3200);
+      }, 3000);
     }
+    const lanzarToast = mostrarToast;
 
     function cerrarSesion() {
       if (confirm('¿Deseas cerrar tu sesión del CRM de SIGUA Inmobiliaria?')) {
         sessionStorage.clear();
         localStorage.removeItem('sigua_auth_session');
+        localStorage.removeItem('crm_auth_session');
         window.location.href = 'login.html';
       }
     }
+    const ejecutarCerrarSesion = cerrarSesion;
   </script>
 </body>
 </html>
