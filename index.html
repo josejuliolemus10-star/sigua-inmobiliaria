@@ -591,7 +591,7 @@
 
         <!-- SEARCH FILTER PANEL (Diseño Premium en Panel Oscuro como Imagen 3) -->
         <div class="mb-14 relative z-30 max-w-xl lg:max-w-2xl mx-auto">
-          <div class="bg-[#121214] border border-neutral-800 rounded-3xl p-6 sm:p-8 shadow-[0_24px_50px_rgba(0,0,0,0.35)] text-white">
+          <div id="search-filter-panel" class="bg-[#121214] border border-neutral-800 rounded-3xl p-6 sm:p-8 shadow-[0_24px_50px_rgba(0,0,0,0.35)] text-white">
             
             <!-- Encabezado del Panel -->
             <div class="mb-6">
@@ -707,17 +707,17 @@
               Haz clic en cualquier propiedad del mapa para ver sus detalles y navegar con cámara animada hacia su ubicación exacta en Carretera a El Salvador o Fraijanes.
             </p>
           </div>
-          <div class="flex flex-wrap items-center gap-2">
-            <button onclick="centerMap('all')" class="btn-luxury px-3.5 py-1.5 rounded-full bg-surface-container-lowest border border-surface-container-high text-xs font-semibold text-primary hover:border-primary">
+          <div class="flex items-center gap-2 overflow-x-auto no-scrollbar pb-1.5 -mx-2 px-2 sm:mx-0 sm:px-0 sm:flex-wrap">
+            <button onclick="centerMap('all')" class="btn-luxury whitespace-nowrap shrink-0 px-3.5 py-1.5 rounded-full bg-surface-container-lowest border border-surface-container-high text-xs font-semibold text-primary hover:border-primary shadow-xs">
               Ver Todo (10)
             </button>
-            <button onclick="centerMap('caes')" class="btn-luxury px-3.5 py-1.5 rounded-full bg-surface-container-lowest border border-surface-container-high text-xs font-semibold text-primary hover:border-primary">
+            <button onclick="centerMap('caes')" class="btn-luxury whitespace-nowrap shrink-0 px-3.5 py-1.5 rounded-full bg-surface-container-lowest border border-surface-container-high text-xs font-semibold text-primary hover:border-primary shadow-xs">
               Santa Catarina Pinula & CAES (7)
             </button>
-            <button onclick="centerMap('fraijanes')" class="btn-luxury px-3.5 py-1.5 rounded-full bg-surface-container-lowest border border-surface-container-high text-xs font-semibold text-primary hover:border-primary">
+            <button onclick="centerMap('fraijanes')" class="btn-luxury whitespace-nowrap shrink-0 px-3.5 py-1.5 rounded-full bg-surface-container-lowest border border-surface-container-high text-xs font-semibold text-primary hover:border-primary shadow-xs">
               Fraijanes & Olmeca (3)
             </button>
-            <a class="btn-luxury px-4 py-2 bg-primary text-on-primary rounded-full text-xs font-semibold" href="https://wa.me/50256513625?text=Hola%20SIGUA%20Inmobiliaria,%20deseo%20informacion" target="_blank">
+            <a class="btn-luxury whitespace-nowrap shrink-0 px-4 py-1.5 bg-primary text-on-primary rounded-full text-xs font-semibold shadow-xs" href="https://wa.me/50256513625?text=Hola%20SIGUA%20Inmobiliaria,%20deseo%20informacion" target="_blank">
               Solicitar Mapa de Plusvalía
             </a>
           </div>
@@ -728,42 +728,63 @@
           <!-- Real Leaflet Map -->
           <div id="property-map"></div>
 
-          <!-- FLOATING ACTIVE PROPERTY BALLOON CARD (Optimizado para Teléfono) -->
-          <div id="map-property-card" class="absolute bottom-3 inset-x-3 sm:inset-x-auto sm:right-6 sm:bottom-6 sm:w-[350px] bg-surface-container-lowest rounded-2xl border border-surface-container-high shadow-2xl p-3 sm:p-4 transition-all duration-300 z-20">
-            <div class="relative w-full aspect-[16/10] rounded-xl overflow-hidden mb-3 bg-surface-container">
-              <img id="map-card-img" class="w-full h-full object-cover" alt="Propiedad Seleccionada" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBwSQYQ1wjrN5CfgNHkDi7cq5s4zWdHfB9kgFrDdVO_XuVq570JneYfEGBUc8eYTySaKPZQiqJRVjcQCkx4P90Jza5nXjDrmMkqQz8JDOfVL7TGyc4JvQKjpjEYvYEp16ZhfYn61-VsGom_V9wajidb490s2xBRkGWdMj5IOeLSf_UlyDE6XVC6mEXkbrToCKswtC59GKKX7k3zTMqW5SzglCLQi2sGdda3ysx5ZL6Q">
-              <span id="map-card-tag" class="absolute top-2.5 right-2.5 bg-primary text-on-primary text-[10px] font-bold px-2.5 py-1 rounded-full uppercase tracking-wider shadow-sm">
-                Disponible
-              </span>
-            </div>
-            <div>
-              <h3 id="map-card-title" class="text-headline-sm font-headline-sm font-bold text-primary truncate">
-                Condominio Difiori
-              </h3>
-              <p id="map-card-loc" class="text-body-sm font-body-sm text-outline flex items-center gap-1 mt-0.5 truncate">
-                <span class="material-symbols-outlined text-[15px]">location_on</span>
-                Zona 8, Carretera a El Salvador
-              </p>
-              <!-- Specs Row -->
-              <div id="map-card-specs" class="flex items-center justify-between text-body-sm font-body-sm text-on-surface-variant my-2.5 py-1.5 border-y border-surface-container">
-                <span class="flex items-center gap-1"><span class="material-symbols-outlined text-[15px] text-outline">square_foot</span> <span id="map-card-area">280 m²</span></span>
-                <span class="flex items-center gap-1"><span class="material-symbols-outlined text-[15px] text-outline">bed</span> <span id="map-card-beds">4 Hab</span></span>
-                <span class="flex items-center gap-1"><span class="material-symbols-outlined text-[15px] text-outline">bathtub</span> <span id="map-card-baths">3 Baños</span></span>
-                <span class="flex items-center gap-1"><span class="material-symbols-outlined text-[15px] text-outline">garage</span> <span id="map-card-garages">2 Autos</span></span>
+          <!-- FLOATING ACTIVE PROPERTY BALLOON CARD (Optimizado para Teléfono y Escritorio) -->
+          <div id="map-property-card" class="absolute bottom-2.5 inset-x-2.5 sm:inset-x-auto sm:right-6 sm:bottom-6 sm:w-[350px] bg-white/95 sm:bg-surface-container-lowest backdrop-blur-md rounded-2xl border border-surface-container-high shadow-2xl p-2.5 sm:p-4 transition-all duration-300 z-20">
+            <!-- Botón Cerrar (X) para Teléfono y Escritorio -->
+            <button type="button" onclick="closeMapPropertyCard()" aria-label="Cerrar tarjeta" class="absolute top-2 right-2 w-7 h-7 rounded-full bg-neutral-900/80 hover:bg-black text-white flex items-center justify-center text-xs font-bold z-30 transition-all shadow-md">
+              ✕
+            </button>
+
+            <!-- Layout adaptable: horizontal en móviles para dejar libre el 80% del mapa, vertical en escritorio -->
+            <div class="flex flex-row sm:flex-col gap-2.5 sm:gap-3 items-center sm:items-stretch">
+              
+              <!-- Miniatura fotográfica -->
+              <div class="relative w-24 h-24 sm:w-full sm:h-auto sm:aspect-[16/10] rounded-xl overflow-hidden shrink-0 bg-surface-container cursor-pointer" onclick="openPropertyModal(currentActivePropertyId)">
+                <img id="map-card-img" class="w-full h-full object-cover" alt="Propiedad Seleccionada" src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=600&q=80">
+                <span id="map-card-tag" class="hidden sm:inline-block absolute top-2.5 right-2.5 bg-primary text-on-primary text-[10px] font-bold px-2.5 py-1 rounded-full uppercase tracking-wider shadow-sm">
+                  Disponible
+                </span>
               </div>
-              <!-- Price & CTA -->
-              <div class="flex items-center justify-between pt-1">
-                <div>
-                  <span class="text-[11px] text-outline uppercase block font-medium">Precio</span>
-                  <div class="flex items-baseline gap-1.5">
-                    <span id="map-card-price" class="text-headline-sm font-headline-sm font-bold text-primary">Q 1,850,000</span>
-                    <span id="map-card-usd" class="text-xs font-semibold text-outline">(~$238K)</span>
-                  </div>
+
+              <!-- Contenido y detalles -->
+              <div class="flex-1 min-w-0 pr-6 sm:pr-0">
+                <div class="flex items-center gap-1.5 mb-0.5 sm:mb-0">
+                  <span id="map-card-tag-mobile" class="sm:hidden inline-block text-[9px] font-bold px-1.5 py-0.5 rounded bg-primary text-on-primary uppercase tracking-wider shrink-0">
+                    Disponible
+                  </span>
+                  <h3 id="map-card-title" class="text-xs sm:text-headline-sm font-bold text-primary truncate cursor-pointer" onclick="openPropertyModal(currentActivePropertyId)">
+                    Casa de Lujo en Residencial Terravista
+                  </h3>
                 </div>
-                <button id="map-card-btn" onclick="openPropertyModal(currentActivePropertyId)" class="btn-luxury bg-primary text-on-primary px-3.5 py-2 rounded-full text-xs font-semibold shadow-sm">
-                  Ver Ficha
-                </button>
+
+                <p id="map-card-loc" class="text-[11px] sm:text-body-sm text-outline flex items-center gap-1 truncate">
+                  <span class="material-symbols-outlined text-[13px] sm:text-[15px]">location_on</span>
+                  Km 16.5 Residencial Terravista
+                </p>
+
+                <!-- Specs Row (visible en tablet y escritorio) -->
+                <div id="map-card-specs" class="hidden sm:flex items-center justify-between text-body-sm font-body-sm text-on-surface-variant my-2.5 py-1.5 border-y border-surface-container">
+                  <span class="flex items-center gap-1"><span class="material-symbols-outlined text-[15px] text-outline">square_foot</span> <span id="map-card-area">380 m²</span></span>
+                  <span class="flex items-center gap-1"><span class="material-symbols-outlined text-[15px] text-outline">bed</span> <span id="map-card-beds">4 Hab</span></span>
+                  <span class="flex items-center gap-1"><span class="material-symbols-outlined text-[15px] text-outline">bathtub</span> <span id="map-card-baths">4.5 Bñ</span></span>
+                  <span class="flex items-center gap-1"><span class="material-symbols-outlined text-[15px] text-outline">garage</span> <span id="map-card-garages">4 Autos</span></span>
+                </div>
+
+                <!-- Price & CTA -->
+                <div class="flex items-center justify-between pt-1 mt-1 sm:mt-0">
+                  <div>
+                    <span class="text-[9px] sm:text-[11px] text-outline uppercase block font-medium">Precio</span>
+                    <div class="flex items-baseline gap-1">
+                      <span id="map-card-price" class="text-xs sm:text-headline-sm font-bold text-primary">Q 3,758,750</span>
+                      <span id="map-card-usd" class="text-[10px] sm:text-xs font-semibold text-outline">(~$485K)</span>
+                    </div>
+                  </div>
+                  <button id="map-card-btn" onclick="openPropertyModal(currentActivePropertyId)" class="btn-luxury bg-primary text-on-primary px-3 py-1.5 sm:px-3.5 sm:py-2 rounded-full text-[11px] sm:text-xs font-semibold shadow-sm shrink-0">
+                    Ver Ficha
+                  </button>
+                </div>
               </div>
+
             </div>
           </div>
 
@@ -1807,7 +1828,8 @@
       map = L.map('property-map', {
         center: [14.5350, -90.4650],
         zoom: 13,
-        scrollWheelZoom: false
+        scrollWheelZoom: false,
+        tap: false // Desactiva viejo tap emulado que congela interacción en móviles
       });
 
       // Capa Google Maps Calles (Roadmap) - Por defecto (Sin marca de agua de API key)
@@ -1850,7 +1872,13 @@
 
       markersLayer = L.layerGroup().addTo(map);
       renderMapPins(propertiesData);
-      selectPropertyOnMap(1, false);
+      
+      // En móviles no tapamos el mapa inicialmente; en escritorio abrimos la propiedad destacada
+      if (window.innerWidth >= 640) {
+        selectPropertyOnMap(1, false);
+      } else {
+        closeMapPropertyCard();
+      }
 
       // InvalidateSize para asegurar que carguen todas las teselas sin retrasos
       setTimeout(() => {
@@ -1932,7 +1960,19 @@
       if (cardUsd) cardUsd.innerText = `(~${prop.price_usd || ('$' + prop.price)})`;
       if (cardTag) {
         cardTag.innerText = prop.tag;
-        cardTag.className = `absolute top-2.5 right-2.5 ${prop.deal === 'Renta' ? 'bg-amber-600' : 'bg-primary'} text-on-primary text-[10px] font-bold px-2.5 py-1 rounded-full uppercase tracking-wider shadow-sm`;
+        cardTag.className = `hidden sm:inline-block absolute top-2.5 right-2.5 ${prop.deal === 'Renta' ? 'bg-amber-600' : 'bg-primary'} text-on-primary text-[10px] font-bold px-2.5 py-1 rounded-full uppercase tracking-wider shadow-sm`;
+      }
+      const cardTagMobile = document.getElementById('map-card-tag-mobile');
+      if (cardTagMobile) {
+        cardTagMobile.innerText = prop.tag;
+        cardTagMobile.className = `sm:hidden inline-block text-[9px] font-bold px-1.5 py-0.5 rounded ${prop.deal === 'Renta' ? 'bg-amber-600' : 'bg-primary'} text-on-primary uppercase tracking-wider shrink-0`;
+      }
+
+      // Asegurar visibilidad de la tarjeta
+      const mapCardEl = document.getElementById('map-property-card');
+      if (mapCardEl) {
+        mapCardEl.classList.remove('hidden');
+        mapCardEl.style.display = '';
       }
 
       // Animación sutil con GSAP en la tarjeta del mapa
@@ -1942,6 +1982,27 @@
           { scale: 1, opacity: 1, duration: 0.35, ease: "power2.out" }
         );
       }
+    }
+
+    function closeMapPropertyCard() {
+      const card = document.getElementById('map-property-card');
+      if (card) {
+        if (typeof gsap !== 'undefined') {
+          gsap.to(card, {
+            scale: 0.95,
+            opacity: 0,
+            duration: 0.2,
+            onComplete: () => {
+              card.classList.add('hidden');
+              card.style.opacity = '1';
+              card.style.transform = 'none';
+            }
+          });
+        } else {
+          card.classList.add('hidden');
+        }
+      }
+      document.querySelectorAll('.pin-pill').forEach(el => el.classList.remove('active-pin'));
     }
 
     // CENTRADOR RÁPIDO DEL MAPA
@@ -2264,7 +2325,7 @@
         const dock = document.getElementById('floating-dock-container');
         if (dock) {
           const heroSec = document.querySelector('section'); // Hero con foto oscura
-          const searchPanel = document.querySelector('#mapa .bg-\[\#121214\]') || document.querySelector('#mapa');
+          const searchPanel = document.getElementById('search-filter-panel') || document.getElementById('mapa');
           const footerSec = document.querySelector('footer');
 
           const dockRect = dock.getBoundingClientRect();
@@ -2550,13 +2611,47 @@
 
     // ARRANQUE GENERAL DEL DOM
     document.addEventListener('DOMContentLoaded', () => {
-      initMap();
-      initBudgetSlider();
-      initDockScrollspy();
-      renderPropertiesGrid(propertiesData);
-      showReview(0);
-      startReviewAuto();
+      // 1. RENDERIZAR PROPIEDADES INMEDIATAMENTE PRIMERO (Garantiza visibilidad instantánea automática)
+      try {
+        renderPropertiesGrid(propertiesData);
+      } catch (err) {
+        console.error("Error al renderizar catálogo:", err);
+      }
+
+      // 2. INICIALIZAR MAPA INTERACTIVO
+      try {
+        initMap();
+      } catch (err) {
+        console.error("Error al inicializar mapa:", err);
+      }
+
+      // 3. INICIALIZAR SLIDER DE PRESUPUESTO
+      try {
+        initBudgetSlider();
+      } catch (err) {
+        console.error("Error al inicializar slider:", err);
+      }
+
+      // 4. INICIALIZAR DOCK SCROLLSPY
+      try {
+        initDockScrollspy();
+      } catch (err) {
+        console.error("Error al inicializar dock:", err);
+      }
+
+      // 5. TESTIMONIOS
+      try {
+        showReview(0);
+        startReviewAuto();
+      } catch (err) {
+        console.error("Error al inicializar testimonios:", err);
+      }
     });
+
+    // Fallback de seguridad inmediato para evitar cualquier retraso
+    if (document.readyState === 'interactive' || document.readyState === 'complete') {
+      try { renderPropertiesGrid(propertiesData); } catch(e){}
+    }
   </script>
 
 </body>
