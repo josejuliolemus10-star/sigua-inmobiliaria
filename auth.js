@@ -1,6 +1,6 @@
 /**
  * ==============================================================================
- * SANTANDER REAL ESTATE - CORE AUTHENTICATION & RBAC SECURITY MODULE
+ * SIGUA INMOBILIARIA - CORE AUTHENTICATION & RBAC SECURITY MODULE
  * Enterprise Client-Side Architecture with NIST-Standard PBKDF2 Cryptography,
  * Route Guards, Anti-Brute Force Lockout & Inactivity Session Monitors.
  * ==============================================================================
@@ -120,7 +120,7 @@
   }
 
   /**
-   * Initial Seeds: Carmen Coloma (Admin) + 8 Asesores Oficiales
+   * Initial Seeds: Juan Carlos Aguirre (Director General) + 8 Asesores Oficiales
    */
     const SEED_USERS = [
     {
@@ -176,8 +176,8 @@
         return [...SEED_USERS];
       }
       const users = JSON.parse(raw);
-      // Ensure Carmen exists
-      if (!users.some(u => u.id === 'carmen')) {
+      // Ensure Juan Carlos exists
+      if (!users.some(u => u.id === 'juancarlos')) {
         users.unshift(SEED_USERS[0]);
         saveUsersStore(users);
       }
@@ -191,7 +191,7 @@
   function saveUsersStore(users) {
     try {
       storage.local.setItem(CONFIG.USERS_KEY, JSON.stringify(users));
-      storage.local.setItem('santander_rbac_users', JSON.stringify(users));
+      storage.local.setItem('sigua_rbac_users', JSON.stringify(users));
     } catch (e) {
       console.error('Error guardando almacén de usuarios:', e);
     }
@@ -264,7 +264,7 @@
   function createSession(user, rememberMe = false) {
     const now = Date.now();
     const session = {
-      token: 'jwt_santander_' + Math.random().toString(36).substring(2) + '_' + now,
+      token: 'jwt_sigua_' + Math.random().toString(36).substring(2) + '_' + now,
       user: {
         id: user.id,
         nombre: user.nombre,
@@ -357,14 +357,14 @@
       };
       storage.local.setItem(CONFIG.ASYNC_ASESORES_KEY, JSON.stringify(locales));
     } catch (e) {
-      console.warn('Error sincronizando con santander_asesores_locales:', e);
+      console.warn('Error sincronizando con sigua_asesores_locales:', e);
     }
   }
 
   /**
    * Public API
    */
-  const SantanderAuth = {
+  const SiguaAuth = {
     // Info & Constants
     CONFIG,
 
@@ -426,7 +426,7 @@
       if (user.estado === 'suspendido') {
         return {
           success: false,
-          error: 'Esta cuenta ha sido suspendida por la administración de Santander Real Estate. Contacta a Carmen Coloma.'
+          error: 'Esta cuenta ha sido suspendida por la administración de SIGUA Inmobiliaria. Contacta a Juan Carlos Aguirre.'
         };
       }
 
@@ -547,7 +547,7 @@
         if (!session) {
           clearInterval(interval);
           if (typeof onTimeout === 'function') onTimeout();
-          else SantanderAuth.logout('inactivity');
+          else SiguaAuth.logout('inactivity');
         }
       }, 30000);
 
@@ -558,7 +558,7 @@
     },
 
     // ========================================================================
-    // GESTIÓN DE USUARIOS (Módulo Exclusivo para Carmen / Admin Global)
+    // GESTIÓN DE USUARIOS (Módulo Exclusivo para Juan Carlos / Admin Global)
     // ========================================================================
     getUsers() {
       const current = this.getCurrentUser();
@@ -618,7 +618,7 @@
       users.push(newUser);
       saveUsersStore(users);
 
-      // Registrar usuario en santander_asesores_locales para el directorio oficial
+      // Registrar usuario en sigua_asesores_locales para el directorio oficial
       syncUserWithAsesoresLocales(newUser);
 
       return newUser;
@@ -629,7 +629,7 @@
       if (!current || current.rol !== 'admin') {
         throw new Error('Permiso denegado: solo Administradores pueden eliminar usuarios.');
       }
-      if (userId === 'carmen') {
+      if (userId === 'juancarlos') {
         throw new Error('No es posible eliminar la cuenta de la Administradora Principal.');
       }
 
@@ -651,10 +651,10 @@
 
       // 2. Registrar en lista de eliminados permanentes
       try {
-        let eliminados = JSON.parse(storage.local.getItem('santander_asesores_eliminados') || '[]');
+        let eliminados = JSON.parse(storage.local.getItem('sigua_asesores_eliminados') || '[]');
         if (!eliminados.includes(userId)) {
           eliminados.push(userId);
-          storage.local.setItem('santander_asesores_eliminados', JSON.stringify(eliminados));
+          storage.local.setItem('sigua_asesores_eliminados', JSON.stringify(eliminados));
         }
       } catch (e) {}
 
@@ -665,8 +665,8 @@
 
       // 4. Notificar a todas las pestañas abiertas
       try {
-        storage.local.setItem('santander_user_deleted', JSON.stringify({ userId, timestamp: Date.now() }));
-        storage.local.setItem('santander_asesor_deleted', JSON.stringify({ key: userId, timestamp: Date.now() }));
+        storage.local.setItem('sigua_user_deleted', JSON.stringify({ userId, timestamp: Date.now() }));
+        storage.local.setItem('sigua_asesor_deleted', JSON.stringify({ key: userId, timestamp: Date.now() }));
       } catch (e) {}
 
       return deletedUser;
@@ -677,7 +677,7 @@
       if (!current || current.rol !== 'admin') {
         throw new Error('Permiso denegado: solo Administradores pueden suspender o activar cuentas.');
       }
-      if (userId === 'carmen') {
+      if (userId === 'juancarlos') {
         throw new Error('No es posible suspender la cuenta de la Administradora Principal.');
       }
 
@@ -703,7 +703,7 @@
           };
         }
         storage.local.setItem(CONFIG.ASYNC_ASESORES_KEY, JSON.stringify(locales));
-        storage.local.setItem('santander_user_status_changed', JSON.stringify({ userId, estado: user.estado, timestamp: Date.now() }));
+        storage.local.setItem('sigua_user_status_changed', JSON.stringify({ userId, estado: user.estado, timestamp: Date.now() }));
       } catch (e) {
         console.warn('Error sincronizando suspensión con asesores:', e);
       }
@@ -828,7 +828,7 @@
 
       // Notificar a otras pestañas
       try {
-        localStorage.setItem('santander_user_profile_updated', JSON.stringify({ userId, timestamp: Date.now() }));
+        localStorage.setItem('sigua_user_profile_updated', JSON.stringify({ userId, timestamp: Date.now() }));
       } catch (e) {}
 
       return user;
@@ -867,11 +867,12 @@
 
   // Expose to window / global
   if (isBrowser) {
-    window.CRMAuth = SantanderAuth;
-    window.SantanderAuth = SantanderAuth;
+    window.CRMAuth = SiguaAuth;
+  window.SiguaAuth = SiguaAuth;
+      
   }
   if (typeof module !== 'undefined' && module.exports) {
-    module.exports = SantanderAuth;
+    module.exports = SiguaAuth;
   }
 
 })(typeof window !== 'undefined' ? window : globalThis);
