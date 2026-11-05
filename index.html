@@ -18,7 +18,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
   
   <!-- Leaflet CSS for Interactive Map -->
-  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin=""/>
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
 
   <!-- Tailwind CSS -->
   <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
@@ -133,14 +133,13 @@
     #property-map {
       width: 100%;
       height: 480px;
+      z-index: 10;
+      border-radius: 1.5rem;
     }
     @media (min-width: 640px) {
       #property-map {
         height: 600px;
       }
-    }
-      z-index: 10;
-      border-radius: 1.5rem;
     }
     .leaflet-pane {
       z-index: 10 !important;
@@ -498,7 +497,7 @@
       
       <!-- Imagen de Fondo Arquitectónica de Alta Gama -->
       <img class="absolute inset-0 w-full h-full object-cover object-center filter brightness-[0.88]" 
-           alt="Mansión Arquitectónica Contemporánea Suroccidente" 
+           alt="Mansión Arquitectónica Contemporánea Carretera a El Salvador" 
            src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=2000&q=80" 
            decoding="async" 
            fetchpriority="high">
@@ -528,7 +527,7 @@
 
         <!-- Subtítulo -->
         <p class="text-base sm:text-lg lg:text-xl text-white/90 max-w-3xl leading-relaxed mb-10 drop-shadow-md">
-          Venta y renta exclusiva de residencias de autor, apartamentos y terrenos de alta plusvalía en el Suroccidente de Guatemala: Carretera a El Salvador, Santa Catarina Pinula y Fraijanes.
+          Venta y renta exclusiva de residencias de autor, apartamentos y terrenos de alta plusvalía en el Carretera a El Salvador, Santa Catarina Pinula y Fraijanes: Carretera a El Salvador, Santa Catarina Pinula y Fraijanes.
         </p>
 
         <!-- Botones de Acción de Alta Gama -->
@@ -565,7 +564,7 @@
           <div class="flex flex-col border-l-2 border-primary pl-4">
             <span class="text-stat-metric font-stat-metric text-primary tracking-tight">1,200+</span>
             <span class="text-label-sm font-label-sm uppercase tracking-wider text-outline mt-1 font-semibold">Inmuebles Listados</span>
-            <span class="text-body-sm font-body-sm text-on-surface-variant mt-0.5">Carretera a El Salvador, Reu y Suroccidente</span>
+            <span class="text-body-sm font-body-sm text-on-surface-variant mt-0.5">Carretera a El Salvador, Reu y Carretera a El Salvador</span>
           </div>
           <div class="flex flex-col border-l-2 border-primary pl-4">
             <span class="text-stat-metric font-stat-metric text-primary tracking-tight">4,500+</span>
@@ -616,12 +615,12 @@
                     <span>Todas las Ubicaciones (10)</span>
                     <span class="material-symbols-outlined text-[18px] text-white opt-check-loc" data-val="all">check</span>
                   </button>
-                  <button type="button" onclick="selectFilterLocation('Carretera a El Salvador', 'Carretera a El Salvador (8)')" class="w-full text-left px-3.5 py-2.5 rounded-xl text-sm font-medium text-neutral-300 hover:text-white hover:bg-neutral-800 transition-colors flex items-center justify-between">
-                    <span>Carretera a El Salvador (8)</span>
+                  <button type="button" onclick="selectFilterLocation('Carretera a El Salvador', 'Santa Catarina Pinula & CAES (7)')" class="w-full text-left px-3.5 py-2.5 rounded-xl text-sm font-medium text-neutral-300 hover:text-white hover:bg-neutral-800 transition-colors flex items-center justify-between">
+                    <span>Santa Catarina Pinula & CAES (7)</span>
                     <span class="material-symbols-outlined text-[18px] text-white hidden opt-check-loc" data-val="Carretera a El Salvador">check</span>
                   </button>
-                  <button type="button" onclick="selectFilterLocation('Fraijanes', 'Fraijanes (2)')" class="w-full text-left px-3.5 py-2.5 rounded-xl text-sm font-medium text-neutral-300 hover:text-white hover:bg-neutral-800 transition-colors flex items-center justify-between">
-                    <span>Fraijanes (2)</span>
+                  <button type="button" onclick="selectFilterLocation('Fraijanes', 'Fraijanes & Olmeca (3)')" class="w-full text-left px-3.5 py-2.5 rounded-xl text-sm font-medium text-neutral-300 hover:text-white hover:bg-neutral-800 transition-colors flex items-center justify-between">
+                    <span>Fraijanes & Olmeca (3)</span>
                     <span class="material-symbols-outlined text-[18px] text-white hidden opt-check-loc" data-val="Fraijanes">check</span>
                   </button>
                 </div>
@@ -702,7 +701,7 @@
           <div>
             <span class="text-label-eyebrow font-label-eyebrow text-outline uppercase tracking-wider block mb-2">Exploración Territorial en Tiempo Real</span>
             <h2 class="text-headline-lg-mobile lg:text-headline-lg font-headline-lg text-primary tracking-tight">
-              Ecosistema Inmobiliario del Suroccidente
+              Ecosistema Inmobiliario de Carretera a El Salvador
             </h2>
             <p class="text-body-md font-body-md text-on-surface-variant mt-2 max-w-2xl">
               Haz clic en cualquier propiedad del mapa para ver sus detalles y navegar con cámara animada hacia su ubicación exacta en Carretera a El Salvador o Fraijanes.
@@ -712,11 +711,11 @@
             <button onclick="centerMap('all')" class="btn-luxury px-3.5 py-1.5 rounded-full bg-surface-container-lowest border border-surface-container-high text-xs font-semibold text-primary hover:border-primary">
               Ver Todo (10)
             </button>
-            <button onclick="centerMap('xela')" class="btn-luxury px-3.5 py-1.5 rounded-full bg-surface-container-lowest border border-surface-container-high text-xs font-semibold text-primary hover:border-primary">
-              Carretera a El Salvador (8)
+            <button onclick="centerMap('caes')" class="btn-luxury px-3.5 py-1.5 rounded-full bg-surface-container-lowest border border-surface-container-high text-xs font-semibold text-primary hover:border-primary">
+              Santa Catarina Pinula & CAES (7)
             </button>
-            <button onclick="centerMap('reu')" class="btn-luxury px-3.5 py-1.5 rounded-full bg-surface-container-lowest border border-surface-container-high text-xs font-semibold text-primary hover:border-primary">
-              Fraijanes (2)
+            <button onclick="centerMap('fraijanes')" class="btn-luxury px-3.5 py-1.5 rounded-full bg-surface-container-lowest border border-surface-container-high text-xs font-semibold text-primary hover:border-primary">
+              Fraijanes & Olmeca (3)
             </button>
             <a class="btn-luxury px-4 py-2 bg-primary text-on-primary rounded-full text-xs font-semibold" href="https://wa.me/50256513625?text=Hola%20SIGUA%20Inmobiliaria,%20deseo%20informacion" target="_blank">
               Solicitar Mapa de Plusvalía
@@ -789,8 +788,8 @@
           <!-- Category Filter Quick Pills -->
           <div class="flex items-center gap-2 overflow-x-auto pb-2 md:pb-0">
             <button onclick="setTabFilter('all')" class="tab-pill btn-luxury bg-primary text-on-primary px-4 py-2 rounded-full text-label-sm font-semibold" data-tab="all">Todas (10)</button>
-            <button onclick="setTabFilter('Carretera a El Salvador')" class="tab-pill btn-luxury bg-surface-container-low hover:bg-surface-container-high text-on-surface px-4 py-2 rounded-full text-label-sm font-medium transition-colors" data-tab="Carretera a El Salvador">Carretera a El Salvador (8)</button>
-            <button onclick="setTabFilter('Fraijanes')" class="tab-pill btn-luxury bg-surface-container-low hover:bg-surface-container-high text-on-surface px-4 py-2 rounded-full text-label-sm font-medium transition-colors" data-tab="Fraijanes">Fraijanes (2)</button>
+            <button onclick="setTabFilter('Carretera a El Salvador')" class="tab-pill btn-luxury bg-surface-container-low hover:bg-surface-container-high text-on-surface px-4 py-2 rounded-full text-label-sm font-medium transition-colors" data-tab="Carretera a El Salvador">Santa Catarina Pinula & CAES (7)</button>
+            <button onclick="setTabFilter('Fraijanes')" class="tab-pill btn-luxury bg-surface-container-low hover:bg-surface-container-high text-on-surface px-4 py-2 rounded-full text-label-sm font-medium transition-colors" data-tab="Fraijanes">Fraijanes & Olmeca (3)</button>
             <button onclick="setTabFilter('Venta')" class="tab-pill btn-luxury bg-surface-container-low hover:bg-surface-container-high text-on-surface px-4 py-2 rounded-full text-label-sm font-medium transition-colors" data-tab="Venta">En Venta (8)</button>
             <button onclick="setTabFilter('Renta')" class="tab-pill btn-luxury bg-surface-container-low hover:bg-surface-container-high text-on-surface px-4 py-2 rounded-full text-label-sm font-medium transition-colors" data-tab="Renta">En Renta (2)</button>
           </div>
@@ -1079,122 +1078,6 @@
               <span>Contactar por WhatsApp</span>
             </a>
           </div>
-
-        </div>
-      </div>
-
-            <div class="pt-3 border-t border-surface-container-high flex items-center gap-2">
-              <a href="tel:+50256513625" class="btn-luxury flex-1 bg-surface-container-low hover:bg-surface-container text-primary text-xs font-semibold py-2 rounded-lg text-center flex items-center justify-center gap-1">
-                <span class="material-symbols-outlined text-[15px]">call</span>
-                <span>Llamar</span>
-              </a>
-              <a href="https://wa.me/50256513625?text=Hola%20SIGUA%20Inmobiliaria,%20deseo%20informacion" target="_blank" class="btn-luxury flex-1 bg-primary text-on-primary text-xs font-semibold py-2 rounded-lg text-center flex items-center justify-center gap-1">
-                <span>WhatsApp</span>
-              </a>
-            </div>
-          </div>
-
-          <!-- Asesor 2: Marjorie Valdez -->
-          <div class="bg-surface rounded-2xl border border-surface-container-high p-5 flex flex-col justify-between shadow-sm hover:shadow-md transition-shadow group">
-            <div>
-              <div class="aspect-square rounded-xl overflow-hidden mb-4 bg-surface-container">
-                <img class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" alt="Marjorie Valdez" loading="lazy" decoding="async" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBkuwv6WIAr4cI-kyWWNeMUK34Wu3u_o-FZfGmZSzwceXts-AsVDPG6x4Xim6VnZSJUh1uoVNmgS6Ol1J2aIRdoymEljiWciJPq62pfwvVLPTTSbHGdg7dK-J3qseY5Ho0Lo5A6rt3RqHCvqany1GjguFpYBZ4ElqL1upJcR2DaFeJNrFU3pUDuDxQ5d4AZeIRnYsmEGG4dw2aq4ZRppjmQC1yO-jR8G33ClOZnfyCG">
-              </div>
-              <span class="text-[10px] font-bold uppercase tracking-wider text-primary bg-surface-container px-2.5 py-0.5 rounded-full inline-block mb-1">Consultora Registral</span>
-              <h3 class="text-lg font-bold text-primary">Marjorie Valdez</h3>
-              <p class="text-xs text-outline mb-3">Valuaciones &amp; Certeza Notarial</p>
-              
-              <div class="space-y-1.5 text-xs text-on-surface-variant mb-4">
-                <div class="flex items-center gap-2">
-                  <span class="material-symbols-outlined text-[15px] text-outline">verified</span>
-                  <span>Perito Valuador Acreditado</span>
-                </div>
-                <div class="flex items-center gap-2">
-                  <span class="material-symbols-outlined text-[15px] text-outline">description</span>
-                  <span>Gestiones en 2do Registro Propiedad</span>
-                </div>
-              </div>
-            </div>
-
-            <div class="pt-3 border-t border-surface-container-high flex items-center gap-2">
-              <a href="tel:+50256513625" class="btn-luxury flex-1 bg-surface-container-low hover:bg-surface-container text-primary text-xs font-semibold py-2 rounded-lg text-center flex items-center justify-center gap-1">
-                <span class="material-symbols-outlined text-[15px]">call</span>
-                <span>Llamar</span>
-              </a>
-              <a href="https://wa.me/50256513625?text=Hola%20SIGUA%20Inmobiliaria,%20deseo%20informacion" target="_blank" class="btn-luxury flex-1 bg-primary text-on-primary text-xs font-semibold py-2 rounded-lg text-center flex items-center justify-center gap-1">
-                <span>WhatsApp</span>
-              </a>
-            </div>
-          </div>
-
-          <!-- Asesor 3: Ejemplo / Aquí irá un asesor (Teléfono Ficticio 111111) -->
-          <div class="bg-surface rounded-2xl border border-dashed border-outline-variant p-5 flex flex-col justify-between shadow-sm hover:shadow-md transition-shadow group">
-            <div>
-              <div class="aspect-square rounded-xl overflow-hidden mb-4 bg-surface-container-low flex flex-col items-center justify-center text-outline">
-                <span class="material-symbols-outlined text-4xl mb-1">person_add</span>
-                <span class="text-xs font-medium">Asesor Asignado</span>
-              </div>
-              <span class="text-[10px] font-bold uppercase tracking-wider text-outline bg-surface-container px-2.5 py-0.5 rounded-full inline-block mb-1">Ejemplo de Asesor</span>
-              <h3 class="text-lg font-bold text-primary">Aquí irá un asesor</h3>
-              <p class="text-xs text-outline mb-3">Especialista Comercial en Carretera a El Salvador</p>
-              
-              <div class="space-y-1.5 text-xs text-on-surface-variant mb-4">
-                <div class="flex items-center gap-2">
-                  <span class="material-symbols-outlined text-[15px] text-outline">call</span>
-                  <span>Tel: +502 1111-1111</span>
-                </div>
-                <div class="flex items-center gap-2">
-                  <span class="material-symbols-outlined text-[15px] text-outline">mail</span>
-                  <span>asesor1@bienesraicesonlinegt.com</span>
-                </div>
-              </div>
-            </div>
-
-            <div class="pt-3 border-t border-surface-container-high flex items-center gap-2">
-              <a href="tel:111111" class="btn-luxury flex-1 bg-surface-container-low hover:bg-surface-container text-primary text-xs font-semibold py-2 rounded-lg text-center flex items-center justify-center gap-1">
-                <span class="material-symbols-outlined text-[15px]">call</span>
-                <span>111111</span>
-              </a>
-              <a href="https://wa.me/50256513625?text=Hola%20SIGUA%20Inmobiliaria,%20deseo%20informacion" target="_blank" class="btn-luxury flex-1 bg-neutral-800 text-on-primary text-xs font-semibold py-2 rounded-lg text-center flex items-center justify-center gap-1">
-                <span>Contactar</span>
-              </a>
-            </div>
-          </div>
-
-          <!-- Asesor 4: Ejemplo / Aquí irá un asesor (Teléfono Ficticio 111111) -->
-          <div class="bg-surface rounded-2xl border border-dashed border-outline-variant p-5 flex flex-col justify-between shadow-sm hover:shadow-md transition-shadow group">
-            <div>
-              <div class="aspect-square rounded-xl overflow-hidden mb-4 bg-surface-container-low flex flex-col items-center justify-center text-outline">
-                <span class="material-symbols-outlined text-4xl mb-1">person_add</span>
-                <span class="text-xs font-medium">Asesor Asignado</span>
-              </div>
-              <span class="text-[10px] font-bold uppercase tracking-wider text-outline bg-surface-container px-2.5 py-0.5 rounded-full inline-block mb-1">Ejemplo de Asesor</span>
-              <h3 class="text-lg font-bold text-primary">Aquí irá un asesor</h3>
-              <p class="text-xs text-outline mb-3">Especialista en Terrenos &amp; Fraijanes</p>
-              
-              <div class="space-y-1.5 text-xs text-on-surface-variant mb-4">
-                <div class="flex items-center gap-2">
-                  <span class="material-symbols-outlined text-[15px] text-outline">call</span>
-                  <span>Tel: +502 1111-1111</span>
-                </div>
-                <div class="flex items-center gap-2">
-                  <span class="material-symbols-outlined text-[15px] text-outline">mail</span>
-                  <span>asesor2@bienesraicesonlinegt.com</span>
-                </div>
-              </div>
-            </div>
-
-            <div class="pt-3 border-t border-surface-container-high flex items-center gap-2">
-              <a href="tel:111111" class="btn-luxury flex-1 bg-surface-container-low hover:bg-surface-container text-primary text-xs font-semibold py-2 rounded-lg text-center flex items-center justify-center gap-1">
-                <span class="material-symbols-outlined text-[15px]">call</span>
-                <span>111111</span>
-              </a>
-              <a href="https://wa.me/50256513625?text=Hola%20SIGUA%20Inmobiliaria,%20deseo%20informacion" target="_blank" class="btn-luxury flex-1 bg-neutral-800 text-on-primary text-xs font-semibold py-2 rounded-lg text-center flex items-center justify-center gap-1">
-                <span>Contactar</span>
-              </a>
-            </div>
-          </div>
-
         </div>
       </div>
     </section>
@@ -1375,7 +1258,7 @@
           SIGUA Inmobiliaria
         </span>
         <p class="text-body-sm font-body-sm text-on-primary-container mb-4">
-          Líderes en intermediación residencial, comercial y de terrenos en Carretera a El Salvador, Fraijanes y el Suroccidente guatemalteco.
+          Líderes en intermediación residencial, comercial y de terrenos en Carretera a El Salvador, Fraijanes y el Carretera a El Salvador guatemalteco.
         </p>
         <p class="text-label-sm font-label-sm text-on-primary-container">
           © 2026 SIGUA Inmobiliaria. Todos los derechos reservados.
@@ -1555,171 +1438,361 @@
   </div>
 
   <!-- Leaflet JS -->
-  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
 
   <!-- APPLICATION DATA & LOGIC -->
   <script>
     // 10 PROPIEDADES COMPLETAS Y FUNCIONALES
       const propertiesData = [
     {
-      id: "1",
-      title: "Casa Estilo Español en Terravista",
+      id: 1,
+      title: "Casa de Lujo en Residencial Terravista",
+      sub: "Acabados Europeos y Vista a Volcanes",
+      type: "Casa",
+      deal: "Venta",
       category: "venta",
-      price: 220000,
-      priceFormatted: "$220,000 USD",
+      city: "Carretera a El Salvador",
+      zone: "Km 16.5 Terravista, Santa Catarina Pinula",
+      location: "Km 16.5 Residencial Terravista",
+      price_q: "Q 3,758,750",
+      price_usd: "$485,000",
+      price_val: 3758750,
+      price: 485000,
+      priceFormatted: "$485,000 USD",
+      area_m2: "380 m²",
+      area_v2: "450 v²",
+      area: "380 m²",
+      sqm: 380,
       beds: 4,
-      baths: 4,
-      sqm: 320,
-      area: "320 m²",
-      location: "Km 16.5 Terravista, Carretera a El Salvador",
-      coords: [14.542, -90.472],
-      img: "https://images.unsplash.com/photo-1600585154526-990dced4db0d?auto=format&fit=crop&w=1200&q=80",
-      featured: true,
-      tag: "Exclusiva"
+      baths: 4.5,
+      floors: "2 Niveles",
+      garages: 4,
+      lat: 14.5420,
+      lng: -90.4720,
+      coords: [14.5420, -90.4720],
+      tag: "Disponible",
+      img: "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1200&q=80",
+      gallery: [
+        { url: "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1200&q=80", label: "Fachada Principal" },
+        { url: "https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?auto=format&fit=crop&w=1200&q=80", label: "Sala con Doble Altura" },
+        { url: "https://images.unsplash.com/photo-1600607687920-4e2a09cf159d?auto=format&fit=crop&w=1200&q=80", label: "Cocina Italiana con Cuarzo" },
+        { url: "https://images.unsplash.com/photo-1600566753376-12c8ab7fb75b?auto=format&fit=crop&w=1200&q=80", label: "Jardín con Pérgola" }
+      ],
+      desc: "Espectacular residencia dentro del exclusivo condominio Terravista. Acabados europeos, cocina italiana con cuarzo, pérgola integrada y amplio jardín con vista a volcanes. Seguridad de triple garita.",
+      featured: true
     },
     {
-      id: "2",
+      id: 2,
       title: "Residencia Exclusiva Terravista Bosque",
+      sub: "Rodeada de Naturaleza y Silencio Absoluto",
+      type: "Casa",
+      deal: "Venta",
       category: "venta",
+      city: "Carretera a El Salvador",
+      zone: "Km 16.5 Terravista, Santa Catarina Pinula",
+      location: "Km 16.5 Terravista Bosque",
+      price_q: "Q 2,983,750",
+      price_usd: "$385,000",
+      price_val: 2983750,
       price: 385000,
       priceFormatted: "$385,000 USD",
-      beds: 6,
-      baths: 7,
-      sqm: 455,
+      area_m2: "455 m²",
+      area_v2: "520 v²",
       area: "455 m²",
-      location: "Km 16.5 Terravista, Santa Catarina Pinula",
-      coords: [14.540, -90.470],
+      sqm: 455,
+      beds: 5,
+      baths: 5.5,
+      floors: "3 Niveles",
+      garages: 4,
+      lat: 14.5400,
+      lng: -90.4700,
+      coords: [14.5400, -90.4700],
+      tag: "Vista al Bosque",
       img: "https://images.unsplash.com/photo-1600607687920-4e2a09cf159d?auto=format&fit=crop&w=1200&q=80",
-      featured: true,
-      tag: "Vista al Bosque"
+      gallery: [
+        { url: "https://images.unsplash.com/photo-1600607687920-4e2a09cf159d?auto=format&fit=crop&w=1200&q=80", label: "Fachada Posterior" },
+        { url: "https://images.unsplash.com/photo-1600585154526-990dced4db0d?auto=format&fit=crop&w=1200&q=80", label: "Dormitorio Master" },
+        { url: "https://images.unsplash.com/photo-1556911220-e15b29be8c8f?auto=format&fit=crop&w=1200&q=80", label: "Cocina Gourmet" }
+      ],
+      desc: "Impresionante propiedad con vista directa a reserva boscosa protegida. Chimenea en sala, ventanales de piso a techo, área social exterior con fogata y sistema de audio centralizado.",
+      featured: true
     },
     {
-      id: "3",
+      id: 3,
       title: "Casa de Lujo en Arrazola Panorama",
+      sub: "Iluminación Natural y Arquitectura Vanguardista",
+      type: "Casa",
+      deal: "Venta",
       category: "venta",
-      price: 380000,
-      priceFormatted: "$380,000 USD",
-      beds: 3,
-      baths: 4,
-      sqm: 280,
-      area: "280 m²",
-      location: "Km 17 Carretera a Olmeca, Fraijanes",
-      coords: [14.535, -90.465],
+      city: "Fraijanes",
+      zone: "Km 17 Carretera a Olmeca, Fraijanes",
+      location: "Km 17 Arrazola Panorama",
+      price_q: "Q 2,828,750",
+      price_usd: "$365,000",
+      price_val: 2828750,
+      price: 365000,
+      priceFormatted: "$365,000 USD",
+      area_m2: "320 m²",
+      area_v2: "390 v²",
+      area: "320 m²",
+      sqm: 320,
+      beds: 4,
+      baths: 3.5,
+      floors: "2 Niveles",
+      garages: 3,
+      lat: 14.5350,
+      lng: -90.4650,
+      coords: [14.5350, -90.4650],
+      tag: "Disponible",
       img: "https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?auto=format&fit=crop&w=1200&q=80",
-      featured: true,
-      tag: "4 Parqueos"
+      gallery: [
+        { url: "https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?auto=format&fit=crop&w=1200&q=80", label: "Fachada" },
+        { url: "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1200&q=80", label: "Comedor" },
+        { url: "https://images.unsplash.com/photo-1600566753376-12c8ab7fb75b?auto=format&fit=crop&w=1200&q=80", label: "Terraza" }
+      ],
+      desc: "Hermosa propiedad de dos niveles con iluminación natural insuperable, sala familiar con chimenea, habitación principal con walk-in closet y balcón panorámico hacia el valle de Fraijanes.",
+      featured: true
     },
     {
-      id: "4",
+      id: 4,
       title: "Mansión Contemporánea Arrazola 2",
+      sub: "Piscina Privada Climatizada y Casa Club",
+      type: "Casa",
+      deal: "Venta",
       category: "venta",
+      city: "Fraijanes",
+      zone: "Km 17 Carretera a El Salvador, Fraijanes",
+      location: "Km 17 Condominio Arrazola 2",
+      price_q: "Q 3,293,750",
+      price_usd: "$425,000",
+      price_val: 3293750,
       price: 425000,
       priceFormatted: "$425,000 USD",
+      area_m2: "420 m²",
+      area_v2: "500 v²",
+      area: "420 m²",
+      sqm: 420,
       beds: 4,
       baths: 5,
-      sqm: 420,
-      area: "420 m²",
-      location: "Km 17 Carretera a El Salvador",
-      coords: [14.532, -90.460],
+      floors: "2 Niveles",
+      garages: 4,
+      lat: 14.5320,
+      lng: -90.4600,
+      coords: [14.5320, -90.4600],
+      tag: "Piscina Privada",
       img: "https://images.unsplash.com/photo-1613490493576-7fde63acd811?auto=format&fit=crop&w=1200&q=80",
-      featured: true,
-      tag: "Piscina Privada"
+      gallery: [
+        { url: "https://images.unsplash.com/photo-1613490493576-7fde63acd811?auto=format&fit=crop&w=1200&q=80", label: "Piscina y Jardín" },
+        { url: "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1200&q=80", label: "Fachada" }
+      ],
+      desc: "Residencia de diseño arquitectónico galardonado. Cuenta con piscina privada sinfín climatizada con paneles solares, cava de vinos subterránea, sistema domótico Lutron y circuito cerrado.",
+      featured: true
     },
     {
-      id: "5",
-      title: "Residencia a Estrenar Arrazola Panorama",
+      id: 5,
+      title: "Casa Moderna en Condominio Campo Grande",
+      sub: "Doble Garita, Canchas de Tenis y Casa Club",
+      type: "Casa",
+      deal: "Venta",
       category: "venta",
-      price: 300000,
-      priceFormatted: "Q 2,350,000 GTQ",
-      beds: 5,
-      baths: 5,
-      sqm: 300,
-      area: "300 m²",
-      location: "Km 17 CAES, Fraijanes",
-      coords: [14.533, -90.462],
-      img: "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1200&q=80",
-      featured: false,
-      tag: "A Estrenar"
-    },
-    {
-      id: "6",
-      title: "Casa Remodelada en Villas Bizantinas",
-      category: "venta",
-      price: 155000,
-      priceFormatted: "Q 1,199,000 GTQ",
-      beds: 3,
-      baths: 3,
-      sqm: 200,
-      area: "200 m²",
-      location: "Km 17 Arrazola 2, Fraijanes",
-      coords: [14.530, -90.458],
-      img: "https://images.unsplash.com/photo-1580587771525-78b9dba3b914?auto=format&fit=crop&w=1200&q=80",
-      featured: false,
-      tag: "Remodelada"
-    },
-    {
-      id: "7",
-      title: "Casa Campestre en Villas de Arrazola",
-      category: "venta",
-      price: 128000,
-      priceFormatted: "Q 990,000 GTQ",
-      beds: 3,
-      baths: 2,
-      sqm: 180,
-      area: "180 m²",
-      location: "Km 19 Carretera a El Salvador",
-      coords: [14.520, -90.450],
-      img: "https://images.unsplash.com/photo-1568605117036-5fe5e7bab0b7?auto=format&fit=crop&w=1200&q=80",
-      featured: false,
-      tag: "Oportunidad"
-    },
-    {
-      id: "8",
-      title: "Townhouse en Renta Jardines de Arrazola",
-      category: "renta",
-      price: 600,
-      priceFormatted: "Q 4,600 / mes",
-      beds: 3,
-      baths: 3,
-      sqm: 165,
-      area: "165 m²",
-      location: "Km 18 CAES, Santa Catarina Pinula",
-      coords: [14.525, -90.455],
-      img: "https://images.unsplash.com/photo-1512917774080-9991f1c4c750?auto=format&fit=crop&w=1200&q=80",
-      featured: false,
-      tag: "En Renta"
-    },
-    {
-      id: "9",
-      title: "Terreno con Vistas en Terravista Sector 3",
-      category: "terreno",
-      price: 70000,
-      priceFormatted: "$70,000 USD",
-      beds: 0,
-      baths: 0,
-      sqm: 260,
-      area: "376 v²",
-      location: "Km 17 Carretera a Olmeca, Terravista",
-      coords: [14.538, -90.468],
-      img: "https://images.unsplash.com/photo-1500382017468-9049fed747ef?auto=format&fit=crop&w=1200&q=80",
-      featured: false,
-      tag: "Terreno"
-    },
-    {
-      id: "10",
-      title: "Residencia Familiar Condominio Campo Grande",
-      category: "venta",
+      city: "Carretera a El Salvador",
+      zone: "Km 14 Carretera a El Salvador, Santa Catarina Pinula",
+      location: "Km 14 Condominio Campo Grande",
+      price_q: "Q 2,286,250",
+      price_usd: "$295,000",
+      price_val: 2286250,
       price: 295000,
       priceFormatted: "$295,000 USD",
-      beds: 4,
-      baths: 4,
-      sqm: 340,
-      area: "340 m²",
-      location: "Km 19 Carretera a El Salvador, Fraijanes",
-      coords: [14.515, -90.445],
-      img: "https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&w=1200&q=80",
-      featured: true,
-      tag: "Condominio Exclusivo"
+      area_m2: "240 m²",
+      area_v2: "310 v²",
+      area: "240 m²",
+      sqm: 240,
+      beds: 3,
+      baths: 2.5,
+      floors: "2 Niveles",
+      garages: 2,
+      lat: 14.5450,
+      lng: -90.4750,
+      coords: [14.5450, -90.4750],
+      tag: "Disponible",
+      img: "https://images.unsplash.com/photo-1600565193348-f74bd3c7ccdf?auto=format&fit=crop&w=1200&q=80",
+      gallery: [
+        { url: "https://images.unsplash.com/photo-1600565193348-f74bd3c7ccdf?auto=format&fit=crop&w=1200&q=80", label: "Fachada Frontal" },
+        { url: "https://images.unsplash.com/photo-1600585154526-990dced4db0d?auto=format&fit=crop&w=1200&q=80", label: "Sala Comedor" }
+      ],
+      desc: "Diseño contemporáneo de líneas puras. Casa club con piscina climatizada, canchas de tenis y doble garita de seguridad a sólo 15 minutos de Zona 10.",
+      featured: true
+    },
+    {
+      id: 6,
+      title: "Casa Remodelada en Villas Bizantinas",
+      sub: "Excelente Ubicación y Garita de Acceso",
+      type: "Casa",
+      deal: "Venta",
+      category: "venta",
+      city: "Fraijanes",
+      zone: "Km 17 Arrazola 2, Fraijanes",
+      location: "Km 17 Villas Bizantinas",
+      price_q: "Q 1,199,000",
+      price_usd: "$155,000",
+      price_val: 1199000,
+      price: 155000,
+      priceFormatted: "Q 1,199,000 GTQ",
+      area_m2: "200 m²",
+      area_v2: "260 v²",
+      area: "200 m²",
+      sqm: 200,
+      beds: 3,
+      baths: 3,
+      floors: "2 Niveles",
+      garages: 2,
+      lat: 14.5300,
+      lng: -90.4580,
+      coords: [14.5300, -90.4580],
+      tag: "Remodelada",
+      img: "https://images.unsplash.com/photo-1580587771525-78b9dba3b914?auto=format&fit=crop&w=1200&q=80",
+      gallery: [
+        { url: "https://images.unsplash.com/photo-1580587771525-78b9dba3b914?auto=format&fit=crop&w=1200&q=80", label: "Fachada" }
+      ],
+      desc: "Excelente opción familiar en un entorno tranquilo y natural. Cuenta con área verde privada, cocina equipada con gabinetes y seguridad las 24 horas.",
+      featured: false
+    },
+    {
+      id: 7,
+      title: "Terreno Residencial en Arrazola Country Club",
+      sub: "1,200 Varas Cuadradas Planas con Vista",
+      type: "Terreno",
+      deal: "Venta",
+      category: "terreno",
+      city: "Fraijanes",
+      zone: "Km 17 Carretera a El Salvador, Fraijanes",
+      location: "Km 17 Arrazola Country Club",
+      price_q: "Q 1,123,750",
+      price_usd: "$145,000",
+      price_val: 1123750,
+      price: 145000,
+      priceFormatted: "$145,000 USD",
+      area_m2: "840 m²",
+      area_v2: "1,200 v²",
+      area: "1,200 v²",
+      sqm: 840,
+      beds: 0,
+      baths: 0,
+      floors: "Terreno",
+      garages: 0,
+      lat: 14.5330,
+      lng: -90.4630,
+      coords: [14.5330, -90.4630],
+      tag: "Terreno",
+      img: "https://images.unsplash.com/photo-1500382017468-9049fed747ef?auto=format&fit=crop&w=1200&q=80",
+      gallery: [
+        { url: "https://images.unsplash.com/photo-1500382017468-9049fed747ef?auto=format&fit=crop&w=1200&q=80", label: "Vista Panorámica" }
+      ],
+      desc: "Terreno plano de 1,200 varas cuadradas con vista ininterrumpida a las montañas de Fraijanes. Ideal para construir la casa de tus sueños en el club residencial más prestigioso.",
+      featured: false
+    },
+    {
+      id: 8,
+      title: "Townhouse en Renta Fuentes del Valle",
+      sub: "Totalmente Equipada en Condominio Privado",
+      type: "Casa",
+      deal: "Renta",
+      category: "renta",
+      city: "Carretera a El Salvador",
+      zone: "Km 18 CAES, Santa Catarina Pinula",
+      location: "Km 18 Fuentes del Valle",
+      price_q: "Q 5,500 / mes",
+      price_usd: "$710 / mes",
+      price_val: 45000,
+      price: 710,
+      priceFormatted: "Q 5,500 / mes",
+      area_m2: "180 m²",
+      area_v2: "220 v²",
+      area: "180 m²",
+      sqm: 180,
+      beds: 3,
+      baths: 2.5,
+      floors: "2 Niveles",
+      garages: 2,
+      lat: 14.5250,
+      lng: -90.4550,
+      coords: [14.5250, -90.4550],
+      tag: "En Renta",
+      img: "https://images.unsplash.com/photo-1598228723793-52759bba239c?auto=format&fit=crop&w=1200&q=80",
+      gallery: [
+        { url: "https://images.unsplash.com/photo-1598228723793-52759bba239c?auto=format&fit=crop&w=1200&q=80", label: "Fachada" }
+      ],
+      desc: "Casa acogedora de un nivel y medio con jardín posterior, pérgola, estudio para home office y cercanía inmediata a colegios y centros comerciales.",
+      featured: false
+    },
+    {
+      id: 9,
+      title: "Terreno en Terravista Sector Mirador",
+      sub: "Vistas Únicas a la Ciudad y Volcanes",
+      type: "Terreno",
+      deal: "Venta",
+      category: "terreno",
+      city: "Carretera a El Salvador",
+      zone: "Km 16.5 Terravista, Santa Catarina Pinula",
+      location: "Km 16.5 Terravista Mirador",
+      price_q: "Q 542,500",
+      price_usd: "$70,000",
+      price_val: 542500,
+      price: 70000,
+      priceFormatted: "$70,000 USD",
+      area_m2: "260 m²",
+      area_v2: "376 v²",
+      area: "376 v²",
+      sqm: 260,
+      beds: 0,
+      baths: 0,
+      floors: "Terreno",
+      garages: 0,
+      lat: 14.5380,
+      lng: -90.4680,
+      coords: [14.5380, -90.4680],
+      tag: "Terreno",
+      img: "https://images.unsplash.com/photo-1500382017468-9049fed747ef?auto=format&fit=crop&w=1200&q=80",
+      gallery: [
+        { url: "https://images.unsplash.com/photo-1500382017468-9049fed747ef?auto=format&fit=crop&w=1200&q=80", label: "Vista al Mirador" }
+      ],
+      desc: "Terreno con suave pendiente y vistas inigualables. Cuenta con estudio de suelos aprobado y anteproyecto arquitectónico.",
+      featured: false
+    },
+    {
+      id: 10,
+      title: "Mansión Exclusiva en Finca San José",
+      sub: "La Cúspide del Diseño Residencial en Guatemala",
+      type: "Casa",
+      deal: "Venta",
+      category: "venta",
+      city: "Carretera a El Salvador",
+      zone: "Km 15.8 Carretera a El Salvador, Finca San José",
+      location: "Km 15.8 Finca San José",
+      price_q: "Q 5,270,000",
+      price_usd: "$680,000",
+      price_val: 527000,
+      price: 680000,
+      priceFormatted: "$680,000 USD",
+      area_m2: "580 m²",
+      area_v2: "750 v²",
+      area: "580 m²",
+      sqm: 580,
+      beds: 5,
+      baths: 6,
+      floors: "3 Niveles",
+      garages: 6,
+      lat: 14.5370,
+      lng: -90.4660,
+      coords: [14.5370, -90.4660],
+      tag: "Exclusiva",
+      img: "https://images.unsplash.com/photo-1613977257363-707ba9348227?auto=format&fit=crop&w=1200&q=80",
+      gallery: [
+        { url: "https://images.unsplash.com/photo-1613977257363-707ba9348227?auto=format&fit=crop&w=1200&q=80", label: "Fachada Principal" },
+        { url: "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1200&q=80", label: "Piscina Sinfín" }
+      ],
+      desc: "La cúspide del diseño residencial en Guatemala. Arquitectura bioclimática, acabados en mármol travertino, piscina sinfín con calentador solar y residencia de huéspedes independiente.",
+      featured: true
     }
   ];
 
@@ -1728,11 +1801,11 @@
     let markersLayer = null;
     let activeMarkerPin = null;
 
-    // INICIALIZACIÓN DE LEAFLET MAP CON FONDO GOOGLE MAPS Y CAPAS ALTERNAS
+        // INICIALIZACIÓN DE LEAFLET MAP CON FONDO GOOGLE MAPS Y CAPAS ALTERNAS
     function initMap() {
-      // Coordenadas centrales en Carretera a El Salvador (Carretera a El Salvador)
+      // Coordenadas centrales en Carretera a El Salvador (Km 16.5 - Santa Catarina Pinula / Fraijanes)
       map = L.map('property-map', {
-        center: [14.8510, -91.5320],
+        center: [14.5350, -90.4650],
         zoom: 13,
         scrollWheelZoom: false
       });
@@ -1778,16 +1851,22 @@
       markersLayer = L.layerGroup().addTo(map);
       renderMapPins(propertiesData);
       selectPropertyOnMap(1, false);
+
+      // InvalidateSize para asegurar que carguen todas las teselas sin retrasos
+      setTimeout(() => {
+        if (map) map.invalidateSize();
+      }, 400);
     }
 
-    // RENDERIZAR PINES EN EL MAPA
+    // RENDERIZAR PINES EN EL MAPA CON FALLBACKS SEGUROS
     function renderMapPins(props) {
       if (!markersLayer) return;
       markersLayer.clearLayers();
 
       props.forEach(p => {
-        // Precio abreviado para el globo del mapa
-        let shortPrice = p.price_q.split('/')[0].trim();
+        const lat = p.lat || (p.coords && p.coords[0]) || 14.5350;
+        const lng = p.lng || (p.coords && p.coords[1]) || -90.4650;
+        const shortPrice = (p.price_q || p.priceFormatted || ('$' + p.price)).split('/')[0].trim();
 
         const customIcon = L.divIcon({
           className: 'custom-map-pin',
@@ -1799,7 +1878,7 @@
           iconAnchor: [40, 15]
         });
 
-        const marker = L.marker([p.lat, p.lng], { icon: customIcon });
+        const marker = L.marker([lat, lng], { icon: customIcon });
         marker.on('click', () => {
           selectPropertyOnMap(p.id, true);
         });
@@ -1814,6 +1893,9 @@
       const prop = propertiesData.find(p => p.id === propId);
       if (!prop) return;
 
+      const lat = prop.lat || (prop.coords && prop.coords[0]) || 14.5350;
+      const lng = prop.lng || (prop.coords && prop.coords[1]) || -90.4650;
+
       // Actualizar globito activo visualmente
       document.querySelectorAll('.pin-pill').forEach(el => el.classList.remove('active-pin'));
       const activePinEl = document.getElementById(`map-pin-${propId}`);
@@ -1821,7 +1903,7 @@
 
       // Animación suave de cámara Leaflet
       if (animate && map) {
-        map.flyTo([prop.lat, prop.lng], 14, {
+        map.flyTo([lat, lng], 14, {
           duration: 1.4,
           easeLinearity: 0.25
         });
@@ -1841,13 +1923,13 @@
 
       if (cardImg) cardImg.src = prop.img;
       if (cardTitle) cardTitle.innerText = prop.title;
-      if (cardLoc) cardLoc.innerHTML = `<span class="material-symbols-outlined text-[15px]">location_on</span> ${prop.zone}`;
-      if (cardArea) cardArea.innerText = prop.area_m2;
+      if (cardLoc) cardLoc.innerHTML = `<span class="material-symbols-outlined text-[15px]">location_on</span> ${prop.zone || prop.location}`;
+      if (cardArea) cardArea.innerText = prop.area_m2 || prop.area;
       if (cardBeds) cardBeds.innerText = prop.beds ? `${prop.beds} Hab` : "Terreno";
       if (cardBaths) cardBaths.innerText = prop.baths ? `${prop.baths} Bñ` : "Titulado";
       if (cardGarages) cardGarages.innerText = prop.garages ? `${prop.garages} Autos` : "Acceso";
-      if (cardPrice) cardPrice.innerText = prop.price_q;
-      if (cardUsd) cardUsd.innerText = `(~${prop.price_usd})`;
+      if (cardPrice) cardPrice.innerText = prop.price_q || prop.priceFormatted;
+      if (cardUsd) cardUsd.innerText = `(~${prop.price_usd || ('$' + prop.price)})`;
       if (cardTag) {
         cardTag.innerText = prop.tag;
         cardTag.className = `absolute top-2.5 right-2.5 ${prop.deal === 'Renta' ? 'bg-amber-600' : 'bg-primary'} text-on-primary text-[10px] font-bold px-2.5 py-1 rounded-full uppercase tracking-wider shadow-sm`;
@@ -1865,13 +1947,17 @@
     // CENTRADOR RÁPIDO DEL MAPA
     function centerMap(region) {
       if (!map) return;
-      if (region === 'xela') {
-        map.flyTo([14.8450, -91.5300], 13, { duration: 1.2 });
-      } else if (region === 'reu') {
-        map.flyTo([14.5400, -91.6700], 13, { duration: 1.2 });
+      if (region === 'caes') {
+        map.flyTo([14.5410, -90.4710], 14, { duration: 1.2 });
+      } else if (region === 'fraijanes') {
+        map.flyTo([14.5220, -90.4500], 14, { duration: 1.2 });
       } else {
-        const group = new L.featureGroup(markersLayer.getLayers());
-        map.flyToBounds(group.getBounds().pad(0.15), { duration: 1.4 });
+        if (markersLayer && markersLayer.getLayers().length > 0) {
+          const group = new L.featureGroup(markersLayer.getLayers());
+          map.flyToBounds(group.getBounds().pad(0.15), { duration: 1.4 });
+        } else {
+          map.flyTo([14.5350, -90.4650], 13, { duration: 1.2 });
+        }
       }
     }
 
